@@ -1,0 +1,86 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+
+<link rel="stylesheet" href="/assets/css/index.css">
+{% endblock %}
+
+
+
+{% block bdd %}
+<h1>Items</h1>
+
+<ul>
+  {% for item in items %}
+  <li>{{ item.id }}. {{ item.title }}</li>
+  {% else %}
+  <li>Nothing to display</li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+      <h1 style="font-size: 3EM; color:red;">?</h1>
+    </div>
+  </div>
+
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+      <div class="row test">
+        <form class="form-inline" action="/decks" type="GET" >
+
+
+
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="password" class="form-control" placeholder="entrez votre pseudo !">
+          </div>
+
+          <button type="submit" class="btn btn-warning mb-2">Jouer ! </button>
+        </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6" style="margin-top: 10vh;">
+      <p>Comment jouer une partie de Qui est-ce ?
+Chacun des deux joueurs prend un plateau avec tous les visages des personnages.
+
+Ensuite chaque joueur pioche une carte jaune au hasard qui correspond au personnage que son adversaire doit deviner. Chacun des joueurs positionne cette carte devant son plateau sans la faire voir bien entendu à l’autre joueur.
+
+Le joueur le plus jeune commence la partie c’est à dire qu’il commence à poser la première question.
+
+ATTENTION : Chaque question posée par les joueurs doit permettre à l’autre joueur de répondre par OUI ou par NON !!!
+
+Exemple de questions : Est ce que ton personnage a les cheveux bouclés ?
+
+Si la réponse à la question est OUI dans ce cas le joueur peut baisser tous les personnages qui ont les cheveux raides ou encore les personnages chauves.
+
+Si la réponse est NON alors il pourra seulement baisser les personnages qui ont les cheveux bouclés.
+
+Les joueurs doivent poser une question à la fois, chacun leur tour, que la réponse soit positive ou non.
+
+Lorsqu’un joueur pense avoir identifié le personnage de l’adversaire il doit attendre que ce soit son tour. Si la réponse donnée est fausse il perd automatiquement la partie. Si elle est bonne il gagne la partie et chacun des deux joueurs pioche une autre carte jaune.
+
+Comment Gagner au Qui est-ce ?
+Il faut trouver le personnage qui se trouve sur la carte de votre adversaire et ça plus vite que lui bien sûre.
+
+C’est le premier joueur à avoir trouver cinq fois le personnage de son adversaire qui gagne la partie.</p>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+</div>
+
+
+
+{% endblock %}

@@ -25,6 +25,7 @@ abstract class EntityManager
     /**
      * @return array
      */
+
     public function findAll()
     {
         return $this->conn->query('SELECT * FROM ' . $this->table, \PDO::FETCH_ASSOC)->fetchAll();

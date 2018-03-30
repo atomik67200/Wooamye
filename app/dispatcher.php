@@ -8,12 +8,11 @@
 
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/', 'Item/index');
-    // {id} must be a number (\d+)
-    $r->addRoute('GET', '/item/{id:\d+}', 'Item/show');
-    $r->addRoute('GET', '/item/add', 'Item/add');
-    $r->addRoute('GET', '/item/edit/{id:\d+}', 'Item/edit');
-    $r->addRoute('GET', '/admin', 'Admin/index');
+    $r->addRoute('GET', '/', 'Client/index');
+    $r->addRoute('GET', '/decks', 'Client/decks');
+
+
+    $r->addRoute('GET', '/admin', 'Admin/');
 });
 
 // Fetch method and URI from somewhere

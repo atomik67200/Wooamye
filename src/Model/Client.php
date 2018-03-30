@@ -9,14 +9,19 @@
 namespace Model;
 
 /**
- * Class Item
+ * Class Client
  * @package Model
  */
-class Item
+class Client
 {
     private $id;
 
     private $title;
+
+    private $picture;
+
+
+    
 
     /**
      * @return mixed
@@ -28,7 +33,7 @@ class Item
 
     /**
      * @param mixed $id
-     * @return Item
+     * @return Client
      */
     public function setId($id)
     {
@@ -47,7 +52,7 @@ class Item
 
     /**
      * @param mixed $title
-     * @return Item
+     * @return Client
      */
     public function setTitle($title)
     {
