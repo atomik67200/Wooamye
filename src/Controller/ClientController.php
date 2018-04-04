@@ -37,6 +37,14 @@ class ClientController extends AbstractController
         return $this->twig->render('Client/decks.html.twig');
     }
 
+    public function play()
+    {
+        $clientManager = new ClientManager();
+        $clients = $clientManager->findAll();
+
+        return $this->twig->render('Client/play.html.twig');
+    }
+
     /**
      * @param $id
      * @return string

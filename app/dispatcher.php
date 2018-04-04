@@ -10,9 +10,10 @@
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'Client/index');
     $r->addRoute('GET', '/decks', 'Client/decks');
+    $r->addRoute('GET', '/play', 'Client/play');
 
 
-    $r->addRoute('GET', '/admin', 'Admin/');
+    $r->addRoute('GET', '/admin', 'Admin/index');
 });
 
 // Fetch method and URI from somewhere

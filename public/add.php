@@ -42,6 +42,7 @@ foreach ($_POST as $champs => $value) {
 <html>
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/admin.css">
   <meta charset="utf-8">
   <title>carte?</title>
 </head>
@@ -63,8 +64,8 @@ foreach ($_POST as $champs => $value) {
         foreach ($it as $fileinfo) {
           $i++;
           $filename = $fileinfo->getfilename();
-          echo '<div class=col-6 thumbnail>';
-          echo '<img src="'.$fileinfo.'" class="rounded" float="left" alt="$value" width="100%;">';
+          echo '<div class="col-2 thumbnail" style="width:200px">';
+          echo '<img src="'.$fileinfo.'" class="rounded" float="left" alt="$value">';
           echo $filename;
           echo "<p><input class='btn btn-danger' type='submit' name='delete$i' method='post' value='delete'/>";
           echo "<input type='hidden' name='suppression$i' value='$filename'>";
