@@ -7,19 +7,23 @@
 {% block content %}
 
 
-<div class="row justify-content-center">
+<div class="row justify-content-center middletop">
 
-	<label for="">A t'il des </label>
+	<label for="">Le personnage </label>
 
 	<select class="" name="">
-	<option value="">Cheveux</option>
-	<option value="">bla</option>
-	<option value="">bli</option>
+	<option value="">A t'il des cheveux?</option>
+	<option value="">A t'il des lunettes?</option>
+	<option value="">A t'il une barbe?</option>
 	</select>
 
-</div>
+	<button>Valider</button>
 
-<div class="container-fluid middletop">
+	<h3>la reponse</h3>
+
+
+</div>
+	<div class="container-fluid justify-content-center ecart">
 
 
     {% for items in 1..4	 %}
@@ -38,7 +42,9 @@
 			</div>
 		  {% endfor %}
 
-  </div>
+		<button>Valider</button>
+
+	</div>
 
 
 {% endblock %}
