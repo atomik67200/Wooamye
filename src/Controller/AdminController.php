@@ -32,4 +32,10 @@ class AdminController extends AbstractController
             return $this->twig->render('Admin/index.html.twig');
             }
     }
+
+    public function ajouter()
+    {
+        return $this->twig->render('Admin/ajouter.html.twig');
+    }
+
 }

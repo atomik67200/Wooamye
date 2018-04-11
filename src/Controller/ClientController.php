@@ -23,24 +23,20 @@ class ClientController extends AbstractController
      */
     public function index()
     {
-        $clientManager = new ClientManager();
-        $clients = $clientManager->findAll();
+
 
         return $this->twig->render('Client/index.html.twig');
     }
 
     public function decks()
     {
-        $clientManager = new ClientManager();
-        $clients = $clientManager->findAll();
 
         return $this->twig->render('Client/decks.html.twig');
     }
 
     public function play()
     {
-        $clientManager = new ClientManager();
-        $clients = $clientManager->findAll();
+
 
         return $this->twig->render('Client/play.html.twig');
     }
