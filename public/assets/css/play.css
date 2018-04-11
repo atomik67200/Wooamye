@@ -4,9 +4,10 @@ body{
 
 
 .middletop{
-	margin-top: 20vh;
+	margin-top: 15vh;
 }
 
-.thumbnail{
-	margin: 1vw;
+.col-1{
+		height: 20vh;
+		
 }

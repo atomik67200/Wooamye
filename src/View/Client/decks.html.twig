@@ -1,32 +1,25 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-    <link rel="stylesheet" href="assets/css/decks.css">
+<link rel="stylesheet" href="assets/css/decks.css">
 {% endblock %}
 
 {% block content %}
 
 <div class="container">
-	<div class="row middletop">
+  <div class="row middletop">
 
-				<div class="thumbnail">
-				<a href="/play"><img src="http://via.placeholder.com/250x250" class="rounded-top" alt="Sample image"></a>
+    {% for items in 1..8 %}
+    <div class="col-3">
+      <div class="thumbnail">
+        <a href="/play"><img src="http://via.placeholder.com/250x250" class="rounded-top" alt="Sample image"></a>
 
-				</div>
+      </div>
+    </div>
+    {% endfor %}
 
-				<div class="thumbnail">
-				<a href="#"><img src="http://via.placeholder.com/250x250" class="rounded-top" alt="Sample image"></a>
-
-				</div>
-
-				<div class="thumbnail">
-				<a href="#"><img src="http://via.placeholder.com/250x250" class="rounded-top" alt="Sample image"></a>
-
-				</div>
-
-	</div>
-
-
-
+  </div>
 </div>
+</div>
+
 {% endblock %}

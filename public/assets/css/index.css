@@ -1,6 +1,13 @@
 body{
-	background-color: grey;
+	background-color: white;
 }
+
+.form-control{
+background-color: yellow;
+color: black;
+
+}
+
 
 .test{
 	margin-top: 25vh;

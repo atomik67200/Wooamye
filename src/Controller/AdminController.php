@@ -10,12 +10,26 @@ namespace Controller;
  */
 class AdminController extends AbstractController
 {
+    /**
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function index()
     {
         return $this->twig->render('Admin/index.html.twig');
     }
-    public function add()
+
+    public function Verif()
     {
-        return $this->twig->render('Admin/add.php');
+        if ($_SERVER["REQUEST_METHOD"] === "POST")
+            {
+            header('/wshmagl');
+            } else {
+
+                echo 'wshmagl';
+            return $this->twig->render('Admin/index.html.twig');
+            }
     }
 }
