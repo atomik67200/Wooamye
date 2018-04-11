@@ -1,0 +1,17 @@
+div.center{
+    opacity:0.8;
+    padding:40px;
+    width:280px;
+    position:absolute;
+    top:40%;
+    left:41%;
+    border: #8fb7db 2px solid;
+    border-radius: 10px;
+    background-color:#8fb7db;
+}
+p.titre{
+    position:absolute;
+    top:37%;
+    left:43%;
+    color:#659ccd;
+}
