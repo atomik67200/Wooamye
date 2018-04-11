@@ -25,11 +25,13 @@ class ClientController extends AbstractController
     {
 
 
+
         return $this->twig->render('Client/index.html.twig');
     }
 
     public function decks()
     {
+
 
         return $this->twig->render('Client/decks.html.twig');
     }
