@@ -9,7 +9,7 @@
 namespace Model;
 
 
-class  ClientManager extends EntityManager
+class ClientManager extends EntityManager
 {
     const TABLE = 'items';
 
