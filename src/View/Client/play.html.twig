@@ -1,50 +1,87 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-<link rel="stylesheet" href="assets/css/play.css">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/play.css">
 {% endblock %}
 
+            {% block header %}
+                <h4>A vous de jouer!</h4>
+            {% endblock %}
+
+ {% block content %}
+     <p class="question col-lg-2 offset-4">Le personnage à t'il :</p>
+     <div class="container">
+         <div class="row ">
+             <div class="input-group col-lg-5 offset-3 ">
+                 <select class="custom-select" id=".." >
+                     <option selected>....</option>
+                     <option value="1">des cheveux brun?</option>
+                     <option value="2">des cheveux blond?</option>
+                     <option value="3">à t'il des lunettes?</option>
+                     <option value="4">à t'il une barbe?</option>
+                     <option value="5">à t'il du rouge à lèvre?</option>
+                     <option value="5">à t'il un chapeau?</option>
+                     <option value="6">est t'il une femme?</option>
+                     <option value="7">est t'il un homme?</option>
+                 </select>
+             </div>
+         </div>
+     </div>
+     <div class="col-lg-1  offset-5">
+         <button class="valider btn btn-primary " type="button">Valider</button>
+     </div>
+
+     <div class="container">
+         <div class=" plateau row ">
+             {% for items in 1..4 %}
+                 {% for items in 1..8 %}
+                     <div class="row">
+                         <div class=" img col-xl-1 col-lg-4 col-md-5 col-sm-6 offset-1">
+                             <a href="/play">
+                                 <img src="http://via.placeholder.com/120x120" alt="Lights" style="">
+                             </a>
+                         </div>
+                     </div>
+                 {% endfor %}
+             {% endfor %}
+         </div>
+     </div>
+
+
+     <div class="container">
+         <div class="bottomButton row">
+             <div class=" col-xl-4 col-md-4 col-sm-4 offset-1">
+                 <button class="btn btn-danger" type="button">Eliminer votre sélection</button>
+             </div>
+             <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">
+                 <button class=" valider btn btn-primary " type="button">Valider la bonne photo</button>
+             </div>
+         </div>
+     </div>
+
+
+ {% endblock %}
+
+
+
+
+
+{#
 {% block content %}
-
-
 <div class="row justify-content-center middletop">
-
-	<label for="">Le personnage </label>
-
-	<select class="" name="">
-	<option value="">A t'il des cheveux?</option>
-	<option value="">A t'il des lunettes?</option>
-	<option value="">A t'il une barbe?</option>
-	</select>
-
-	<button>Valider</button>
-
-	<h3>la reponse</h3>
-
-
 </div>
-	<div class="container-fluid justify-content-center ecart">
+ <div class="container-fluid justify-content-center ecart">
+   <div class="row  justify-content-center">
+     <div class="col-1">
+   <div class="thumbnail">
+     <a href="/play"><img src="http://via.placeholder.com/130x150" class="rounded-top" alt="Sample image"></a>
+   </div>
+     </div>
+   </div>
 
+ </div>
 
-    {% for items in 1..4	 %}
-	  <div class="row  justify-content-center">
-
-		{% for items in 1..8 %}
-	    <div class="col-1">
-
-      <div class="thumbnail">
-        <a href="/play"><img src="http://via.placeholder.com/130x150" class="rounded-top" alt="Sample image"></a>
-
-      </div>
-    	</div>
-    {% endfor %}
-
-			</div>
-		  {% endfor %}
-
-		<button>Valider</button>
-
-	</div>
-
-
+col-md-6 col-sm-6 xs-10
 {% endblock %}
+#}

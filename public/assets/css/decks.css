@@ -1,12 +1,21 @@
 body{
-	background-color: #8daacc;
+	background-color: beige;
+
+}
+h3{
+	font-family: 'Press Start 2P', cursive;
+	color: red;
+	text-align: center;
+	margin-top: 5vh;
 }
 
-
-.middletop{
-	margin-top: 20vh;
+.deckChoix{
+	margin-top: 1vh;
+	margin-bottom: 5vh;
+}
+p{
+	text-align: center;
+	font-family: 'Press Start 2P', cursive;
+	margin-top: 10vh;
 }
 
-.thumbnail{
-	margin: 1vw;
-}

@@ -1,23 +1,50 @@
 body{
-	background-color: #8daacc;
+	background-color: beige;
 }
-
-
-.middletop{
-	margin-top: 15vh;
+button{
+	color: white;
 }
-
-.ecart{
+h4{
+	font-family: 'Press Start 2P', cursive;
+	color: red;
+	text-align: center;
+	margin-top: 5vh;
+}
+.btn-danger{
 	margin-top: 3vh;
 }
-a{
-
+.valider{
+	margin-top: 3vh;
 }
-
-
-img{
-		max-height: 30vh;
-		max-width: 8vw;
-		padding: 2px;
-
+.bottomButton{
+	margin-top: 5vh;
+	margin-bottom: 10vh;
+}
+.question{
+	font-size: 20px;
+	text-align: center;
+	margin-top: 5vh;
+}
+.reponse{
+	font-size: 20px;
+	text-align: center;
+	margin-top: 5vh;
+}
+.input-group{
+	width: 400px;
+}
+.plateau{
+	margin-top: 5vh;
+}
+.container{
+	margin-top: 2vh;
+}
+.test{
+	border: 1px solid black;
+}
+.img{
+    margin-top: 2vh;
+}
+.check{
+    background-color: green;
 }

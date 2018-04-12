@@ -1,25 +1,31 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-<link rel="stylesheet" href="assets/css/decks.css">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/decks.css">
 {% endblock %}
 
-{% block content %}
+{% block header %}
 
-<div class="container">
-  <div class="row middletop">
+      <h3 class="titre">Choix du deck</h3>
 
-    {% for items in 1..8 %}
-    <div class="col-3">
-      <div class="thumbnail">
-        <a href="/play"><img src="http://via.placeholder.com/250x250" class="rounded-top" alt="Sample image"></a>
+{% endblock %}
 
+    {% block content %}
+    <div class="container">
+      <div class="row deckChoix">
+          {% for items in 1..8 %}
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+          <div class="thumbnail">
+            <div class="caption">
+              <p>Deck {{ items }}</p>
+            </div>
+            <a href="/play">
+              <img src="http://via.placeholder.com/250x250" alt="Lights" style="">
+            </a>
+          </div>
+        </div>
+          {% endfor %}
       </div>
     </div>
-    {% endfor %}
-
-  </div>
-</div>
-</div>
-
-{% endblock %}
+    {% endblock %}
