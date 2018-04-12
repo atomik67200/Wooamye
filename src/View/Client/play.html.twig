@@ -10,7 +10,7 @@
             {% endblock %}
 
  {% block content %}
-     <p class="question col-lg-2 offset-4">Le personnage à t'il :</p>
+     <p class="question">Le personnage à t'il :</p>
      <div class="container">
          <div class="row ">
              <div class="input-group col-lg-5 offset-3 ">
@@ -36,12 +36,12 @@
          <div class=" plateau row ">
              {% for items in 1..4 %}
                  {% for items in 1..8 %}
-                     <div class="row">
-                         <div class=" img col-xl-1 col-lg-4 col-md-5 col-sm-6 offset-1">
-                             <a href="/play">
-                                 <img src="http://via.placeholder.com/120x120" alt="Lights" style="">
-                             </a>
-                         </div>
+                     <div class="nopad text-center">
+                         <label class="image-checkbox">
+                             <img class="img-responsive" src="http://via.placeholder.com/120x120" />
+                             <input type="checkbox" name="image[]" value="" />
+
+                         </label>
                      </div>
                  {% endfor %}
              {% endfor %}
