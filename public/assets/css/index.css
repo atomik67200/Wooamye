@@ -37,14 +37,7 @@ input,button{
     margin-right: 10px;
 }
 /*Gere l'encadrer play*/
-.play{
-    border: 1px solid black;
-    border-radius: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    background-color: mistyrose;
-}
+
 /*Gere l'encadrer des Regles*/
 .regles{
 	border: 1px solid black;
