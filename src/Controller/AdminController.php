@@ -38,4 +38,14 @@ class AdminController extends AbstractController
         return $this->twig->render('Admin/ajouter.html.twig');
     }
 
+    public function modifier()
+    {
+        return $this->twig->render('Admin/modifier.html.twig');
+    }
+
+    public function supprimer()
+    {
+        return $this->twig->render('Admin/supprimer.html.twig');
+    }
+
 }
