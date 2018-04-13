@@ -1,0 +1,67 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/finDeParti.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% endblock %}
+
+{% block header %}
+    <h4>Vous Avez Gagner!</h4>
+    <h4>Vous Avez Perdu!</h4>
+{% endblock %}
+{% block content %}
+
+    <p class="Pseudo">Pseudo :</p>
+    <p class="Score">Score :</p>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-1 offset-3">
+                <img id="myImg" src="http://via.placeholder.com/400x400" alt="">
+                    <div id="myModal" class="modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="img01">
+                    <div id="caption"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class=" button row">
+            <div class="col-xl-1 offset-5">
+                <form class="form-inline" action="/" type="GET">
+                    <button type="submit" class="btn btn-primary center "> Rejouer ! </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+<script>
+    //Script pour la fenetre modal
+    var modal = document.getElementById('myModal');
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById('myImg');
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+</script>
+
+{% endblock %}

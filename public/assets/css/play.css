@@ -48,8 +48,14 @@ h4{
 .check{
     background-color: green;
 }
-
-
+.Pseudo{
+    font-family: 'Press Start 2P', cursive;
+    color: red;
+}
+.Score{
+    font-family: 'Press Start 2P', cursive;
+    color: red;
+}
 
 .nopad {
     margin-right: 1vh;
@@ -72,7 +78,8 @@ h4{
 }
 
 .image-checkbox-checked {
-    border-color: #4783B0;
+    background-color: red;
+    opacity: 0.5;
 }
 .image-checkbox .fa {
     position: absolute;

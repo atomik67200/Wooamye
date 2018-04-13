@@ -10,19 +10,22 @@
             {% endblock %}
 
  {% block content %}
-     <p class="question">Le personnage à t'il :</p>
+     <p class="Pseudo">Pseudo :</p>
+     <p class="Score">Score :</p>
+
+     <p class="question">Le personnage à :</p>
      <div class="container">
          <div class="row ">
-             <div class="input-group col-lg-5 offset-3 ">
+             <div class="input-group col-lg-5 col-lg-6 offset-2 ">
                  <select class="custom-select" id=".." >
                      <option selected>....</option>
-                     <option value="1">des cheveux brun?</option>
-                     <option value="2">des cheveux blond?</option>
-                     <option value="3">à t'il des lunettes?</option>
-                     <option value="4">à t'il une barbe?</option>
-                     <option value="5">à t'il du rouge à lèvre?</option>
-                     <option value="5">à t'il un chapeau?</option>
-                     <option value="6">est t'il une femme?</option>
+                     <option value="1">t'il des cheveux brun?</option>
+                     <option value="2">t'il des cheveux blond?</option>
+                     <option value="3">t'il des lunettes?</option>
+                     <option value="4">t'il une barbe?</option>
+                     <option value="5">t'il du rouge à lèvre?</option>
+                     <option value="5">t'il un chapeau?</option>
+                     <option value="6">est t'elle une femme?</option>
                      <option value="7">est t'il un homme?</option>
                  </select>
              </div>
@@ -48,40 +51,16 @@
          </div>
      </div>
 
-
      <div class="container">
          <div class="bottomButton row">
              <div class=" col-xl-4 col-md-4 col-sm-4 offset-1">
                  <button class="btn btn-danger" type="button">Eliminer votre sélection</button>
              </div>
-             <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">
-                 <button class=" valider btn btn-primary " type="button">Valider la bonne photo</button>
-             </div>
+             <form class="form-inline " action="/fin" type="GET">
+                 <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">
+                     <button class="valider btn btn-primary " type="submit">Valider la bonne photo</button>
+                 </div>
+             </form>
          </div>
      </div>
-
-
  {% endblock %}
-
-
-
-
-
-{#
-{% block content %}
-<div class="row justify-content-center middletop">
-</div>
- <div class="container-fluid justify-content-center ecart">
-   <div class="row  justify-content-center">
-     <div class="col-1">
-   <div class="thumbnail">
-     <a href="/play"><img src="http://via.placeholder.com/130x150" class="rounded-top" alt="Sample image"></a>
-   </div>
-     </div>
-   </div>
-
- </div>
-
-col-md-6 col-sm-6 xs-10
-{% endblock %}
-#}
