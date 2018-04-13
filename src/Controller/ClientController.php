@@ -43,6 +43,10 @@ class ClientController extends AbstractController
         return $this->twig->render('Client/play.html.twig');
     }
 
+    public function finDeParti()
+    {
+        return $this->twig->render('Client/finDeParti.html.twig');
+    }
     /**
      * @param $id
      * @return string
