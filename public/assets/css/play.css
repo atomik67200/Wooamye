@@ -1,13 +1,87 @@
 body{
-	background-color: #8daacc;
+	background-color: beige;
+}
+button{
+	color: white;
+}
+h4{
+	font-family: 'Press Start 2P', cursive;
+	color: red;
+	text-align: center;
+	margin-top: 5vh;
+}
+.btn-danger{
+	margin-top: 3vh;
+}
+.valider{
+	margin-top: 3vh;
+}
+.bottomButton{
+	margin-top: 5vh;
+	margin-bottom: 10vh;
+}
+.question{
+	font-size: 20px;
+	text-align: center;
+	margin-top: 5vh;
+}
+.reponse{
+	font-size: 20px;
+	text-align: center;
+	margin-top: 5vh;
+}
+.input-group{
+	width: 400px;
+}
+.plateau{
+	margin-top: 5vh;
+}
+.container{
+	margin-top: 1vh;
+}
+.test{
+	border: 1px solid black;
+}
+.img{
+    margin-top: 3vh;
+}
+.check{
+    background-color: green;
 }
 
 
-.middletop{
-	margin-top: 15vh;
+
+.nopad {
+    margin-right: 1vh;
+    margin-top: 1vh;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+/*image gallery*/
+.image-checkbox {
+    cursor: pointer;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 4px solid transparent;
+    margin-bottom: 0;
+    outline: 0;
+}
+.image-checkbox input[type="checkbox"] {
+    display: none;
 }
 
-.col-1{
-		height: 20vh;
-		
+.image-checkbox-checked {
+    border-color: #4783B0;
+}
+.image-checkbox .fa {
+    position: absolute;
+    color: #4A79A3;
+    background-color: #fff;
+    padding: 10px;
+    top: 0;
+    right: 0;
+}
+.image-checkbox-checked .fa {
+    display: block !important;
 }

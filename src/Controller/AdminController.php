@@ -23,14 +23,9 @@ class AdminController extends AbstractController
 
     public function Verif()
     {
-        if ($_SERVER["REQUEST_METHOD"] === "POST")
-            {
-            header('/wshmagl');
-            } else {
 
-                echo 'wshmagl';
             return $this->twig->render('Admin/index.html.twig');
-            }
+
     }
 
     public function ajouter()
