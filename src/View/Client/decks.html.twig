@@ -8,10 +8,12 @@
 {% block header %}
 
       <h3 class="titre">Choix du deck</h3>
-
+    {{ app.request.session.get('pseudo')}}
+    {{ pseudo }}
 {% endblock %}
 
     {% block content %}
+
     <div class="container">
       <div class="row deckChoix">
           {% for items in 1..8 %}

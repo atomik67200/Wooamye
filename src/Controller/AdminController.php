@@ -23,14 +23,26 @@ class AdminController extends AbstractController
 
     public function Verif()
     {
-
-            return $this->twig->render('Admin/index.html.twig');
+        return $this->twig->render('Admin/index.html.twig');
 
     }
 
+    /**
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function ajouter()
     {
-        return $this->twig->render('Admin/ajouter.html.twig');
+        if(($_POST['pseudo']==='olivier')&&($_POST['password']==='franck'))
+           {
+                return $this->twig->render('Admin/ajouter.html.twig');
+            }else{
+                return $this->twig->render('Admin/index.html.twig');
+            }
+
+        //return $this->twig->render('Admin/ajouter.html.twig');
     }
 
     public function modifier()
