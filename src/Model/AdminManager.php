@@ -11,7 +11,7 @@ namespace Model;
 
 class ClientManager extends EntityManager
 {
-    const TABLE = 'items';
+    const TABLE = 'decks';
 
 
     public function __construct()

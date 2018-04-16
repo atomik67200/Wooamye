@@ -92,3 +92,6 @@ h4{
 .image-checkbox-checked .fa {
     display: block !important;
 }
+.container{
+    min-width:600px;
+}

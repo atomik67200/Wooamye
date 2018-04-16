@@ -26,9 +26,9 @@
     <div class="row justify-content-around">
       <div class="play col-md-4">
         <div class="row test">
-          <form class="form-inline" action="/decks" type="GET">
-              <input type="text" class="form-control" placeholder="entrez votre pseudo !">
-            <button type="submit" class="btn btnJouer "> Jouer ! </button>
+          <form class="form-inline" method="post" action="/decks">
+              <input type="text" name="pseudo" class="form-control" placeholder="entrez votre pseudo !">
+            <button type="submit" class="btn btn-warning "> Jouer ! </button>
           </form>
       </div>
     </div>

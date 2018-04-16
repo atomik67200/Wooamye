@@ -31,6 +31,13 @@ class ClientController extends AbstractController
 
     public function decks()
     {
+        if($_SERVER['REQUEST_METHOD']==='POST'){
+
+            if(isset($_POST['pseudo'])){
+                session_start();
+                $_SESSION['pseudo']=$_POST['pseudo'];
+            }
+        }
 
 
         return $this->twig->render('Client/decks.html.twig');
@@ -38,14 +45,24 @@ class ClientController extends AbstractController
 
     public function play()
     {
-
-
-        return $this->twig->render('Client/play.html.twig');
+        session_start();
+        if (isset($_SESSION['pseudo'])) {
+            return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo']]);
+        }else
+        {
+            return $this->twig->render('Client/index.html.twig');
+        }
     }
 
     public function finDeParti()
     {
-        return $this->twig->render('Client/finDeParti.html.twig');
+        session_start();
+        if (isset($_SESSION['pseudo'])) {
+            return $this->twig->render('Client/finDeParti.html.twig', ['pseudo' => $_SESSION['pseudo']]);
+        }else
+        {
+            return $this->twig->render('Client/index.html.twig');
+        }
     }
     /**
      * @param $id

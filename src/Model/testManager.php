@@ -9,9 +9,10 @@
 namespace Model;
 
 
-class  ClientManager extends EntityManager
+
+class testManager extends EntityManager
 {
-    const TABLE = 'decks';
+    const TABLE = 'Decks';
 
 
     public function __construct()

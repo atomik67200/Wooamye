@@ -8,19 +8,17 @@
 {% block header %}
 
       <h3 class="titre">Choix du deck</h3>
-    {{ app.request.session.get('pseudo')}}
-    {{ pseudo }}
+
 {% endblock %}
 
     {% block content %}
-
     <div class="container">
       <div class="row deckChoix">
-          {% for items in 1..8 %}
+          {% for decks in test1 %}
         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
           <div class="thumbnail">
             <div class="caption">
-              <p>Deck {{ items }}</p>
+              <p>id : {{ decks.image }}</p>
             </div>
             <a href="/play">
               <img src="http://via.placeholder.com/250x250" alt="Lights" style="">
