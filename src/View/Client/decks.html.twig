@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/decks.css">
+{% endblock %}
+
+{% block header %}
+
+      <h3 class="titre">Choix du deck</h3>
+    {{ app.request.session.get('pseudo')}}
+    {{ pseudo }}
+{% endblock %}
+
+    {% block content %}
+
+    <div class="container">
+      <div class="row deckChoix">
+          {% for items in 1..8 %}
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+          <div class="thumbnail">
+            <div class="caption">
+              <p>Deck {{ items }}</p>
+            </div>
+            <a href="/play">
+              <img src="http://via.placeholder.com/250x250" alt="Lights" style="">
+            </a>
+          </div>
+        </div>
+          {% endfor %}
+      </div>
+    </div>
+    {% endblock %}
