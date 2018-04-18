@@ -19,6 +19,9 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/modifier', 'Admin/modifier');
     $r->addRoute('GET', '/supprimer', 'Admin/supprimer');
     $r->addRoute('GET', '/test', 'test/test1');
+    $r->addRoute('GET', '/changerAccueil', 'Admin/changerAccueil');
+    $r->addRoute('POST', '/changerAccueil', 'Admin/changerAccueil');
+
 });
 
 // Fetch method and URI from somewhere
