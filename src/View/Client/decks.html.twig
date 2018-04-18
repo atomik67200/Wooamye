@@ -8,8 +8,8 @@
 {% block header %}
 
       <h3 class="titre">Choix du deck</h3>
-    {{ app.request.session.get('pseudo')}}
-    {{ pseudo }}
+
+    <h6 class="titre">Bienvenue a toi  <span>{{ pseudo }}</span> ! Choisi un set de carte pour commencer la partie !!</h6>
 {% endblock %}
 
     {% block content %}

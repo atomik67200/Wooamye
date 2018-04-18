@@ -33,9 +33,10 @@
     <div class="row justify-content-around">
       <div class="play col-md-4">
         <div class="row test">
-          <form class="form-inline" method="post" action="/decks">
-              <input type="text" name="pseudo" class="form-control" placeholder="entrez votre pseudo !">
+          <form class="form-inline" method="GET" action="/decks">
+              <input type="text" name="pseudo" size="28" class="form-control" placeholder= "{% if errorPseudo %}{{ errorPseudo }} {% else %} entrez votre pseudo !{% endif %}">
             <button type="submit" class="btn btn-warning "> Jouer ! </button>
+
           </form>
       </div>
     </div>
