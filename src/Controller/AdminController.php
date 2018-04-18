@@ -55,4 +55,39 @@ class AdminController extends AbstractController
         return $this->twig->render('Admin/supprimer.html.twig');
     }
 
+    public function changerAccueil()
+    {
+        if (isset($_POST["contenu"]))
+        {
+            $fichier = "../src/View/Client/". $_GET["f"];
+            $file = fopen($fichier, 'w');
+            fwrite($file,($_POST["contenu"]));
+            fclose($file);
+        }
+
+        $dir=opendir("../src/View/Client/");
+        while($allFile = readdir($dir)) {
+            if (in_array($allFile, array("index.html.twig"))) {
+                echo '<a href="?f=' . $allFile . '">';
+                echo $allFile;
+                echo '</a>';
+            }
+        }
+
+        if (isset($_GET["f"])) {
+
+            $fichier = "../src/View/Client/". $_GET["f"];
+            $contenu = file_get_contents($fichier);
+            return $this->twig->render('Admin/changerAccueil.html.twig',['contenu'=>$contenu]);
+        }
+        return $this->twig->render('Admin/changerAccueil.html.twig');
+        header('Admin/changerAccueil.html.twig');
+
+
+
+    }
+
+
+
+
 }
