@@ -1,9 +1,9 @@
-{% extends 'layout.html.twig' %}
+                                                                        {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
   <link rel="stylesheet" href="/assets/css/index.css">
-{% endblock %}
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet"> {% endblock %}
 
 
 
@@ -23,28 +23,22 @@
 
 
   <div class="container-fluid">
-
-    <div class="row justify-content-md-center">
-      <div class="col-md-auto">
-        <h1 style="font-size: 3EM; color:red;">?</h1>
-      </div>
-    </div>
-
     <div class="row justify-content-around">
       <div class="play col-md-4">
         <div class="row test">
-          <form class="form-inline" method="post" action="/decks">
-              <input type="text" name="pseudo" class="form-control" placeholder="entrez votre pseudo !">
+          <form class="form-inline" method="GET" action="/decks">
+              <input type="text" name="pseudo" size="28" class="form-control" placeholder= "{% if errorPseudo %}{{ errorPseudo }} {% else %} entrez votre pseudo !{% endif %}">
             <button type="submit" class="btn btn-warning "> Jouer ! </button>
+
           </form>
       </div>
     </div>
 
     <div class="row">
         <div class="regles col-md-6 col-offset-1" style="margin-top: 10vh;">
-          <h4 class="titre">Comment jouer à Qui est-ce ?</h4><br>
+          <h1 class="titre">Comment jouer à Qui est-ce ?</h1><br>
 
-          <p>Peu importe votre âge, si vous aimez les jeux de déduction, vous allez adorer le jeu de société "WooaMye ?"!</p>
+          <p>Peut importe votre âge, si vous aimez les jeux de déduction, vous allez adorer le jeu de société "WooaMye ?"!</p>
 
           <p>Il vous suffit juste de trouver le personnage de votre adversaire ( sélectionné aléatoirement).<br>En utilisant les questions prédéfinies dont la seule réponse sera OUI ou NON !</p>
 
@@ -59,7 +53,7 @@
         </div>
 
           <div class="scoring col-md-4 offset-md-1" style="margin-top: 10vh">
-            <h5>Best Player</h5>
+            <h5>Best Player</h5><br>
               <div class="row">
                 <div class="col-3">
                   <p class="titleScoring" >PLACE</p>
@@ -86,7 +80,7 @@
                   <p class="player" > 11633</p>
                 </div>
                 <div class="col-3 offset-1">
-                  <p class="titleScoring" > PEUSDO</p>
+                  <p class="titleScoring" > PSEUDO</p>
                   <p class="player" > JACKY</p>
                   <p class="player" > MICHEL</p>
                   <p class="player" > TOTO</p>
@@ -104,3 +98,10 @@
   </div>
 
 {% endblock %}
+
+        
+        
+        
+        
+        
+        

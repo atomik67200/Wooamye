@@ -18,4 +18,12 @@ p{
 	font-family: 'Press Start 2P', cursive;
 	margin-top: 10vh;
 }
-
+h6{
+	font-family: 'Press Start 2P', cursive;
+	color: blue;
+	text-align: center;
+	margin-top: 2vh;
+}
+span{
+	color:red;
+}

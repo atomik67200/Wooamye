@@ -31,11 +31,15 @@ class ClientController extends AbstractController
 
     public function decks()
     {
-        if($_SERVER['REQUEST_METHOD']==='POST'){
+        if($_SERVER['REQUEST_METHOD']==='GET'){
 
-            if(isset($_POST['pseudo'])){
+            if((isset($_GET['pseudo'])) && (strlen($_GET['pseudo'])>=3) && (strlen($_GET['pseudo'])<=6)){
                 session_start();
-                $_SESSION['pseudo']=$_POST['pseudo'];
+                $_SESSION['pseudo']=$_GET['pseudo'];
+                return $this->twig->render('Client/decks.html.twig', ['pseudo' => $_SESSION['pseudo']]);
+            }else{
+                $_SESSION['errorPseudo'] = "entre 3 à 6 caractères";
+                return $this->twig->render('Client/index.html.twig', ['errorPseudo' => $_SESSION['errorPseudo']]);
             }
         }
 
