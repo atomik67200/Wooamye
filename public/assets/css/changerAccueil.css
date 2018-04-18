@@ -1,0 +1,71 @@
+.container-fluid
+{
+    max-width: 100%;;
+}
+
+img{
+    height: 100px;
+}
+h1
+{
+    text-align: center;
+    font-size: 1,2em;
+
+}
+.form-check{
+    font-size: small ;
+}
+.list-group-item
+{
+    font-size: small ;
+    padding: 0;
+}
+
+.list-group-item-danger
+{
+    background: #FFA07A;
+}
+header, section  /* Mettre une bordure sur les td ET les th */
+{
+    border: 1px solid black;
+    background: #FFFAFA;
+}
+
+section
+{
+    border: 1px solid gray;
+    border-radius: 1em;
+    background: #DCDCDC;
+}
+.list-unstyled
+{
+    justify-content: center;
+}
+.thumbnail
+{
+    mb-2;
+}
+p
+{
+    text-align: center;
+}
+#list
+{
+
+}
+@media (max-width: 768px) {
+    .btn-responsive {
+        padding:2px 4px;
+        font-size:80%;
+        line-height: 1;
+        border-radius:3px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+    .btn-responsive {
+        padding:4px 9px;
+        font-size:90%;
+        line-height: 1.2;
+    }
+}
