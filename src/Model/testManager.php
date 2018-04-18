@@ -12,7 +12,7 @@ namespace Model;
 
 class testManager extends EntityManager
 {
-    const TABLE = 'Decks';
+    const TABLE = 'caracteristique';
 
 
     public function __construct()

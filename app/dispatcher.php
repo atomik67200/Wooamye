@@ -15,10 +15,13 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/fin', 'Client/finDeParti');
 
     $r->addRoute('GET', '/admin', 'Admin/Verif');
-    $r->addRoute('POST', '/ajouter', 'Admin/ajouter');
+    $r->addRoute('POST', '/admin', 'Admin/Verif');
+    $r->addRoute('GET', '/ajouter', 'Admin/ajouter');
     $r->addRoute('GET', '/modifier', 'Admin/modifier');
-    $r->addRoute('GET', '/supprimer', 'Admin/supprimer');
+    $r->addRoute('POST', '/supprimer', 'Admin/supprimer');
     $r->addRoute('GET', '/test', 'test/test1');
+    $r->addRoute('POST', '/test', 'test/test1');
+    $r->addRoute('POST', '/addBdd', 'test/addBdd');
 });
 
 // Fetch method and URI from somewhere
