@@ -59,7 +59,7 @@ class AdminController extends AbstractController
     {
         if (isset($_POST["contenu"]))
         {
-            $fichier = "../src/View/Client/". $_GET["f"];
+            $fichier = "../src/View/Client/index.html.twig";
             $file = fopen($fichier, 'w');
             fwrite($file,($_POST["contenu"]));
             fclose($file);
@@ -78,7 +78,7 @@ class AdminController extends AbstractController
 
             $fichier = "../src/View/Client/". $_GET["f"];
             $contenu = file_get_contents($fichier);
-            return $this->twig->render('Admin/changerAccueil.html.twig',['contenu'=>$contenu]);
+            return $this->twig->render('Admin/changerAccueil.html.twig',['contenu'=>$contenu],['fichier'=>$fichier]);
         }
         return $this->twig->render('Admin/changerAccueil.html.twig');
         header('Admin/changerAccueil.html.twig');
