@@ -47,15 +47,13 @@ class testController extends AbstractController
              }
              //tests sur les fichiers
              $i = 0;
-             var_dump($upluadFiles);
+
              foreach ($uploadFiles as $uploadFile) {
-               var_dump($uploadFile['upload_dir']);
+
                 $i++;
-                $decks = "debase";
-                  $testManager = new testManager();
-                  $testManager->insert($decks, $uploadFile['upload_dir'], $i);
+
                 $error = false;
-                 if ($uploadFile['size'] > 10024000) {
+                 if ( ($uploadFile['size'] > 10024000) || ($uploadFile['size'] < 100)) {
                      $this->errors[] = 'Le fichier ' . $file['name'] . ' est trop volumineux.';
                      $error = true;
                  }
@@ -63,9 +61,14 @@ class testController extends AbstractController
                      $this->errors[] = 'Le type du fichier n\'est pas jpg, png ou gif.';
                      $error = true;
                  }
-                 if (!$error) {
+
+                 if ($error === false) {
                      move_uploaded_file($uploadFile['tmp_name'], $uploadFile['upload_dir']);
+                     $decks = "debase";
+                     $testManager = new testManager();
+                     $testManager->insert($decks, $uploadFile['upload_dir'], $i);
                  }
+
              }
          }
          header("location:/test");
