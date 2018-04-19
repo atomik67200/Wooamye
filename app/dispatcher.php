@@ -16,18 +16,18 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
 
     $r->addRoute('GET', '/admin', 'Admin/Verif');
 
-    $r->addRoute('GET', '/ajouter', 'Admin/ajouter');
     $r->addRoute('POST', '/ajouter', 'Admin/ajouter');
+    //$r->addRoute('POST', '/ajouter', 'Admin/ajouter');
 
-    $r->addRoute('GET', '/redirection', 'Admin/redirection');
+    $r->addRoute('POST', '/redirection', 'Admin/redirection');
     //$r->addRoute('GET', '/modifier', 'Admin/modifier');
-    $r->addRoute('GET', '/supprimer', 'Admin/supprimer');
     $r->addRoute('POST', '/supprimer', 'Admin/supprimer');
+    //$r->addRoute('POST', '/supprimer', 'Admin/supprimer');
 
     $r->addRoute('GET', '/test', 'test/test1');
     $r->addRoute('POST', '/addBdd', 'test/AddBdd');
 
-    $r->addRoute('GET', '/changerAccueil', 'Admin/changerAccueil');
+    //$r->addRoute('GET', '/changerAccueil', 'Admin/changerAccueil');
     $r->addRoute('POST', '/changerAccueil', 'Admin/changerAccueil');
 
 });
