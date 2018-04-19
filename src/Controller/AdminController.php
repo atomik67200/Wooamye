@@ -89,7 +89,7 @@ class AdminController extends AbstractController
 
         $dir=opendir("../src/View/Client/");
         while($allFile = readdir($dir)) {
-            if (in_array($allFile, array("index.html.twig"))) {
+            if (in_array($allFile, array("regles.html"))) {
                 echo '<a href="?f=' . $allFile . '">';
                 echo $allFile;
                 echo '</a>';

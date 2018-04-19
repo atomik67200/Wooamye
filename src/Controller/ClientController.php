@@ -109,4 +109,9 @@ class ClientController extends AbstractController
         // TODO : delete the client with id $id
         return $this->twig->render('Client/index.html.twig');
     }
+
+    public function regles()
+    {
+        return $this->twig->render('Client/regles.html');
+    }
 }
