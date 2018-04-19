@@ -12,6 +12,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/decks', 'Client/decks');
     $r->addRoute('GET', '/play', 'Client/play');
     $r->addRoute('GET', '/fin', 'Client/finDeParti');
+    $r->addRoute('GET', '/regles', 'Client/regles');
 
     $r->addRoute('GET', '/admin', 'Admin/Verif');
     $r->addRoute('GET', '/ajouter', 'Admin/ajouter');
