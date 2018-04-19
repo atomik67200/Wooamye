@@ -1,15 +1,15 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/index.css">
-    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet"> {% endblock %}
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+{% endblock %}
 
 
 
 {% block bdd %}
 <h1>Items</h1>
-
 <ul>
   {% for item in items %}
   <li>{{ item.id }}. {{ item.title }}</li>
@@ -27,32 +27,17 @@
       <div class="play col-md-4">
         <div class="row test">
           <form class="form-inline" method="GET" action="/decks">
-              <input type="text" name="pseudo" size="28" class="form-control" placeholder= "{% if errorPseudo %}{{ errorPseudo }} {% else %} entrez votre pseudo !{% endif %}">
+              <input type="text" name="pseudo" size="22" class="form-control" placeholder= "{% if errorPseudo %}{{ errorPseudo }} {% else %} entrez votre pseudo !{% endif %}">
             <button type="submit" class="btn btn-warning "> Jouer ! </button>
-
           </form>
       </div>
     </div>
 
     <div class="row">
         <div class="regles col-md-6 col-offset-1" style="margin-top: 10vh;">
-          <h1 class="titre">Comment jouer à Qui est-ce ?</h1><br>
-
-          <p>Peut importe votre âge, si vous aimez les jeux de déduction, vous allez adorer le jeu de société "WooaMye ?"!</p>
-
-          <p>Il vous suffit juste de trouver le personnage de votre adversaire ( sélectionné aléatoirement).<br>En utilisant les questions prédéfinies dont la seule réponse sera OUI ou NON !</p>
-
-          <p>Exemple de question : Est ce que le personnage a une barbe ?</p>
-
-          <p>- Si la réponse à la question est OUI dans ce cas le joueur peut sélectionner tous les personnages qui n'ont pas de barbe.</p>
-          <p>- Si la réponse est NON alors il pourra sélectionner les personnages qui ont une barbe.</p>
-
-          <p>Lorsque vous pensez avoir identifié le personnage vous pouvez le sélectionner et valider votre choix.</p>
-          <p>-Si la réponse donnée est fausse vous perdez
-            la partie et la bonne carte vous sera montrée.<br> -Si vous choisissez la bonne carte vous avez gagné. </p>
+            {% include 'Client/regles.html'%}
         </div>
-
-          <div class="scoring col-md-4 offset-md-1" style="margin-top: 10vh">
+            <div class="scoring col-md-4 offset-md-1" style="margin-top: 10vh">
             <h5>Best Player</h5><br>
               <div class="row">
                 <div class="col-3">
