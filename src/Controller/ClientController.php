@@ -23,33 +23,73 @@ class ClientController extends AbstractController
      */
     public function index()
     {
+        if($_SERVER['REQUEST_METHOD']==='GET') {
 
-
-
-        return $this->twig->render('Client/index.html.twig');
-    }
-
-    public function decks()
-    {
-        if($_SERVER['REQUEST_METHOD']==='GET'){
-
-            if((isset($_GET['pseudo'])) && (strlen($_GET['pseudo'])>=3) && (strlen($_GET['pseudo'])<=6)){
+            if ((isset($_GET['pseudo'])) && (strlen($_GET['pseudo']) >= 3) && (strlen($_GET['pseudo']) <= 6)) {
                 session_start();
-                $_SESSION['pseudo']=$_GET['pseudo'];
-                return $this->twig->render('Client/decks.html.twig', ['pseudo' => $_SESSION['pseudo']]);
-            }else{
+                $_SESSION['pseudo'] = $_GET['pseudo'];
+                header("location:/decks");
+            } else {
                 $_SESSION['errorPseudo'] = "entre 3 à 6 caractères";
                 return $this->twig->render('Client/index.html.twig', ['errorPseudo' => $_SESSION['errorPseudo']]);
             }
         }
+    }
+    public function decks()
+    {    session_start();
+        //aller chercher les données via un manager
+        //envoyer ces données à la vue
+        session_start();
+        $clientManager = new ClientManager();
+        $listeDecks = $clientManager->findAll();
+        $n = rand(0,31);
+        $res = $listeDecks[$n];
+        //print_r($listeDecks);
+        return $this->twig->render('Client/decks.html.twig', ['res' => $res,'pseudo' => $_SESSION['pseudo']]);
 
+        return $this->twig->render('Client/decks.html.twig', ['res' => $res,'pseudo' => $_SESSION['pseudo']]);
 
-        return $this->twig->render('Client/decks.html.twig');
     }
 
     public function play()
     {
         session_start();
+
+        $clientManager = new Client();
+        $Decks = $clientManager->findByCar();
+        $tab=[];
+
+        foreach($Decks as $key => $Decks) {
+            $tab[] = $Decks['id_car'];
+        }
+        $_SESSION['$Personnage'] = $tab;
+        $_SESSION['Random'] = $tab[rand(0,31)];
+
+
+        if (isset($_SESSION['pseudo'])) {
+            return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo']]);
+        }else
+        {
+            return $this->twig->render('Client/index.html.twig');
+        }
+    }
+
+    public function elimination()
+    {
+        session_start();
+
+        $_SESSION['Random']
+        $_SESSION['$Personnage']
+
+
+        foreach($Decks as $key => $Decks) {
+            $tab[] = $Decks['id_car'];
+        }
+        $Personnage = $tab;
+        $Random = $tab[rand(0,31)];
+        var_dump ($Random);
+
+
         if (isset($_SESSION['pseudo'])) {
             return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo']]);
         }else
