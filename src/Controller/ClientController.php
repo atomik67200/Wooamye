@@ -39,14 +39,13 @@ class ClientController extends AbstractController
     {    session_start();
         //aller chercher les données via un manager
         //envoyer ces données à la vue
-        session_start();
         $clientManager = new ClientManager();
         $listeDecks = $clientManager->findAll();
         $n = rand(0,31);
         $res = $listeDecks[$n];
 
+        
 
-        return $this->twig->render('Client/decks.html.twig', ['res' => $res,'pseudo' => $_SESSION['pseudo']]);
 
     }
 
@@ -86,8 +85,8 @@ class ClientController extends AbstractController
     {
         session_start();
 
-        $_SESSION['Random']
-        $_SESSION['$Personnage']
+        $_SESSION['Random'];
+        $_SESSION['$Personnage'];
 
 
         foreach($Decks as $key => $Decks) {
