@@ -31,9 +31,16 @@ class ClientController extends AbstractController
 
     public function decks()
     {
+        //aller chercher les données via un manager
+        //envoyer ces données à la vue
 
+        $clientManager = new ClientManager();
+        $listeDecks = $clientManager->findAll();
+        $n = rand(0,3);
+        $res = $listeDecks[$n];
+        //print_r($listeDecks);
 
-        return $this->twig->render('Client/decks.html.twig');
+        return $this->twig->render('Client/decks.html.twig', ['res' => $res]);
     }
 
     public function play()
