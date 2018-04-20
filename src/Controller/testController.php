@@ -31,10 +31,10 @@ class testController extends AbstractController
         $nbfichier = (array_count_values($files['error']));     //Compte le nombre de fichier qui n'a pas d'erreur.
         var_dump($nbfichier[0]);
 
-        / if ( $nbfichier[0] != 32 ) { //si les 32 fichier ont une erreur
+        if ( $nbfichier[0] != 32 ) { //si les 32 fichier ont une erreur
               //erreur 4 => UPLOAD_ERR_NO_FILE, aucun fichier n'a été téléchargé
               echo $this->errors[] = 'Il faut sélectionner 32 photos.';
-              
+
           } else {
         //traitement des fichiers
         $uploadFiles = [];
@@ -77,4 +77,5 @@ class testController extends AbstractController
         }
     }
     // header("location:/test");
+}
 }
