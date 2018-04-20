@@ -39,20 +39,55 @@ class ClientController extends AbstractController
     {
         //aller chercher les données via un manager
         //envoyer ces données à la vue
-
+        session_start();
         $clientManager = new ClientManager();
         $listeDecks = $clientManager->findAll();
         $n = rand(0,3);
         $res = $listeDecks[$n];
         //print_r($listeDecks);
+        return $this->twig->render('Client/decks.html.twig', ['res' => $res,'pseudo' => $_SESSION['pseudo']]);
 
-        return $this->twig->render('Client/decks.html.twig', ['res' => $res]);
-            return $this->twig->render('Client/decks.html.twig', ['pseudo' => $_SESSION['pseudo']]);
     }
 
     public function play()
     {
         session_start();
+
+        $clientManager = new Client();
+        $Decks = $clientManager->findByCar();
+        $tab=[];
+
+        foreach($Decks as $key => $Decks) {
+            $tab[] = $Decks['id_car'];
+        }
+        $_SESSION['$Personnage'] = $tab;
+        $_SESSION['Random'] = $tab[rand(0,31)];
+
+
+        if (isset($_SESSION['pseudo'])) {
+            return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo']]);
+        }else
+        {
+            return $this->twig->render('Client/index.html.twig');
+        }
+    }
+
+    public function elimination()
+    {
+        session_start();
+
+        $_SESSION['Random']
+        $_SESSION['$Personnage']
+
+
+        foreach($Decks as $key => $Decks) {
+            $tab[] = $Decks['id_car'];
+        }
+        $Personnage = $tab;
+        $Random = $tab[rand(0,31)];
+        var_dump ($Random);
+
+
         if (isset($_SESSION['pseudo'])) {
             return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo']]);
         }else
