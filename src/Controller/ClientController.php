@@ -36,7 +36,8 @@ class ClientController extends AbstractController
         }
     }
     public function decks()
-    {    session_start();
+    {
+
         //aller chercher les données via un manager
         //envoyer ces données à la vue
         $clientManager = new ClientManager();
@@ -51,6 +52,7 @@ class ClientController extends AbstractController
 
     public function play()
     {
+        var_dump($_GET);
         session_start();
 
         $charManager = new ClientManager();
