@@ -43,8 +43,8 @@ class ClientController extends AbstractController
         $listeDecks = $clientManager->findAll();
         $n = rand(0,31);
         $res = $listeDecks[$n];
+        return $this->twig->render('Client/decks.html.twig', ['res' => $res,'pseudo' => $_SESSION['pseudo']]);
 
-        
 
 
     }
