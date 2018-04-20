@@ -46,8 +46,8 @@ class ClientController extends AbstractController
         $res = $listeDecks[$n];
         //print_r($listeDecks);
 
-        return $this->twig->render('Client/decks.html.twig', ['res' => $res]);
-            return $this->twig->render('Client/decks.html.twig', ['pseudo' => $_SESSION['pseudo']]);
+        return $this->twig->render('Client/decks.html.twig', ['res' => $res,'pseudo' => $_SESSION['pseudo']);
+
     }
 
     public function play()
