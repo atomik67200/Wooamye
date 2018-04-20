@@ -13,7 +13,7 @@
     {% block content %}
 
 
-<form class="" action="addBdd" method="post" enctype="multipart/form-data">
+<form  class="dropzone" id="my-awesome-dropzone" action="/addBdd" method="post" enctype="multipart/form-data">
 
 <div class="row justify-content-center my-4">
 
@@ -22,9 +22,11 @@
   <div class="col-1 mx-2">
       <div class="thumbnail mb-2">
           <p><span class="titre">Image{{param.ID}}</span></p>
-          <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-           <input name="files[]" type="file" id="fichier_a_uploader" multiple="multiple" />
-           <input type="hidden" name="fichier1" value="1" />
+
+            <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
+
+            <input name="files[]" type="file" id="fichier_a_uploader" multiple="multiple" />
+            <input type="hidden" name="fichier1" value="1" />
       </div>
       <div class="">
           <ul class="list-group">
@@ -38,13 +40,13 @@
             {% if param.lunette == "oui" %}
             <li class="list-group-item list-group-item-success">Lunettes</li>
             {% else %}
-            <li class="list-group-item list-group-item-danger">Lunettes</li>
+            <li class="list-group-item list-group-item-danger">Pas de lunettes</li>
             {% endif %}
 
             {% if param.barbe == "oui" %}
             <li class="list-group-item list-group-item-success">Barbe</li>
             {% else %}
-            <li class="list-group-item list-group-item-danger">pas de Barbe</li>
+            <li class="list-group-item list-group-item-danger">Pas de barbe</li>
             {% endif %}
 
             {% if param.cheveux == "oui" %}
@@ -75,56 +77,11 @@
 
     <button type="submit" name="Uploader" value="Uploader">APPUYEEEEER</button>
   </form>
-{#
 
+    {% endblock %}
 
-        <div class="col-1 mx-2">
-            <div class="thumbnail mb-2">
-                <p><span class="titre">Image1</span></p>
-                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                 <input name="files[]" type="file" id="fichier_a_uploader" multiple="multiple" />
-                 <input type="hidden" name="fichier1" value="1" />
-            </div>
-            <div class="">
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                    <li class="list-group-item list-group-item-success">Barbe</li>
-                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                    <li class="list-group-item list-group-item-success">Homme</li>
-                    <li class="list-group-item list-group-item-danger">Femme</li>
-                </ul>
-            </div>
-        </div>
+    {%  block javascript %}
 
-            <div class="col-1 mx-2">
-                <div class="thumbnail mb-2">
-                    <p><span class="titre">Image2</span></p>
-                    <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                     <input name="files[]" type="file" id="fichier_a_uploader" multiple="multiple" />
-                       <input type="hidden" name="image2" value="2">
-                </div>
-                <div class="">
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-danger">Lunettes</li>
-                        <li class="list-group-item list-group-item-success">Barbe</li>
-                        <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                        <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                        <li class="list-group-item list-group-item-success">Chapeau</li>
-                        <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                        <li class="list-group-item list-group-item-success">Homme</li>
-                        <li class="list-group-item list-group-item-danger">Femme</li>
-                    </ul>
-                </div>
-            </div>
-
-           <label for="fichier_a_uploader" title="Recherchez le fichier à uploader !">Envoyer le fichier :</label>
-
-
-
-
-              #}
+        <script src="assets/js/dropzone.js"></script>
 
     {% endblock %}
