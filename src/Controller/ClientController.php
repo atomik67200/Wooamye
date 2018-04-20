@@ -36,15 +36,17 @@ class ClientController extends AbstractController
         }
     }
     public function decks()
-    {
+    {    session_start();
         //aller chercher les données via un manager
         //envoyer ces données à la vue
         session_start();
         $clientManager = new ClientManager();
         $listeDecks = $clientManager->findAll();
-        $n = rand(0,3);
+        $n = rand(0,31);
         $res = $listeDecks[$n];
         //print_r($listeDecks);
+        return $this->twig->render('Client/decks.html.twig', ['res' => $res,'pseudo' => $_SESSION['pseudo']]);
+
         return $this->twig->render('Client/decks.html.twig', ['res' => $res,'pseudo' => $_SESSION['pseudo']]);
 
     }
