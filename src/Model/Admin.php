@@ -34,7 +34,7 @@ return $this->id;
 
 /**
 * @param mixed $id
-* @return Client
+* @return Admin
 */
 public function setId($id)
 {
@@ -53,7 +53,7 @@ return $this->title;
 
 /**
 * @param mixed $title
-* @return Client
+* @return Admin
 */
 public function setTitle($title)
 {

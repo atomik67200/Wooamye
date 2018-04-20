@@ -11,7 +11,7 @@ namespace Model;
 
 class AdminManager extends EntityManager
 {
-    const TABLE = 'decks';
+    const TABLE = 'Decks';
 
 
     public function __construct()
