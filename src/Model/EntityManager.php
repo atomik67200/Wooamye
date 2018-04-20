@@ -56,10 +56,15 @@ abstract class EntityManager
     /**
      *
      */
-    public function insert($data)
-    {
-        //TODO : Implements SQL INSERT request
-    }
+     public function insert($decks, $image, $idcar)
+     {
+
+         $statement = $this->conn->prepare("INSERT INTO Decks(decks, image, id_car) VALUES (:decks,:image,:id_car);");
+         $statement->bindValue(':decks', $decks, \PDO::PARAM_STR);
+         $statement->bindValue(':image', $image, \PDO::PARAM_STR);
+         $statement->bindValue(':id_car', $idcar, \PDO::PARAM_INT);
+         $statement->execute();
+     }
 
 
     /**

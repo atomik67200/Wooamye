@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}changerAcceuil{% endblock %}
+
+{% block stylesheet %}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
+    <link rel="stylesheet" href="/assets/css/changerAccueil.css">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <header class="row ">
+            <div class="col py-4 ">
+                <h1 class="title">Modifier le texte d'accueil</h1>
+                <div class="row justify-content-center">
+                    <div class="offset-5 col-3">
+                        <form class="form-inline" method="POST" action="/ajouter">
+                        <button type="submit" class="btn btn-lg btn-responsive">Crée un set</button>
+                        </form>
+                    </div>
+                    <div class="offset-4"></div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <form method="POST" action="changerAccueil">
+        <textarea name="contenu" style="width: 100%; height: 200px;">
+            {{ contenu }}
+        </textarea>
+        <input type="hidden" name="file" value="{{ fichier }}">
+        <input type="submit" value="Envoyer">
+    </form>
+
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
+

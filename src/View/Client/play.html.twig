@@ -10,8 +10,8 @@
             {% endblock %}
 
  {% block content %}
-     <p class="Pseudo">Pseudo :</p>
-     <p class="Score">Score :</p>
+     <p class="Pseudo">Pseudo : {{ pseudo }}</p>
+     <p class="Score">{% if score %}Score : {{ score }} }}{% endif %}</p>
 
      <p class="question">Le personnage à :</p>
      <div class="container">

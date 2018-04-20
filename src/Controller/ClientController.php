@@ -23,12 +23,18 @@ class ClientController extends AbstractController
      */
     public function index()
     {
+        if($_SERVER['REQUEST_METHOD']==='GET') {
 
-
-
-        return $this->twig->render('Client/index.html.twig');
+            if ((isset($_GET['pseudo'])) && (strlen($_GET['pseudo']) >= 3) && (strlen($_GET['pseudo']) <= 6)) {
+                session_start();
+                $_SESSION['pseudo'] = $_GET['pseudo'];
+                header("location:/decks");
+            } else {
+                $_SESSION['errorPseudo'] = "entre 3 à 6 caractères";
+                return $this->twig->render('Client/index.html.twig', ['errorPseudo' => $_SESSION['errorPseudo']]);
+            }
+        }
     }
-
     public function decks()
     {
         //aller chercher les données via un manager
@@ -41,18 +47,29 @@ class ClientController extends AbstractController
         //print_r($listeDecks);
 
         return $this->twig->render('Client/decks.html.twig', ['res' => $res]);
+            return $this->twig->render('Client/decks.html.twig', ['pseudo' => $_SESSION['pseudo']]);
     }
 
     public function play()
     {
-
-
-        return $this->twig->render('Client/play.html.twig');
+        session_start();
+        if (isset($_SESSION['pseudo'])) {
+            return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo']]);
+        }else
+        {
+            return $this->twig->render('Client/index.html.twig');
+        }
     }
 
     public function finDeParti()
     {
-        return $this->twig->render('Client/finDeParti.html.twig');
+        session_start();
+        if (isset($_SESSION['pseudo'])) {
+            return $this->twig->render('Client/finDeParti.html.twig', ['pseudo' => $_SESSION['pseudo']]);
+        }else
+        {
+            return $this->twig->render('Client/index.html.twig');
+        }
     }
     /**
      * @param $id
@@ -94,5 +111,10 @@ class ClientController extends AbstractController
     {
         // TODO : delete the client with id $id
         return $this->twig->render('Client/index.html.twig');
+    }
+
+    public function regles()
+    {
+        return $this->twig->render('Client/regles.html');
     }
 }

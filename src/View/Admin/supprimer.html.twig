@@ -17,14 +17,9 @@
             <div class="col py-4 ">
                 <h1 class="title">Supprimer un set</h1>
                 <div class="row justify-content-center">
-                    <div class="offset-1 col-3">
-                        <button type="button" class="btn btn-lg btn-responsive">Changer set</button>
-                    </div>
-                    <div class="offset-4"></div>
-                    <div class="offset-1 col-3">
-
-                        <button type="button" class="btn btn-lg btn-responsive">Changer l'accueil</button>
-
+                        <form class="form-inline" method="POST" action="/changerAccueil">
+                        <button type="submit" class="btn btn-lg btn-responsive">Changer l'accueil</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -35,16 +30,16 @@
 
                 <section class="col justify-content-center px-2 py-4 my-4 mx-2">
 
-
+                    <form action="/redirection" method="POST">
                     <div class="row justify-content-center my-4" id="list">
                         <div class="offset-1 col-3">
 
                             <div class="dropdown">
-                                <select class="btn btn-btn btn-responsive dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <select class="btn btn-btn btn-responsive dropdown-toggle" name="selectAA" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <option class="dropdown-item " type="button">Ajouter un set</option>
-                                        <option class="dropdown-item " type="button">Modifier un set</option>
-                                        <option class="dropdown-item " selected="selected" type="button">Supprimer un set</option>
+                                        <option class="dropdown-item" type="button">Ajouter un set</option>
+                                        <option class="dropdown-item" type="button">Modifier un set</option>
+                                        <option class="dropdown-item" selected="selected" type="button">Supprimer un set</option>
                                     </div>
                                 </select>
 
@@ -53,9 +48,10 @@
 
                         </div>
                         <div class="offset-1 col-3">
-                            <button type="button" class="btn btn- btn-responsive">Valider</button>
-
+                            <button type="submit" class="btn btn- btn-responsive">Valider</button>
                         </div>
+                        </div>
+                    </form>
                     </div>
 
 
