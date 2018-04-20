@@ -37,16 +37,15 @@
 
      <div class="container">
          <div class=" plateau row ">
-             {% for items in 1..4 %}
-                 {% for items in 1..8 %}
+
+             {% for char in listechar %}
                      <div class="nopad text-center">
                          <label class="image-checkbox">
-                             <img class="img-responsive" src="http://via.placeholder.com/120x120" />
+                             <img class="img-responsive" style="width: 120px;heigth: 120px;" src="{{ char.image }}" />
                              <input type="checkbox" name="image[]" value="" />
 
                          </label>
                      </div>
-                 {% endfor %}
              {% endfor %}
          </div>
      </div>

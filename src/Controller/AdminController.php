@@ -74,7 +74,11 @@ class AdminController extends AbstractController
         public function modifier()
     {
         session_start();
-        return $this->twig->render('Admin/modifier.html.twig', ['login' => $_SESSION['login']]);
+
+        $charManager = new ClientManager();
+        $listChar = $charManager->findAll();
+
+        return $this->twig->render('Admin/modifier.html.twig', ['login' => $_SESSION['login'],'listechar'=>$listChar]);
     }
 
     public function supprimer()
@@ -84,7 +88,7 @@ class AdminController extends AbstractController
         $listeDecks = $adminManager->findAll();
         $n = rand(0,31);
         $res = $listeDecks[$n];
-        var_dump($res);
+
 
         return $this->twig->render('Admin/supprimer.html.twig', ['res' => $res,'login' => $_SESSION['login']]);
     }

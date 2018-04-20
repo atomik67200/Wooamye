@@ -20,7 +20,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     //$r->addRoute('POST', '/ajouter', 'Admin/ajouter');
 
     $r->addRoute('POST', '/redirection', 'Admin/redirection');
-    //$r->addRoute('GET', '/modifier', 'Admin/modifier');
+    $r->addRoute('GET', '/modifier', 'Admin/modifier');
     $r->addRoute('POST', '/supprimer', 'Admin/supprimer');
     $r->addRoute('GET', '/supprimer', 'Admin/supprimer');
     //$r->addRoute('POST', '/supprimer', 'Admin/supprimer');

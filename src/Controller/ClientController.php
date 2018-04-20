@@ -44,7 +44,7 @@ class ClientController extends AbstractController
         $listeDecks = $clientManager->findAll();
         $n = rand(0,31);
         $res = $listeDecks[$n];
-        //print_r($listeDecks);
+
 
         return $this->twig->render('Client/decks.html.twig', ['res' => $res,'pseudo' => $_SESSION['pseudo']]);
 
@@ -53,8 +53,17 @@ class ClientController extends AbstractController
     public function play()
     {
         session_start();
+
+        $charManager = new ClientManager();
+        $listChar = $charManager->findAll();
+
+
+
+        //var_dump($listChar);
+
+
         if (isset($_SESSION['pseudo'])) {
-            return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo']]);
+            return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo'],'listechar'=>$listChar]);
         }else
         {
             return $this->twig->render('Client/index.html.twig');
