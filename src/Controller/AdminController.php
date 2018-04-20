@@ -2,6 +2,9 @@
 
 namespace Controller;
 
+use Model\Admin;
+use Model\AdminManager;
+
 /**
  * Created by PhpStorm.
  * User: root
@@ -39,7 +42,7 @@ class AdminController extends AbstractController
         if ((($_POST['login'] === 'olivier') && ($_POST['password'] === 'franck'))  || (!isset($_SESSION['login'])))
             {
                 session_start();
-                $_SESSION['login'] = $_GET['login'];
+                $_SESSION['login'] = $_POST['login'];
                 return $this->twig->render('Admin/ajouter.html.twig', ['login' => $_SESSION['login']]);
             }elseif(isset($_SESSION['login'])){
             return $this->twig->render('Admin/ajouter.html.twig');
@@ -77,7 +80,13 @@ class AdminController extends AbstractController
     public function supprimer()
     {
         session_start();
-        return $this->twig->render('Admin/supprimer.html.twig', ['login' => $_SESSION['login']]);
+        $adminManager = new AdminManager;
+        $listeDecks = $adminManager->findAll();
+        $n = rand(0,31);
+        $res = $listeDecks[$n];
+        var_dump($res);
+
+        return $this->twig->render('Admin/supprimer.html.twig', ['res' => $res,'login' => $_SESSION['login']]);
     }
 
     public function changerAccueil()
