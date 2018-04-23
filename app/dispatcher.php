@@ -13,6 +13,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/play', 'Client/play');
     $r->addRoute('GET', '/elimination', 'Client/elimination');
     $r->addRoute('POST', '/elimination', 'Client/elimination');
+    $r->addRoute('POST', '/JoueurPrecis', 'Client/JoueurPrecis');
+    $r->addRoute('GET', '/score', 'Client/Score');
     $r->addRoute('GET', '/fin', 'Client/finDeParti');
     $r->addRoute('GET', '/regles', 'Client/regles');
 
