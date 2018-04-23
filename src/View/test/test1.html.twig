@@ -1,0 +1,87 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="/assets/css/admin.css">
+{% endblock %}
+
+{% block header %}
+
+
+
+{% endblock %}
+
+    {% block content %}
+
+
+<form  class="dropzone" id="my-awesome-dropzone" action="/addBdd" method="post" enctype="multipart/form-data">
+
+<div class="row justify-content-center my-4">
+
+  {% for param in test %}
+
+  <div class="col-1 mx-2">
+      <div class="thumbnail mb-2">
+          <p><span class="titre">Image{{param.ID}}</span></p>
+
+            <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
+
+            <input name="files[]" type="file" id="fichier_a_uploader" multiple="multiple" />
+            <input type="hidden" name="fichier1" value="1" />
+      </div>
+      <div class="">
+          <ul class="list-group">
+
+            {% if param.genre == "homme" %}
+            <li class="list-group-item list-group-item-success">Homme</li>
+            {% else %}
+            <li class="list-group-item list-group-item-success">Femme</li>
+            {% endif %}
+
+            {% if param.lunette == "oui" %}
+            <li class="list-group-item list-group-item-success">Lunettes</li>
+            {% else %}
+            <li class="list-group-item list-group-item-danger">Pas de lunettes</li>
+            {% endif %}
+
+            {% if param.barbe == "oui" %}
+            <li class="list-group-item list-group-item-success">Barbe</li>
+            {% else %}
+            <li class="list-group-item list-group-item-danger">Pas de barbe</li>
+            {% endif %}
+
+            {% if param.cheveux == "oui" %}
+            <li class="list-group-item " style="background-color: rgba(179, 81, 59, 0.88)">Cheveux brun</li>
+            {% else %}
+            <li class="list-group-item list-group-item-warning">Cheveux blond</li>
+            {% endif %}
+
+            {% if param.chapeau == "oui" %}
+            <li class="list-group-item list-group-item-success">Chapeau</li>
+            {% else %}
+            <li class="list-group-item list-group-item-danger">Pas de chapeau</li>
+            {% endif %}
+
+            {% if param.ral == "oui" %}
+            <li class="list-group-item list-group-item-success">Rouge à lèvres</li>
+            {% else %}
+            <li class="list-group-item list-group-item-danger">Pas de rouge à lèvres</li>
+            {% endif %}
+
+          </ul>
+      </div>
+  </div>
+
+
+
+    {% endfor %}
+
+    <button type="submit" name="Uploader" value="Uploader">APPUYEEEEER</button>
+  </form>
+
+    {% endblock %}
+
+    {%  block javascript %}
+
+        <script src="assets/js/dropzone.js"></script>
+
+    {% endblock %}

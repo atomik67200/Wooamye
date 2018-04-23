@@ -1,0 +1,94 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheet %}
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+{% endblock %}
+
+
+
+{% block bdd %}
+<h1>Items</h1>
+<ul>
+  {% for item in items %}
+  <li>{{ item.id }}. {{ item.title }}</li>
+  {% else %}
+  <li>Nothing to display</li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="container-fluid">
+    <div class="row justify-content-around">
+      <div class="play col-md-4">
+        <div class="row test">
+          <form class="form-inline" method="GET" action="/">
+              <input type="text" name="pseudo" size="22" class="form-control" placeholder= "{% if errorPseudo %}{{ errorPseudo }} {% else %} entrez votre pseudo !{% endif %}">
+            <button type="submit" class="btn btn-warning "> Jouer ! </button>
+          </form>
+      </div>
+    </div>
+
+    <div class="row">
+        <div class="regles col-md-6 col-offset-1" style="margin-top: 10vh;">
+            {% include 'Client/regles.html'%}
+        </div>
+            <div class="scoring col-md-4 offset-md-1" style="margin-top: 10vh">
+            <h5>Best Player</h5><br>
+              <div class="row">
+                <div class="col-3">
+                  <p class="titleScoring" >PLACE</p>
+                  <p class="player" >1st</p>
+                  <p class="player" >2nd</p>
+                  <p class="player" >3rd</p>
+                  <p class="player" >4th</p>
+                  <p class="player" >5th</p>
+                  <p class="player" >6th</p>
+                  <p class="player" >7th</p>
+                  <p class="player" >8th</p>
+                  <p class="player" >9th</p>
+                </div>
+                <div class="col-3 offset-1">
+                  <p class="titleScoring" > SCORE</p>
+                  <p class="player" > 19600</p>
+                  <p class="player" > 19010</p>
+                  <p class="player" > 17990</p>
+                  <p class="player" > 16002</p>
+                  <p class="player" > 15003</p>
+                  <p class="player" > 14303</p>
+                  <p class="player" > 12303</p>
+                  <p class="player" > 11203</p>
+                  <p class="player" > 11633</p>
+                </div>
+                <div class="col-3 offset-1">
+                  <p class="titleScoring" > PSEUDO</p>
+                  <p class="player" > JACKY</p>
+                  <p class="player" > MICHEL</p>
+                  <p class="player" > TOTO</p>
+                  <p class="player" > FRANCK</p>
+                  <p class="player" > LUC</p>
+                  <p class="player" > NAASHW</p>
+                  <p class="player" > AUREL</p>
+                  <p class="player" > XAVIER</p>
+                  <p class="player" > KEVIN</p>
+                </div>
+              </div>
+          </div>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+        
+        
+        
+        
+        
+        
+        
+        

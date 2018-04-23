@@ -25,6 +25,7 @@ abstract class EntityManager
     /**
      * @return array
      */
+
     public function findAll()
     {
         return $this->conn->query('SELECT * FROM ' . $this->table, \PDO::FETCH_ASSOC)->fetchAll();
@@ -44,6 +45,18 @@ abstract class EntityManager
         return $statement->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function findByDecks($param)
+    {
+        // prepared request
+        $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE decks=:param");
+        $statement->bindValue('param', $param, \PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+
     /**
      *
      */
@@ -55,10 +68,15 @@ abstract class EntityManager
     /**
      *
      */
-    public function insert($data)
-    {
-        //TODO : Implements SQL INSERT request
-    }
+     public function insert($decks, $image, $idcar)
+     {
+
+         $statement = $this->conn->prepare("INSERT INTO Decks(decks, image, id_car) VALUES (:decks,:image,:id_car);");
+         $statement->bindValue(':decks', $decks, \PDO::PARAM_STR);
+         $statement->bindValue(':image', $image, \PDO::PARAM_STR);
+         $statement->bindValue(':id_car', $idcar, \PDO::PARAM_INT);
+         $statement->execute();
+     }
 
 
     /**
