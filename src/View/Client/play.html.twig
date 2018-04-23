@@ -32,9 +32,10 @@
          </div>
      </div>
      <div class="col-lg-1  offset-5">
+
          <button class="valider btn btn-primary " type="button">Valider</button>
      </div>
-
+                <form action="/elimination" method="POST">
      <div class="container">
          <div class=" plateau row ">
 
@@ -42,7 +43,7 @@
                      <div class="nopad text-center">
                          <label class="image-checkbox">
                              <img class="img-responsive" style="width: 120px;heigth: 120px;" src="{{ char.image }}" />
-                             <input type="checkbox" name="image[]" value="" />
+                             <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
 
                          </label>
                      </div>
@@ -53,7 +54,9 @@
      <div class="container">
          <div class="bottomButton row">
              <div class=" col-xl-4 col-md-4 col-sm-4 offset-1">
-                 <button class="btn btn-danger" type="button">Eliminer votre sélection</button>
+
+                 <button class="btn btn-danger" type="submit">Eliminer votre sélection</button>
+                 </form>
              </div>
              <form class="form-inline " action="/fin" type="GET">
                  <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">

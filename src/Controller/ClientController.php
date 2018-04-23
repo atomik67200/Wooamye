@@ -10,6 +10,7 @@ namespace Controller;
 
 use Model\Client;
 use Model\ClientManager;
+use Model\EntityManager;
 
 /**
  * Class ClientController
@@ -22,28 +23,39 @@ class ClientController extends AbstractController
      * @return string
      */
     public function index()
-    {
+    {   session_start();
         if($_SERVER['REQUEST_METHOD']==='GET') {
+            unset($_SESSION['pseudo']);
 
-            if ((isset($_GET['pseudo'])) && (strlen($_GET['pseudo']) >= 3) && (strlen($_GET['pseudo']) <= 6)) {
-                session_start();
+
+            if ((!empty($_GET['pseudo'])) && (strlen($_GET['pseudo']) >= 3) && (strlen($_GET['pseudo']) <= 6)) {
+
                 $_SESSION['pseudo'] = $_GET['pseudo'];
                 header("location:/decks");
-            } else {
+            } elseif ((!empty($_GET['pseudo'])) && (strlen($_GET['pseudo']) < 3) || (strlen($_GET['pseudo']) > 6))  {
+
                 $_SESSION['errorPseudo'] = "entre 3 à 6 caractères";
                 return $this->twig->render('Client/index.html.twig', ['errorPseudo' => $_SESSION['errorPseudo']]);
+            }else {
+
+                return $this->twig->render('Client/index.html.twig');
             }
         }
     }
     public function decks()
-    {    session_start();
-        //aller chercher les données via un manager
-        //envoyer ces données à la vue
-        $clientManager = new ClientManager();
-        $listeDecks = $clientManager->findAll();
-        $n = rand(0,31);
-        $res = $listeDecks[$n];
-        return $this->twig->render('Client/decks.html.twig', ['res' => $res,'pseudo' => $_SESSION['pseudo']]);
+    {
+        session_start();
+        if (!empty($_SESSION['pseudo'])) {
+
+            $clientManager = new ClientManager();
+            $listeDecks = $clientManager->findByDecks('deck2');
+            $n = rand(0, 31);
+            $res = $listeDecks[$n];
+
+            return $this->twig->render('Client/decks.html.twig', ['res' => $res, 'pseudo' => $_SESSION['pseudo']]);
+        }else{
+            header("location:/");
+        }
 
 
 
@@ -53,14 +65,7 @@ class ClientController extends AbstractController
     {
         session_start();
 
-        $charManager = new ClientManager();
-        $listChar = $charManager->findAll();
-
-
-
-        //var_dump($listChar);
-
-
+        if (!empty($_SESSION['pseudo'])) {
 
         $clientManager = new Client();
         $Decks = $clientManager->findByCar();
@@ -69,12 +74,11 @@ class ClientController extends AbstractController
         foreach($Decks as $key => $Decks) {
             $tab[] = $Decks['id_car'];
         }
-        $_SESSION['$Personnage'] = $tab;
+        $_SESSION['Personnage'] = $tab;
         $_SESSION['Random'] = $tab[rand(0,31)];
 
 
-        if (isset($_SESSION['pseudo'])) {
-            return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo'],'listechar'=>$listChar]);
+            return header("location:/elimination");
         }else
         {
             return $this->twig->render('Client/index.html.twig');
@@ -84,35 +88,57 @@ class ClientController extends AbstractController
     public function elimination()
     {
         session_start();
-
-        $_SESSION['Random'];
-        $_SESSION['$Personnage'];
-
-
-        foreach($Decks as $key => $Decks) {
-            $tab[] = $Decks['id_car'];
-        }
-        $Personnage = $tab;
-        $Random = $tab[rand(0,31)];
-        var_dump ($Random);
+             if(!empty($_SESSION['pseudo'])) {
+            $charManager = new ClientManager();
+            $listChar = $charManager->findByDecks('deck2');
 
 
-        if (isset($_SESSION['pseudo'])) {
-            return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo']]);
-        }else
-        {
-            return $this->twig->render('Client/index.html.twig');
-        }
+          //  $_SESSION['Personnage']
+           // $_SESSION['Random']
+
+            if (isset($_POST['image'])){
+            foreach($_POST['image'] as $valeur)
+            {
+
+              unset($_SESSION['Personnage'][array_search($valeur , $_SESSION['Personnage'])]);
+            }
+            }
+            var_dump($_SESSION['Random']);
+            var_dump($_SESSION['Personnage']);
+
+                 if (count($_SESSION['Personnage']) == 1){
+                     header("location:/fin");
+                 }else {
+                     return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo'],'listechar'=>$listChar]);
+                 }
+
+
+            }else {
+                 return header("Location:/");
+             }
+
+
     }
+
 
     public function finDeParti()
     {
         session_start();
         if (isset($_SESSION['pseudo'])) {
-            return $this->twig->render('Client/finDeParti.html.twig', ['pseudo' => $_SESSION['pseudo']]);
+
+
+            var_dump(array_search($_SESSION['Random'] , $_SESSION['Personnage']));
+
+            if ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) !== FALSE ){
+                $resultat = "Bien joué ! vous avez gagné";
+            }elseif ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) === FALSE ){
+                $resultat = "Dommage vous avez perdu..";
+            }
+
+            return $this->twig->render('Client/finDeParti.html.twig', ['pseudo' => $_SESSION['pseudo'], 'resultat' => $resultat]);
         }else
         {
-            return $this->twig->render('Client/index.html.twig');
+            return header("location:/");
         }
     }
     /**
