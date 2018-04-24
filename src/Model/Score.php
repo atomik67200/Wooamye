@@ -30,7 +30,7 @@ class Score extends ScoreManager
 
     public function downloadScore()
     {
-        return $this->conn->query("SELECT * FROM Score  ORDER BY score DESC LIMIT 10", \PDO::FETCH_ASSOC)->fetchAll();
+        return $this->conn->query("SELECT * FROM Score  ORDER BY score DESC LIMIT 9", \PDO::FETCH_ASSOC)->fetchAll();
 
 
     }
@@ -63,7 +63,7 @@ class Score extends ScoreManager
     /**
      * @return mixed
      */
-    public function getScore()
+    public function getScoreIndex()
     {
         return $this->score;
     }
