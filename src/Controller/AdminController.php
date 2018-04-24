@@ -75,7 +75,7 @@ class AdminController extends AbstractController
     {
         session_start();
 
-        $charManager = new ClientManager();
+        $charManager = new AdminManager();
         $listChar = $charManager->findAll();
 
         return $this->twig->render('Admin/modifier.html.twig', ['login' => $_SESSION['login'],'listechar'=>$listChar]);
