@@ -11,12 +11,18 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'Client/index');
     $r->addRoute('GET', '/decks', 'Client/decks');
     $r->addRoute('GET', '/play', 'Client/play');
+    $r->addRoute('GET', '/elimination', 'Client/elimination');
+    $r->addRoute('POST', '/elimination', 'Client/elimination');
+    $r->addRoute('POST', '/JoueurPrecis', 'Client/JoueurPrecis');
+    $r->addRoute('GET', '/score', 'Client/Score');
     $r->addRoute('GET', '/fin', 'Client/finDeParti');
     $r->addRoute('GET', '/regles', 'Client/regles');
 
     $r->addRoute('GET', '/admin', 'Admin/Verif');
 
-    $r->addRoute('POST', '/ajouter', 'Admin/ajouter');
+    $r->addRoute('POST', '/ajouter', 'car/carUpload');
+    $r->addRoute('POST', '/addBdd', 'car/AddBdd');
+    $r->addRoute('GET', '/ajouter', 'car/carUpload');
     //$r->addRoute('POST', '/ajouter', 'Admin/ajouter');
 
     $r->addRoute('POST', '/redirection', 'Admin/redirection');
@@ -25,10 +31,10 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/supprimer', 'Admin/supprimer');
     //$r->addRoute('POST', '/supprimer', 'Admin/supprimer');
 
-    $r->addRoute('GET', '/test', 'test/test1');
-    $r->addRoute('POST', '/addBdd', 'test/AddBdd');
+    $r->addRoute('GET', '/test', 'car/car1');
 
-    //$r->addRoute('GET', '/changerAccueil', 'Admin/changerAccueil');
+
+    $r->addRoute('GET', '/changerAccueil', 'Admin/changerAccueil');
     $r->addRoute('POST', '/changerAccueil', 'Admin/changerAccueil');
 
 });

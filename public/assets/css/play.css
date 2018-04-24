@@ -4,11 +4,26 @@ body{
 button{
 	color: white;
 }
+.row{
+    margin-top: 5vh;
+}
+.titre{
+    border: 1px solid black;
+    border-radius: 50px;
+    background-color: yellow;
+    text-align: center;
+    padding-top: 4vh;
+
+}
 h4{
-	font-family: 'Press Start 2P', cursive;
-	color: red;
-	text-align: center;
-	margin-top: 5vh;
+    font-family: 'Playfair Display', serif;
+    color: #ff3900;
+    text-align: center;
+    font-size: 40px;
+}
+
+span{
+    color:black;
 }
 .btn-danger{
 	margin-top: 3vh;
@@ -39,9 +54,6 @@ h4{
 .container{
 	margin-top: 1vh;
 }
-.test{
-	border: 1px solid black;
-}
 .img{
     margin-top: 3vh;
 }
@@ -49,12 +61,17 @@ h4{
     background-color: green;
 }
 .Pseudo{
-    font-family: 'Press Start 2P', cursive;
-    color: red;
+    font-family: 'Inconsolata', monospace;
+    color: #ff0814;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 5vh;
 }
 .Score{
-    font-family: 'Press Start 2P', cursive;
-    color: red;
+    font-family: 'Inconsolata', monospace;
+    color: #ff0814;
+    font-size: 30px;
+    text-align: center;
 }
 
 .nopad {

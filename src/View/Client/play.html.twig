@@ -1,65 +1,83 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/play.css">
 {% endblock %}
 
             {% block header %}
-                <h4>A vous de jouer!</h4>
+                <div class="row">
+                    <div class="container-fluid">
+                        <div class="titre  col-sm-7 col-md-6 col-lg-5 col-xl-4 offset-4 ">
+                            <h4>A vous de Jouer!</h4><br>
+                        </div>
+                    </div>
+                </div>
             {% endblock %}
 
  {% block content %}
-     <p class="Pseudo">Pseudo : {{ pseudo }}</p>
-     <p class="Score">{% if score %}Score : {{ score }} }}{% endif %}</p>
+     <p class="Pseudo">Pseudo :<span> {{ pseudo }}</p>
+     <p class="Score">Score :<span>{{ score }} </span></p>
 
-     <p class="question">Le personnage à :</p>
+     <p class="question">Le personnage :</p>
      <div class="container">
-         <div class="row ">
-             <div class="input-group col-lg-5 col-lg-6 offset-2 ">
-                 <select class="custom-select" id=".." >
-                     <option selected>....</option>
-                     <option value="1">t'il des cheveux brun?</option>
-                     <option value="2">t'il des cheveux blond?</option>
-                     <option value="3">t'il des lunettes?</option>
-                     <option value="4">t'il une barbe?</option>
-                     <option value="5">t'il du rouge à lèvre?</option>
-                     <option value="5">t'il un chapeau?</option>
-                     <option value="6">est t'elle une femme?</option>
-                     <option value="7">est t'il un homme?</option>
-                 </select>
+         <form action="/elimination" method="POST">
+             <div class="row ">
+                 <div class="input-group col-lg-5 col-lg-6 offset-2 ">
+                     <select class="custom-select" name="option" >
+                         <option selected>....</option>
+                         <option value="cheveuxBrun">a t'il des cheveux brun?</option>
+                         <option value="cheveuxBlond">a t'il des cheveux blond?</option>
+                         <option value="lunette">a t'il des lunettes?</option>
+                         <option value="barbe">a t'il une barbe?</option>
+                         <option value="ral">a t'il du rouge à lèvre?</option>
+                         <option value="chapeau">a t'il un chapeau?</option>
+                         <option value="genreFemme"> est t'elle une femme?</option>
+                         <option value="genreHomme">est t'il un homme?</option>
+                     </select>
+                 </div>
              </div>
-         </div>
-     </div>
-     <div class="col-lg-1  offset-5">
-         <button class="valider btn btn-primary " type="button">Valider</button>
+
+             <div class="col-lg-1  offset-5">
+                 <button name="button" value="question" class="valider btn btn-primary " type="submit">Valider</button>
+             </div>
+             <div>
+                 <p>
+                     {% for reponse in reponse %}
+                     {{ reponse }} <br>
+                     {% endfor %}
+                    </p>
+             </div>
+         </form>
      </div>
 
-     <div class="container">
-         <div class=" plateau row ">
+     <form action="/elimination" method="POST">
+         <div class="container">
+             <div class=" plateau row ">
 
-             {% for char in listechar %}
+                 {% for char in listechar %}
                      <div class="nopad text-center">
                          <label class="image-checkbox">
                              <img class="img-responsive" style="width: 120px;heigth: 120px;" src="{{ char.image }}" />
-                             <input type="checkbox" name="image[]" value="" />
+                             <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
 
                          </label>
                      </div>
-             {% endfor %}
-         </div>
-     </div>
-
-     <div class="container">
-         <div class="bottomButton row">
-             <div class=" col-xl-4 col-md-4 col-sm-4 offset-1">
-                 <button class="btn btn-danger" type="button">Eliminer votre sélection</button>
+                 {% endfor %}
              </div>
-             <form class="form-inline " action="/fin" type="GET">
-                 <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">
-                     <button class="valider btn btn-primary " type="submit">Valider la bonne photo</button>
-                 </div>
-             </form>
          </div>
+
+         <div class="container">
+             <div class="bottomButton row">
+                 <div class=" col-xl-4 col-md-4 col-sm-4 offset-1">
+
+                     <button name="button"  value="eliminer" class="btn btn-danger" type="submit">Eliminer les photo</button>
+     </div>
+         <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">
+             <button name="button" value="valider"  class="valider btn btn-primary " type="submit">Valider la bonne photo</button>
+         </div>
+     </form>
+     </div>
      </div>
  {% endblock %}

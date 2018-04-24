@@ -8,8 +8,12 @@
 
 namespace Controller;
 
+use Model\CarManager;
 use Model\Client;
 use Model\ClientManager;
+use Model\ScoreManager;
+use Model\Score;
+
 
 /**
  * Class ClientController
@@ -22,29 +26,45 @@ class ClientController extends AbstractController
      * @return string
      */
     public function index()
-    {
-        if($_SERVER['REQUEST_METHOD']==='GET') {
+    {   session_start();
+        $score = new Score();
+        $topScore = $score->downloadScore();
 
-            if ((isset($_GET['pseudo'])) && (strlen($_GET['pseudo']) >= 3) && (strlen($_GET['pseudo']) <= 6)) {
-                session_start();
-                $_SESSION['pseudo'] = $_GET['pseudo'];
-                header("location:/decks");
-            } else {
-                $_SESSION['errorPseudo'] = "entre 3 à 6 caractères";
-                return $this->twig->render('Client/index.html.twig', ['errorPseudo' => $_SESSION['errorPseudo']]);
+
+        if($_SERVER['REQUEST_METHOD']==='GET') {
+            unset($_SESSION['pseudo']);
+
+            if (isset($_GET['pseudo'])){
+                if ((!empty($_GET['pseudo'])) && (strlen($_GET['pseudo']) >= 3) && (strlen($_GET['pseudo']) <= 6)) {
+
+                    $_SESSION['pseudo'] = $_GET['pseudo'];
+                    header("location:/decks");
+
+                } elseif ((!empty($_GET['pseudo'])) && (strlen($_GET['pseudo']) < 3) || (strlen($_GET['pseudo']) > 6)) {
+
+                    $_SESSION['errorPseudo'] = "entre 3 à 6 caractères";
+                    return $this->twig->render('Client/index.html.twig', ['score' => $topScore, 'errorPseudo' => $_SESSION['errorPseudo']]);
+                }
+            }else {
+
+                return $this->twig->render('Client/index.html.twig', ['score' => $topScore]);
             }
         }
     }
     public function decks()
     {
+        session_start();
+        if (!empty($_SESSION['pseudo'])) {
 
-        //aller chercher les données via un manager
-        //envoyer ces données à la vue
-        $clientManager = new ClientManager();
-        $listeDecks = $clientManager->findAll();
-        $n = rand(0,31);
-        $res = $listeDecks[$n];
-        return $this->twig->render('Client/decks.html.twig', ['res' => $res,'pseudo' => $_SESSION['pseudo']]);
+            $clientManager = new ClientManager();
+            $listeDecks = $clientManager->findByDecks('deck2');
+            $n = rand(0, 31);
+            $res = $listeDecks[$n];
+
+            return $this->twig->render('Client/decks.html.twig', ['res' => $res, 'pseudo' => $_SESSION['pseudo']]);
+        }else{
+            header("location:/");
+        }
 
 
 
@@ -52,34 +72,32 @@ class ClientController extends AbstractController
 
     public function play()
     {
-        var_dump($_GET);
         session_start();
 
-        $charManager = new ClientManager();
-        $listChar = $charManager->findAll();
+        if (!empty($_SESSION['pseudo'])) {
+
+            $clientManager = new Client();
+            $Decks = $clientManager->findByCar();
+            $tab=[];
 
 
 
-        //var_dump($listChar);
+            foreach($Decks as $key => $Decks) {
+                $tab[] = $Decks['id_car'];
+            }
+            $_SESSION['Personnage'] = $tab;
+            $_SESSION['Random'] = $tab[rand(0,31)];
+            $_SESSION['reponse'] = NULL;
+            $_SESSION['score'] = 1000;
+
+            $carManager = new CarManager();
+            $_SESSION['car'] = $carManager->findOneById($_SESSION['Random']);
 
 
-
-        $clientManager = new Client();
-        $Decks = $clientManager->findByCar();
-        $tab=[];
-
-        foreach($Decks as $key => $Decks) {
-            $tab[] = $Decks['id_car'];
-        }
-        $_SESSION['$Personnage'] = $tab;
-        $_SESSION['Random'] = $tab[rand(0,31)];
-
-
-        if (isset($_SESSION['pseudo'])) {
-            return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo'],'listechar'=>$listChar]);
+            return header("location:/elimination");
         }else
         {
-            return $this->twig->render('Client/index.html.twig');
+            return header("location:/");
         }
     }
 
@@ -87,36 +105,191 @@ class ClientController extends AbstractController
     {
         session_start();
 
-        $_SESSION['Random'];
-        $_SESSION['$Personnage'];
+
+        if(!empty($_SESSION['pseudo'])) {
+
+            $charManager = new ClientManager();
+            $listChar = $charManager->findByDecks('deck2');
+            //  $_SESSION['Personnage']
+            // $_SESSION['Random']
+
+            if (isset($_POST['button'])){
+                if ($_POST['button'] == "question"){
+
+                    if (isset($_POST['option'])){
+                        switch ($_POST['option'])
+                        {
+                            case "barbe":
+                                $reponse = "Le personnage a t'il une barbe ? : ".$_SESSION['car'][$_POST['option']];
+                                $_SESSION['score'] -= 20;
+                                break;
+
+                            case "chapeau":
+                                $reponse = "Le personnage a t'il un chapeau ? : ".$_SESSION['car'][$_POST['option']];
+                                $_SESSION['score'] -= 20;
+                                break;
+
+                            case "lunette":
+                                $reponse = "Le personnage a t'il des lunettes ? : ".$_SESSION['car'][$_POST['option']];
+                                $_SESSION['score'] -= 20;
+                                break;
+
+                            case "ral":
+                                $reponse = "Le personnage a t'il du rouge à lèvres ? : ".$_SESSION['car'][$_POST['option']];
+                                $_SESSION['score'] -= 20;
+                                break;
+                            case "cheveuxBrun":
+                                if ($_SESSION['car']['cheveux'] == 'oui') {
+                                    $reponse = "Le personnage a t'il des cheveux brun ? : oui";
+                                }elseif ($_SESSION['car']['cheveux'] == 'non') {
+                                    $reponse = "Le personnage a t'il des cheveux brun ? : non";
+                                }
+                                $_SESSION['score'] -= rand(100,200);
+                                break;
+
+                            case "cheveuxBlond":
+                                if ($_SESSION['car']['cheveux'] == 'non') {
+                                    $reponse = "Le personnage a t'il des cheveux blond ? : oui";
+                                }elseif ($_SESSION['car']['cheveux'] == 'oui') {
+                                    $reponse = "Le personnage a t'il des cheveux blond ? : non";
+                                }
+                                $_SESSION['score'] -= rand(100,200);
+                                break;
+
+                            case "genreHomme":
+                                if ($_SESSION['car']['genre'] == 'homme') {
+                                    $reponse = "Le personnage est un homme ? : oui";
+                                }elseif ($_SESSION['car']['genre'] == 'femme') {
+                                    $reponse = "Le personnage est un homme ? : non";
+                                }
+                                $_SESSION['score'] -= rand(100,200);
+                                break;
+
+                            case "genreFemme":
+                                if ($_SESSION['car']['genre'] == 'femme') {
+                                    $reponse = "Le personnage est un femme ? : oui";
+                                }elseif ($_SESSION['car']['genre'] == 'homme') {
+                                    $reponse = "Le personnage est un femme ? : non";
+                                }
+                                $_SESSION['score'] -= rand(100,200);
+                                break;
+
+                            default;
+                                break;
+                        }
+
+                        //  $reponse = $_SESSION['car'][$_POST['option']];
+
+                        //  $allReponse[] = $reponse;
+                        if (isset($reponse)){
+                            if (empty($_SESSION['reponse'])){
+                                $_SESSION['reponse'][] = $reponse;
+                            }elseif (!empty($_SESSION['reponse'])){
+                                array_unshift($_SESSION['reponse'], $reponse);
+                            }
+
+                        }
 
 
-        foreach($Decks as $key => $Decks) {
-            $tab[] = $Decks['id_car'];
+                    }
+                }
+
+                if ($_POST['button'] == "eliminer") {
+
+                    if (isset($_POST['image'])) {
+                        foreach ($_POST['image'] as $valeur) {
+
+                            unset($_SESSION['Personnage'][array_search($valeur, $_SESSION['Personnage'])]);
+                        }
+                    }
+                }
+
+
+
+            }
+
+
+            var_dump($_SESSION['reponse']);
+
+            if (isset($_POST['button'])){
+                if($_POST['button'] == "valider"){
+                    if (count($_POST['image']) == 1 ){
+                        $_SESSION['Personnage'] = $_POST['image'];
+                        header("location:/score");
+                    }
+                }
+            }
+
+            if (count($_SESSION['Personnage']) == 1){
+                header("location:/score");
+            }else {
+                return $this->twig->render('Client/play.html.twig', ['score'=> $_SESSION['score'], 'pseudo' => $_SESSION['pseudo'],'listechar'=>$listChar , 'reponse' => $_SESSION['reponse']]);
+            }
+
+
+
+
+        }else {
+            return header("Location:/");
         }
-        $Personnage = $tab;
-        $Random = $tab[rand(0,31)];
-        var_dump ($Random);
 
 
-        if (isset($_SESSION['pseudo'])) {
-            return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo']]);
-        }else
-        {
-            return $this->twig->render('Client/index.html.twig');
-        }
     }
+
+
 
     public function finDeParti()
     {
         session_start();
+
+
+        $charManager = new ClientManager();
+        $listChar = $charManager->findByDecks('deck2');
+        $imagefin = $listChar[$_SESSION['Random']]['image'];
+
         if (isset($_SESSION['pseudo'])) {
-            return $this->twig->render('Client/finDeParti.html.twig', ['pseudo' => $_SESSION['pseudo']]);
+
+
+            if ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) !== FALSE ){
+                $resultat = "Bien joué ! vous avez gagné";
+            }elseif ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) === FALSE ){
+                $resultat = "Dommage vous avez perdu..";
+
+            }
+
+
+
+            return $this->twig->render('Client/finDeParti.html.twig', ['perso'=> $imagefin,'score' => $_SESSION['score'], 'pseudo' => $_SESSION['pseudo'], 'resultat' => $resultat]);
         }else
         {
-            return $this->twig->render('Client/index.html.twig');
+            return header("location:/");
         }
     }
+
+    public function Score()
+    {
+        session_start();
+        $multiplicateur = -1000+(count($_SESSION['reponse'])*200);
+
+        if (isset($_SESSION['pseudo'])) {
+            if ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) !== FALSE ) {
+                $pseudo = $_SESSION['pseudo'];
+                $Score = new Score();
+                // $pseudoExist = $Score->findByPseudo($pseudo);
+                $Score->uploadScore($pseudo, $_SESSION['score']);
+            }elseif ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) === FALSE ) {
+                $pseudo = $_SESSION['pseudo'];
+                $_SESSION['score'] += $multiplicateur;
+                $Score = new Score();
+                // $pseudoExist = $Score->findByPseudo($pseudo);
+                $Score->uploadScore($pseudo, $_SESSION['score']);
+            }
+            return header("location:/fin");
+        }
+
+    }
+
+
     /**
      * @param $id
      * @return string

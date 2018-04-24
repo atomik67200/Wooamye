@@ -45,6 +45,18 @@ abstract class EntityManager
         return $statement->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function findByDecks($param)
+    {
+        // prepared request
+        $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE decks=:param");
+        $statement->bindValue('param', $param, \PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+
+
     /**
      *
      */

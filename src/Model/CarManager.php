@@ -1,17 +1,18 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: sylvain
- * Date: 07/03/18
- * Time: 18:20
+ * User: naashw
+ * Date: 23/04/18
+ * Time: 13:48
  */
 
 namespace Model;
 
 
 
-class testManager extends EntityManager
+class CarManager extends EntityManager
 {
+
     const TABLE = 'caracteristique';
 
 
@@ -19,5 +20,6 @@ class testManager extends EntityManager
     {
         parent::__construct(self::TABLE);
     }
+
 
 }

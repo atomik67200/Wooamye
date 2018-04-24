@@ -29,6 +29,7 @@ class Client extends ClientManager
        return $statement = $this->conn->query("SELECT id_car FROM $this->table WHERE decks='debase'", \PDO::FETCH_ASSOC)->fetchAll();
        // foreach ($car as $key => $value)
     }
+
     
 
     /**
