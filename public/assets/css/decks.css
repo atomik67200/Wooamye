@@ -1,5 +1,5 @@
 body{
-	background-color: whitesmoke;
+	background-color: #ecf0f1;
 
 }
 .row{
@@ -8,29 +8,29 @@ body{
 .titre{
     border: 1px solid black;
     border-radius: 50px;
-    background-color: yellow;
+    background-color: #bdc3c7;
     text-align: center;
     padding-top: 4vh;
-
 }
 
 h4{
     font-family: 'Playfair Display', serif;
-    color: #ff3900;
+    color: darkorange;
     text-align: center;
     font-size: 50px;
-
+    text-shadow: 2px 2px 2px black;
 
 }
 
 .deckChoix{
 	margin-top: 1vh;
--}
+}
 p{
 	text-align: center;
 	font-family:'Inconsolata', monospace;
 	margin-top: 10vh;
 	font-size: 30px;
+    text-shadow: 2px 2px 4px black;
 }
 h6{
 	font-family: 'Inconsolata', monospace;
@@ -38,6 +38,8 @@ h6{
 	text-align: center;
 	margin-top: 6vh;
     font-size: 30px;
+    text-shadow: 2px 2px 4px black;
+
 }
 span{
 	color:red;

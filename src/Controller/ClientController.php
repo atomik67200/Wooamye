@@ -251,7 +251,7 @@ class ClientController extends AbstractController
 
 
             if ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) !== FALSE ){
-                $resultat = "Bien joué ! vous avez gagné";
+                $resultat = "Bien joué vous avez gagné !";
             }elseif ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) === FALSE ){
                 $resultat = "Dommage vous avez perdu..";
 

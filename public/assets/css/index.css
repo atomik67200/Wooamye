@@ -1,12 +1,12 @@
 body{
-    background-color: whitesmoke;
+    background-color: #ecf0f1;
 }
-
 
 h1 {
     text-align: center;
     color: #fe4000;
     font-family: 'Playfair Display', serif;
+    text-shadow: 2px 2px 2px black;
 }
 /*Gere les marge du input*/
 .form-group{
@@ -22,9 +22,7 @@ input,button{
     background-color:;
     color: black;
     margin-right: 10px;
-
 }
-/*Gere l'encadrer play*/
 
 /*Gere l'encadrer des Regles*/
 .regles{
@@ -33,14 +31,12 @@ input,button{
 	margin-bottom: 100px;
     margin-left: 55px;
     padding-top: 10px;
-    background-color: #A6A6A6;
+    background-color: #7f8c8d;
     color: #010101;
     font-family: 'Karla', sans-serif;
     font-size: 20px;
-}
-/* Gere le titre dans .regles */
-.titre{
-    font-size: 23px;
+    box-shadow: 6px 6px 6px  black;
+    text-shadow: 2px 2px 4px black;
 }
 
 /*Gere le titre du scoring*/
@@ -68,9 +64,7 @@ h5{
     font-family: 'Press Start 2P', cursive;
     color: darkorange;
 }
-.btnJouer{
-    background-color: yellow;
-}
-[placeholder] {
-    color: red;
+.btn-success{
+    color: darkorange;
+    text-shadow: 2px 2px 4px black;
 }
