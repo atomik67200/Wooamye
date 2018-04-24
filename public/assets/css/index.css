@@ -1,10 +1,11 @@
 body{
-    background-color: #484747;
+    background-color: whitesmoke;
 }
+
 
 h1 {
     text-align: center;
-	color:#FE0101;
+    color: #fe4000;
     font-family: 'Playfair Display', serif;
 }
 /*Gere les marge du input*/
@@ -35,7 +36,7 @@ input,button{
     background-color: #A6A6A6;
     color: #010101;
     font-family: 'Karla', sans-serif;
-    font-size: 25px;
+    font-size: 20px;
 }
 /* Gere le titre dans .regles */
 .titre{

@@ -1,15 +1,23 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
-  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/decks.css">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/decks.css">
 {% endblock %}
 
 {% block header %}
 
-      <h3 class="titre">Choix du deck</h3>
+        <div class="row">
+            <div class="container-fluid">
+                <div class="titre  col-sm-7 col-md-6 col-lg-5 col-xl-4 offset-4 ">
+                      <h4>Choix du deck</h4><br>
+                </div>
+            </div>
+        </div>
 
-    <h6 class="titre">Bienvenue a toi  <span>{{ pseudo }}</span> ! Choisi un set de carte pour commencer la partie !!</h6>
+
+    <h6>Bienvenue a toi  <span>{{ pseudo }}</span> ! Choisi un set de carte pour commencer la partie !!</h6>
 {% endblock %}
 
     {% block content %}

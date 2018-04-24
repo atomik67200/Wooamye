@@ -114,38 +114,38 @@ class ClientController extends AbstractController
                         switch ($_POST['option'])
                         {
                             case "barbe":
-                                $reponse = "Le personnage à t'il une barbe ? : ".$_SESSION['car'][$_POST['option']];
+                                $reponse = "Le personnage a t'il une barbe ? : ".$_SESSION['car'][$_POST['option']];
                                 $_SESSION['score'] -= 20;
                                 break;
 
                             case "chapeau":
-                                $reponse = "Le personnage à t'il un chapeau ? : ".$_SESSION['car'][$_POST['option']];
+                                $reponse = "Le personnage a t'il un chapeau ? : ".$_SESSION['car'][$_POST['option']];
                                 $_SESSION['score'] -= 20;
                                 break;
 
                             case "lunette":
-                                $reponse = "Le personnage à t'il des lunettes ? : ".$_SESSION['car'][$_POST['option']];
+                                $reponse = "Le personnage a t'il des lunettes ? : ".$_SESSION['car'][$_POST['option']];
                                 $_SESSION['score'] -= 20;
                                 break;
 
                             case "ral":
-                                $reponse = "Le personnage à t'il du rouge à lèvres ? : ".$_SESSION['car'][$_POST['option']];
+                                $reponse = "Le personnage a t'il du rouge à lèvres ? : ".$_SESSION['car'][$_POST['option']];
                                 $_SESSION['score'] -= 20;
                                 break;
                             case "cheveuxBrun":
                                 if ($_SESSION['car']['cheveux'] == 'oui') {
-                                    $reponse = "Le personnage à t'il des cheveux brun ? : oui";
+                                    $reponse = "Le personnage a t'il des cheveux brun ? : oui";
                                 }elseif ($_SESSION['car']['cheveux'] == 'non') {
-                                    $reponse = "Le personnage à t'il des cheveux brun ? : non";
+                                    $reponse = "Le personnage a t'il des cheveux brun ? : non";
                                 }
                                 $_SESSION['score'] -= 20;
                                 break;
 
                             case "cheveuxBlond":
                                 if ($_SESSION['car']['cheveux'] == 'non') {
-                                    $reponse = "Le personnage à t'il des cheveux blond ? : oui";
+                                    $reponse = "Le personnage a t'il des cheveux blond ? : oui";
                                 }elseif ($_SESSION['car']['cheveux'] == 'oui') {
-                                    $reponse = "Le personnage à t'il des cheveux blond ? : non";
+                                    $reponse = "Le personnage a t'il des cheveux blond ? : non";
                                 }
                                 $_SESSION['score'] -= 20;
                                 break;
