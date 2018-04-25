@@ -4,6 +4,7 @@ namespace Controller;
 
 use Model\Admin;
 use Model\AdminManager;
+use Model\CarManager;
 
 /**
  * Created by PhpStorm.
@@ -78,9 +79,18 @@ class AdminController extends AbstractController
         session_start();
 
         $charManager = new AdminManager();
-        $listChar = $charManager->findAll();
+        $listChar = $charManager->findByDecks('Decks2');
 
-        return $this->twig->render('Admin/modifier.html.twig', ['login' => $_SESSION['login'],'listechar'=>$listChar]);
+        $carManager = new CarManager();
+        $car = $carManager->findAll();
+
+        $personnages=[];
+        foreach ($listChar as $char){
+            $personnages[$char['id_car']]=['ID'=>$char['ID'],'decks'=>$char['decks'],'image'=>$char['image'],'cars'=>$car[$char['id_car']-1]];
+        }
+
+
+        return $this->twig->render('Admin/modifier.html.twig', ['listechar'=>$listChar,'car' => $car,'personnages'=>$personnages]);
     }
 
     public function supprimer()
