@@ -40,7 +40,7 @@ class ClientController extends AbstractController
                     $_SESSION['pseudo'] = $_GET['pseudo'];
                     header("location:/decks");
 
-                } elseif ((!empty($_GET['pseudo'])) && (strlen($_GET['pseudo']) < 3) || (strlen($_GET['pseudo']) > 6)) {
+                } elseif ((!empty($_GET['pseudo'])) || (strlen($_GET['pseudo']) < 3) || (strlen($_GET['pseudo']) > 6)) {
 
                     $_SESSION['errorPseudo'] = "entre 3 à 6 caractères";
                     return $this->twig->render('Client/index.html.twig', ['score' => $topScore, 'errorPseudo' => $_SESSION['errorPseudo']]);
@@ -89,6 +89,8 @@ class ClientController extends AbstractController
             $_SESSION['Random'] = $tab[rand(0,31)];
             $_SESSION['reponse'] = NULL;
             $_SESSION['score'] = 1000;
+            $_SESSION['eliminer']=NULL;
+
 
             $carManager = new CarManager();
             $_SESSION['car'] = $carManager->findOneById($_SESSION['Random']);
@@ -121,22 +123,22 @@ class ClientController extends AbstractController
                         {
                             case "barbe":
                                 $reponse = "Le personnage à t'il une barbe ? : ".$_SESSION['car'][$_POST['option']];
-                                $_SESSION['score'] -= rand(100,200);
+                                $_SESSION['score'] -= rand(70,100);
                                 break;
 
                             case "chapeau":
                                 $reponse = "Le personnage à t'il un chapeau ? : ".$_SESSION['car'][$_POST['option']];
-                                $_SESSION['score'] -= rand(100,200);
+                                $_SESSION['score'] -= rand(70,100);
                                 break;
 
                             case "lunette":
                                 $reponse = "Le personnage à t'il des lunettes ? : ".$_SESSION['car'][$_POST['option']];
-                                $_SESSION['score'] -= rand(100,200);
+                                $_SESSION['score'] -= rand(70,100);
                                 break;
 
                             case "ral":
                                 $reponse = "Le personnage à t'il du rouge à lèvres ? : ".$_SESSION['car'][$_POST['option']];
-                                $_SESSION['score'] -= rand(100,200);
+                                $_SESSION['score'] -= rand(70,100);
                                 break;
                             case "cheveuxBrun":
                                 if ($_SESSION['car']['cheveux'] == 'oui') {
@@ -144,7 +146,7 @@ class ClientController extends AbstractController
                                 }elseif ($_SESSION['car']['cheveux'] == 'non') {
                                     $reponse = "Le personnage à t'il des cheveux brun ? : non";
                                 }
-                                $_SESSION['score'] -= rand(100,200);
+                                $_SESSION['score'] -= rand(70,100);
                                 break;
 
                             case "cheveuxBlond":
@@ -153,7 +155,7 @@ class ClientController extends AbstractController
                                 }elseif ($_SESSION['car']['cheveux'] == 'oui') {
                                     $reponse = "Le personnage à t'il des cheveux blond ? : non";
                                 }
-                                $_SESSION['score'] -= rand(100,200);
+                                $_SESSION['score'] -= rand(70,100);
                                 break;
 
                             case "genreHomme":
@@ -162,7 +164,7 @@ class ClientController extends AbstractController
                                 }elseif ($_SESSION['car']['genre'] == 'femme') {
                                     $reponse = "Le personnage est un homme ? : non";
                                 }
-                                $_SESSION['score'] -= rand(100,200);
+                                $_SESSION['score'] -= rand(70,100);
                                 break;
 
                             case "genreFemme":
@@ -171,7 +173,7 @@ class ClientController extends AbstractController
                                 }elseif ($_SESSION['car']['genre'] == 'homme') {
                                     $reponse = "Le personnage est un femme ? : non";
                                 }
-                                $_SESSION['score'] -= rand(100,200);
+                                $_SESSION['score'] -= rand(70,100);
                                 break;
 
                             default;
@@ -197,11 +199,21 @@ class ClientController extends AbstractController
                 if ($_POST['button'] == "eliminer") {
 
                     if (isset($_POST['image'])) {
-                        foreach ($_POST['image'] as $valeur) {
 
+                        foreach ($_POST['image'] as $valeur) {
+                            if (empty($_SESSION['eliminer'])){
+                                $_SESSION['eliminer'][] = $valeur;
+                            }elseif (!empty($_SESSION['eliminer'])){
+
+                                if (!in_array($valeur, $_SESSION['eliminer'])) {
+                                    array_unshift($_SESSION['eliminer'], $valeur);
+                                }
+
+                            }
                             unset($_SESSION['Personnage'][array_search($valeur, $_SESSION['Personnage'])]);
                         }
                     }
+
                 }
 
 
@@ -209,7 +221,7 @@ class ClientController extends AbstractController
             }
 
 
-            var_dump($_SESSION['reponse']);
+
 
             if (isset($_POST['button'])){
                 if($_POST['button'] == "valider"){
@@ -223,7 +235,7 @@ class ClientController extends AbstractController
             if (count($_SESSION['Personnage']) == 1){
                 header("location:/score");
             }else {
-                return $this->twig->render('Client/play.html.twig', ['score'=> $_SESSION['score'], 'pseudo' => $_SESSION['pseudo'],'listechar'=>$listChar , 'reponse' => $_SESSION['reponse']]);
+                return $this->twig->render('Client/play.html.twig', ['eliminer'=>$_SESSION['eliminer'], 'restant' => $_SESSION['Personnage'], 'score'=> $_SESSION['score'], 'pseudo' => $_SESSION['pseudo'],'listechar'=>$listChar , 'reponse' => $_SESSION['reponse']]);
             }
 
 
@@ -245,7 +257,7 @@ class ClientController extends AbstractController
 
         $charManager = new ClientManager();
         $listChar = $charManager->findByDecks('deck2');
-        $imagefin = $listChar[$_SESSION['Random']]['image'];
+        $imagefin = $listChar[$_SESSION['Random']-1]['image'];
 
         if (isset($_SESSION['pseudo'])) {
 
@@ -269,19 +281,23 @@ class ClientController extends AbstractController
     public function Score()
     {
         session_start();
-        $multiplicateur = -1000+(count($_SESSION['reponse'])*200);
+        $multiplicateur = -1000+(count($_SESSION['reponse'])*90);
 
         if (isset($_SESSION['pseudo'])) {
             if ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) !== FALSE ) {
                 $pseudo = $_SESSION['pseudo'];
+                if ($_SESSION['score'] < 1){
+                    $_SESSION['score'] = "0";
+                }
                 $Score = new Score();
-                // $pseudoExist = $Score->findByPseudo($pseudo);
                 $Score->uploadScore($pseudo, $_SESSION['score']);
             }elseif ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) === FALSE ) {
                 $pseudo = $_SESSION['pseudo'];
                 $_SESSION['score'] += $multiplicateur;
+                if ($_SESSION['score'] < 1){
+                    $_SESSION['score'] = "Moin que 0 mdr t'es trop nul";
+                }
                 $Score = new Score();
-                // $pseudoExist = $Score->findByPseudo($pseudo);
                 $Score->uploadScore($pseudo, $_SESSION['score']);
             }
             return header("location:/fin");
