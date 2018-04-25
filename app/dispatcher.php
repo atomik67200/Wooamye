@@ -33,7 +33,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
 
     $r->addRoute('GET', '/test', 'car/car1');
 
-
+    //NE PAS TOUCHER AU GET CHANGERACCUEIL SVP! :)
     $r->addRoute('GET', '/changerAccueil', 'Admin/changerAccueil');
     $r->addRoute('POST', '/changerAccueil', 'Admin/changerAccueil');
 

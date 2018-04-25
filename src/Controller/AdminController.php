@@ -111,7 +111,7 @@ class AdminController extends AbstractController
                 echo '</a>';
             }
         }
-
+        //NE PAS TOUCHER LES GET SVP sur cette page et le dispatcher :)
         if (isset($_GET["f"])) {
 
             $fichier = "../src/View/Client/". $_GET["f"];
