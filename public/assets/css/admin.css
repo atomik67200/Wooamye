@@ -11,6 +11,8 @@ h1
 {
 	text-align: center;
 	font-size: 1,2em;
+    font-weight: bold;
+
 
 }
 .form-check{
@@ -26,7 +28,7 @@ h1
 {
     background: #FFA07A;
 }
-header, section  /* Mettre une bordure sur les td ET les th */
+header, section
 {
 	border: 1px solid black;
     background: #FFFAFA;
@@ -91,6 +93,8 @@ input
 .btn
 {
     border: 2px solid gray;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .upload-btn-wrapper {
