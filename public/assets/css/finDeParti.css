@@ -1,11 +1,24 @@
 body{
-    background-color: beige;
+    background-color: #ecf0f1;
+}
+.row{
+    margin-top: 5vh;
+}
+.titre{
+    border: 1px solid black;
+    border-radius: 50px;
+    background-color: #bdc3c7;
+    text-align: center;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+
 }
 h4 {
-    font-family: 'Press Start 2P', cursive;
-    color: red;
+    font-family: 'Playfair Display', serif;
+    color: darkorange;
     text-align: center;
-    margin-top: 5vh;
+    font-size: 40px;
+    text-shadow: 2px 2px 2px black;
 }
 .container{
     margin-top: 5vh;
@@ -16,15 +29,29 @@ h4 {
 .button{
     margin-right: 5vh;
 }
+span{
+    color:black;
+}
 .Pseudo{
-    font-family: 'Press Start 2P', cursive;
-    color: red;
+    font-family: 'Inconsolata', monospace;
+    color: #ff0814;
+    font-size: 30px;
+    padding-top: 5vh;
+    text-align: center;
+    text-shadow: 2px 2px 4px black;
+
 }
 .Score{
-    font-family: 'Press Start 2P', cursive;
-    color: red;
-}
+    font-family: 'Inconsolata', monospace;
+    color: #ff0814;
+    font-size: 30px;
+    text-align: center;
+    text-shadow: 2px 2px 4px black;
 
+}
+.photoModal{
+    margin-top: 10vh;
+}
 /* Gere la fenetre Modal */
 #myImg {
     border-radius: 5px;

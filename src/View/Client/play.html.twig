@@ -1,32 +1,39 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/play.css">
 {% endblock %}
 
             {% block header %}
-                <h4>A vous de jouer!</h4>
+                <div class="row">
+                    <div class="container-fluid">
+                        <div class="titre  col-sm-7 col-md-6 col-lg-5 col-xl-4 offset-4 ">
+                            <h4>A vous de Jouer!</h4><br>
+                        </div>
+                    </div>
+                </div>
             {% endblock %}
 
  {% block content %}
-     <p class="Pseudo">Pseudo : {{ pseudo }}</p>
-     <p class="Score">Score : {{ score }} </p>
+     <p class="Pseudo">Pseudo :<span> {{ pseudo }}</span></p>
+     <p class="Score">Score :<span>{{ score }} </span></p>
 
-     <p class="question">Le personnage à :</p>
+     <p class="question">Le personnage :</p>
      <div class="container">
          <form action="/elimination" method="POST">
              <div class="row ">
-                 <div class="input-group col-lg-5 col-lg-6 offset-2 ">
+                 <div class="input-group col-sm-6 col-md-5 col-lg-4 col-xl-3 offset-4">
                      <select class="custom-select" name="option" >
                          <option selected>....</option>
-                         <option value="cheveuxBrun">t'il des cheveux brun?</option>
-                         <option value="cheveuxBlond">t'il des cheveux blond?</option>
-                         <option value="lunette">t'il des lunettes?</option>
-                         <option value="barbe">t'il une barbe?</option>
-                         <option value="ral">t'il du rouge à lèvre?</option>
-                         <option value="chapeau">t'il un chapeau?</option>
-                         <option value="genreFemme">est t'elle une femme?</option>
+                         <option value="cheveuxBrun">a t'il des cheveux brun?</option>
+                         <option value="cheveuxBlond">a t'il des cheveux blond?</option>
+                         <option value="lunette">a t'il des lunettes?</option>
+                         <option value="barbe">a t'il une barbe?</option>
+                         <option value="ral">a t'il du rouge à lèvre?</option>
+                         <option value="chapeau">a t'il un chapeau?</option>
+                         <option value="genreFemme"> est t'elle une femme?</option>
                          <option value="genreHomme">est t'il un homme?</option>
                      </select>
                  </div>
@@ -35,12 +42,13 @@
              <div class="col-lg-1  offset-5">
                  <button name="button" value="question" class="valider btn btn-primary " type="submit">Valider</button>
              </div>
+
              <div>
-                 <p>
+                 <p class="reponse">
                      {% for reponse in reponse %}
                      {{ reponse }} <br>
                      {% endfor %}
-                    </p>
+                 </p>
              </div>
          </form>
      </div>
@@ -65,7 +73,7 @@
              <div class="bottomButton row">
                  <div class=" col-xl-4 col-md-4 col-sm-4 offset-1">
 
-                     <button name="button"  value="eliminer" class="btn btn-danger" type="submit">Eliminer votre sélection</button>
+                     <button name="button"  value="eliminer" class="btn btn-danger" type="submit">Eliminer des photo</button>
      </div>
          <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">
              <button name="button" value="valider"  class="valider btn btn-primary " type="submit">Valider la bonne photo</button>
