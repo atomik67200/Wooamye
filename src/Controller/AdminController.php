@@ -88,7 +88,7 @@ class AdminController extends AbstractController
         foreach ($listChar as $char){
             $personnages[$char['id_car']]=['ID'=>$char['ID'],'decks'=>$char['decks'],'image'=>$char['image'],'cars'=>$car[$char['id_car']-1]];
         }
-    print_r($personnages);
+
 
         return $this->twig->render('Admin/modifier.html.twig', ['listechar'=>$listChar,'car' => $car,'personnages'=>$personnages]);
     }

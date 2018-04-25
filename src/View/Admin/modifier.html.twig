@@ -66,12 +66,13 @@
                                                 <div class="thumbnail mb-2">
                                                     <p><span class="titre">Image{{personnage.ID}}</span></p>
 
-                                                    <img src="{{personnage.image}}" alt="Image" class="img-thumbnail mb-2">
-                                                    <span id="FakeInput">
-                                                        <span></span><span>...</span>
+                                                    <img src="{{personnage.image}}" alt="Image" class="img-thumbnail mb-2"><br>
+                                                    <div class="upload-btn-wrapper">
+                                                        <button class="btn1 btn-responsive">Parcourir</button>
                                                         <input  name="files[]" type="file" id="fichier_a_uploader" multiple="multiple" />
                                                         <input type="hidden" name="fichier1" value="1" />
-                                                    </span>
+                                                    </div>
+
                                                 </div>
 
 
