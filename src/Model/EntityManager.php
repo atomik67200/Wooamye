@@ -35,7 +35,7 @@ abstract class EntityManager
      * @param $id
      * @return array
      */
-    public function findOneById(int $id)
+    public function findOneById( $id)
     {
         // prepared request
         $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE id=:id");

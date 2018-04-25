@@ -57,7 +57,7 @@ class ClientController extends AbstractController
         if (!empty($_SESSION['pseudo'])) {
 
             $clientManager = new ClientManager();
-            $listeDecks = $clientManager->findByDecks('deck2');
+            $listeDecks = $clientManager->findByDecks('Decks2');
             $n = rand(0, 31);
             $res = $listeDecks[$n];
 
@@ -95,6 +95,9 @@ class ClientController extends AbstractController
             $carManager = new CarManager();
             $_SESSION['car'] = $carManager->findOneById($_SESSION['Random']);
 
+            $charManager = new ClientManager();
+            $_SESSION['Decks'] = $charManager->findByDecks('Decks2');
+            shuffle($_SESSION['Decks']);
 
             return header("location:/elimination");
         }else
@@ -110,8 +113,9 @@ class ClientController extends AbstractController
 
         if(!empty($_SESSION['pseudo'])) {
 
-            $charManager = new ClientManager();
-            $listChar = $charManager->findByDecks('deck2');
+            $listChar = $_SESSION['Decks'];
+
+
             //  $_SESSION['Personnage']
             // $_SESSION['Random']
 
@@ -256,7 +260,7 @@ class ClientController extends AbstractController
 
 
         $charManager = new ClientManager();
-        $listChar = $charManager->findByDecks('deck2');
+        $listChar = $charManager->findByDecks('Decks2');
         $imagefin = $listChar[$_SESSION['Random']-1]['image'];
 
         if (isset($_SESSION['pseudo'])) {
