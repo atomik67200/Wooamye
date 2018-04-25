@@ -91,7 +91,9 @@ class ClientController extends AbstractController
         session_start();
              if(!empty($_SESSION['pseudo'])) {
             $charManager = new ClientManager();
-            $listChar = $charManager->findByDecks('deck2');
+            $listChar =$charManager->findByDecks('deck2');
+            shuffle($listChar);
+            //var_dump($shuffleListChar);
 
 
           //  $_SESSION['Personnage']
@@ -104,13 +106,13 @@ class ClientController extends AbstractController
               unset($_SESSION['Personnage'][array_search($valeur , $_SESSION['Personnage'])]);
             }
             }
-            var_dump($_SESSION['Random']);
-            var_dump($_SESSION['Personnage']);
+            //var_dump($_SESSION['Random']);
+            //var_dump($_SESSION['Personnage']);
 
                  if (count($_SESSION['Personnage']) == 1){
                      header("location:/fin");
                  }else {
-                     return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo'],'listechar'=>$listChar]);
+                     return $this->twig->render('Client/play.html.twig', ['pseudo' => $_SESSION['pseudo'],'ListChar'=>$listChar]);
                  }
 
 
