@@ -63,7 +63,7 @@ class ClientController extends AbstractController
 
     public function play()
     {
-        var_dump($_GET);
+        //var_dump($_GET);
         session_start();
 
         if (!empty($_SESSION['pseudo'])) {
