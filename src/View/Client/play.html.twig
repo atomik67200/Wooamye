@@ -7,24 +7,27 @@
 {% endblock %}
 
             {% block header %}
-                <div class="row">
-                    <div class="container-fluid">
-                        <div class="titre  col-sm-7 col-md-6 col-lg-5 col-xl-4 offset-4 ">
+                <div class="container-fluid justify-content-center ">
+                    <div class="row">
+                        <div class="col-3"><p class="Pseudo">Pseudo :<span> {{ pseudo }}</span></p></div>
+                        <div class="titre  col-6 ">
                             <h4>A vous de Jouer!</h4><br>
                         </div>
+                        <div class="col-3"><p class="Score">Score :<span>{{ score }} </span></p></div>
                     </div>
                 </div>
             {% endblock %}
 
  {% block content %}
-     <p class="Pseudo">Pseudo :<span> {{ pseudo }}</span></p>
-     <p class="Score">Score :<span>{{ score }} </span></p>
 
-     <p class="question">Le personnage :</p>
+
+
+
      <div class="container">
          <form action="/elimination" method="POST">
-             <div class="row ">
-                 <div class="input-group col-sm-6 col-md-5 col-lg-4 col-xl-3 offset-4">
+             <div class="row justify-content-center  ">
+                 <div class="input-group col-6 ">
+                     <label for="">Le personnage :</label>
                      <select class="custom-select" name="option" >
                          <option selected>....</option>
                          <option value="cheveuxBrun">a t'il des cheveux brun?</option>

@@ -32,6 +32,9 @@ h4 {
 span{
     color:black;
 }
+img{
+    width: 45vh;
+}
 .Pseudo{
     font-family: 'Inconsolata', monospace;
     color: #ff0814;

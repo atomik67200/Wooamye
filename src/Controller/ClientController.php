@@ -259,9 +259,9 @@ class ClientController extends AbstractController
         session_start();
 
 
-        $charManager = new ClientManager();
-        $listChar = $charManager->findByDecks('Decks2');
+        $listChar = $_SESSION['Decks'];
         $imagefin = $listChar[$_SESSION['Random']-1]['image'];
+
 
         if (isset($_SESSION['pseudo'])) {
 
