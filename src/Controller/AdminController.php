@@ -28,6 +28,8 @@ class AdminController extends AbstractController
 
     public function Verif()
     {
+
+
             return $this->twig->render('Admin/index.html.twig');
     }
 
@@ -56,7 +58,7 @@ class AdminController extends AbstractController
         if (isset($_POST['selectAA'])){
             if($_POST['selectAA']==='Modifier un set'){
 
-                return $this->twig->render('Admin/modifier.html.twig');
+                return header("location:/modifier");
             }elseif($_POST['selectAA']==='Supprimer un set'){
 
                 return $this->twig->render('Admin/supprimer.html.twig');
@@ -95,6 +97,8 @@ class AdminController extends AbstractController
 
     public function changerAccueil()
     {
+
+
         if (isset($_POST["contenu"]))
         {
             $fichier = "../src/View/Client/regles.html";
@@ -102,6 +106,7 @@ class AdminController extends AbstractController
             fwrite($file,($_POST["contenu"]));
             fclose($file);
         }
+
 
         $dir=opendir("../src/View/Client/");
         while($allFile = readdir($dir)) {
@@ -111,10 +116,10 @@ class AdminController extends AbstractController
                 echo '</a>';
             }
         }
+        var_dump($_GET);
+        if (isset($_GET["f"])) {
 
-        if (isset($_POST["f"])) {
-
-            $fichier = "../src/View/Client/". $_POST["f"];
+            $fichier = "../src/View/Client/". $_GET["f"];
             $contenu = file_get_contents($fichier);
             return $this->twig->render('Admin/changerAccueil.html.twig',['contenu'=>$contenu],['fichier'=>$fichier]);
         }

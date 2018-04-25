@@ -46,7 +46,7 @@
              <div>
                  <p class="reponse">
                      {% for reponse in reponse %}
-                     {{ reponse }} <br>
+                         {{ reponse }} <br>
                      {% endfor %}
                  </p>
              </div>
@@ -57,15 +57,35 @@
          <div class="container">
              <div class=" plateau row ">
 
-                 {% for char in listechar %}
-                     <div class="nopad text-center">
-                         <label class="image-checkbox">
-                             <img class="img-responsive" style="width: 120px;heigth: 120px;" src="{{ char.image }}" />
-                             <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
 
-                         </label>
-                     </div>
+                 {% for char in listechar %}
+                     {% for restant in restant %}
+                         {% if restant == char.id_car %}
+                             <div class="nopad text-center">
+                                 <label class="image-checkbox">
+                                     <img class="img-responsive" style="width: 120px;heigth: 120px;" src="{{ char.image }}" />
+                                     <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
+
+                                 </label>
+                             </div>
+                         {% endif %}
+                     {% endfor %}
+
+                     {% for eliminer in eliminer %}
+                         {% if eliminer == char.id_car %}
+
+                             <div class="nopad text-center">
+                                 <label style="background-color: rgba(255, 0, 0, 1);" class="image-checkbox">
+                                     <img  class="img-responsive" style="width: 120px;heigth: 120px;" src="{{ char.image }}" />
+                                     <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
+
+                                 </label>
+                             </div>
+                         {% endif %}
+                     {% endfor %}
                  {% endfor %}
+
+
              </div>
          </div>
 
@@ -73,11 +93,11 @@
              <div class="bottomButton row">
                  <div class=" col-xl-4 col-md-4 col-sm-4 offset-1">
 
-                     <button name="button"  value="eliminer" class="btn btn-danger" type="submit">Eliminer des photo</button>
-     </div>
-         <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">
-             <button name="button" value="valider"  class="valider btn btn-primary " type="submit">Valider la bonne photo</button>
-         </div>
+                     <button name="button"  value="eliminer" class="btn btn-danger" type="submit">Eliminer votre sélection</button>
+                 </div>
+                 <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">
+                     <button name="button" value="valider"  class="valider btn btn-primary " type="submit">Valider la bonne photo</button>
+                 </div>
      </form>
      </div>
      </div>
