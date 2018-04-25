@@ -57,7 +57,7 @@ class ClientController extends AbstractController
         if (!empty($_SESSION['pseudo'])) {
 
             $clientManager = new ClientManager();
-            $listeDecks = $clientManager->findByDecks('deck2');
+            $listeDecks = $clientManager->findByDecks('Decks2');
             $n = rand(0, 31);
             $res = $listeDecks[$n];
 
@@ -111,7 +111,7 @@ class ClientController extends AbstractController
         if(!empty($_SESSION['pseudo'])) {
 
             $charManager = new ClientManager();
-            $listChar = $charManager->findByDecks('deck2');
+            $listChar = $charManager->findByDecks('Decks2');
             //  $_SESSION['Personnage']
             // $_SESSION['Random']
 
