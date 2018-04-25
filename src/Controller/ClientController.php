@@ -96,7 +96,8 @@ class ClientController extends AbstractController
             $_SESSION['car'] = $carManager->findOneById($_SESSION['Random']);
 
             $charManager = new ClientManager();
-            $listChar = $charManager->findByDecks('Decks2');
+            $_SESSION['Decks'] = $charManager->findByDecks('Decks2');
+            shuffle($_SESSION['Decks']);
 
             return header("location:/elimination");
         }else
@@ -112,10 +113,9 @@ class ClientController extends AbstractController
 
         if(!empty($_SESSION['pseudo'])) {
 
-            $charManager = new ClientManager();
-            $listChar = $charManager->findByDecks('Decks2');
+            $listChar = $_SESSION['Decks'];
 
-            shuffle($listChar);
+
             //  $_SESSION['Personnage']
             // $_SESSION['Random']
 
