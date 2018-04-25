@@ -63,7 +63,7 @@
                          {% if restant == char.id_car %}
                              <div class="nopad text-center">
                                  <label class="image-checkbox">
-                                     <img class="img-responsive" style="width: 120px;heigth: 120px;" src="{{ char.image }}" />
+                                     <img class="img-responsive" style="width: 120px; heigth: 120px;" src="{{ char.image }}" />
                                      <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
 
                                  </label>
@@ -74,9 +74,9 @@
                      {% for eliminer in eliminer %}
                          {% if eliminer == char.id_car %}
 
-                             <div class="nopad text-center">
-                                 <label style="background-color: rgba(255, 0, 0, 1);" class="image-checkbox">
-                                     <img  class="img-responsive" style="width: 120px;heigth: 120px;" src="{{ char.image }}" />
+                             <div  class="nopad text-center">
+                                 <label  class="image-checkbox red">
+                                     <img class="img-responsive opacity " style="width: 120px; heigth: 120px;" src="{{ char.image }}" />
                                      <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
 
                                  </label>

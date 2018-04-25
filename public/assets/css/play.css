@@ -99,6 +99,13 @@ span{
     display: none;
 }
 
+.opacity {
+    opacity: 0.3;
+}
+
+.red {
+    background-color: red;
+}
 .image-checkbox-checked {
     background-color: red;
     opacity: 0.5;

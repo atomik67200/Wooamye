@@ -57,7 +57,7 @@ class ClientController extends AbstractController
         if (!empty($_SESSION['pseudo'])) {
 
             $clientManager = new ClientManager();
-            $listeDecks = $clientManager->findByDecks('Decks2');
+            $listeDecks = $clientManager->findByDecks('SouthPark');
             $n = rand(0, 31);
             $res = $listeDecks[$n];
 
@@ -96,7 +96,7 @@ class ClientController extends AbstractController
             $_SESSION['car'] = $carManager->findOneById($_SESSION['Random']);
 
             $charManager = new ClientManager();
-            $_SESSION['Decks'] = $charManager->findByDecks('Decks2');
+            $_SESSION['Decks'] = $charManager->findByDecks('SouthPark');
             shuffle($_SESSION['Decks']);
 
             return header("location:/elimination");
@@ -285,7 +285,7 @@ class ClientController extends AbstractController
     public function Score()
     {
         session_start();
-        $multiplicateur = -1000+(count($_SESSION['reponse'])*90);
+        $multiplicateur = -1000+(count($_SESSION['reponse'])*rand(110,150));
 
         if (isset($_SESSION['pseudo'])) {
             if ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) !== FALSE ) {
@@ -299,7 +299,9 @@ class ClientController extends AbstractController
                 $pseudo = $_SESSION['pseudo'];
                 $_SESSION['score'] += $multiplicateur;
                 if ($_SESSION['score'] < 1){
-                    $_SESSION['score'] = "Moin que 0 mdr t'es trop nul";
+                    $_SESSION['score'] = "moins que 0 mdr t'es trop nul";
+                }elseif ($_SESSION['score'] > 500 ){
+                    $_SESSION['score'] = "ta perdu avec toutes ses questions ? faut allez voir un opticien la !";
                 }
                 $Score = new Score();
                 $Score->uploadScore($pseudo, $_SESSION['score']);
