@@ -15,27 +15,26 @@ class carController extends AbstractController
 {
 
 
-    public function carUpload()
+    public function car()
     {
         session_start();
         $carManager = new CarManager();
         $car = $carManager->findAll();
 
-        return $this->twig->render('Admin/ajouter.html.twig', ['errors' => $_SESSION['errors'], 'car' => $car]);
+        return $this->twig->render('Admin/ajouter.html.twig', ['car' => $car]);
     }
 
     public function addBdd()
     {
-        session_start();
+        var_dump($_FILES);
         $files = $_FILES['files'];
         $nbfichier = (array_count_values($files['error']));     //Compte le nombre de fichier qui n'a pas d'erreur.
+        var_dump($nbfichier[0]);
 
         if ( $nbfichier[0] != 32 ) { //si les 32 fichier ont une erreur
-
-            $this->errors = 'Il faut sélectionner 32 photos.';
-
-            $_SESSION['errors'] = $this->errors;
-            header("location:/ajouter");
+            //erreur 4 => UPLOAD_ERR_NO_FILE, aucun fichier n'a été téléchargé
+            $this->errors[] = 'Il faut sélectionner 32 photos.';
+            $_SESSION['errors'][] = $this->errors;
 
         } else {
             //traitement des fichiers
@@ -51,42 +50,35 @@ class carController extends AbstractController
                 $extension = '.' . $infoName['extension'];
                 $file['upload_dir'] = "assets/images/" . 'image' . uniqid() . $extension;
                 $uploadFiles[] = $file;
+            }
+            //cars sur les fichiers
+            $i = 0;
 
-                //cars sur les fichiers
-                $i = 0;
+            foreach ($uploadFiles as $uploadFile) {
+                $i++;
 
-                foreach ($uploadFiles as $uploadFile) {
 
-                    $i++;
-
-                    $error = false;
-                    if (($uploadFile['size'] > 10024000) || ($uploadFile['size'] < 100)) {
-                        $this->errors[] = 'Le fichier ' . $file['name'] . ' est trop volumineux.';
-                        $error = true;
-                        $_SESSION['errors'] = $this->errors;
-
-                    }
-                    if (!in_array($uploadFile['type'], ['image/gif', 'image/jpeg', 'image/png'])) {
-                        $this->errors[] = 'Le type du fichier n\'est pas jpg, png ou gif.';
-                        $error = true;
-                        $_SESSION['errors'] = $this->errors;
-
-                    }
-
-                    if ($error === false) { //Si il n'y a pas d'erreurs, faire le move, + intégré dans la bdd.
-                        move_uploaded_file($uploadFile['tmp_name'], $uploadFile['upload_dir']);
-                        $decks = "Decks4";
-                        $carManager = new carManager();
-                        $carManager->insert($decks, $uploadFile['upload_dir'], $i);
-                    }else{
-                        header("location:/ajouter");
-                    }
-
+                $error = false;
+                if (($uploadFile['size'] > 10024000) || ($uploadFile['size'] < 100)) {
+                    $this->errors[] = 'Le fichier ' . $file['name'] . ' est trop volumineux.';
+                    $error = true;
+                    $_SESSION['errors'][] = $this->errors;
+                }
+                if (!in_array($uploadFile['type'], ['image/gif', 'image/jpeg', 'image/png'])) {
+                    $this->errors[] = 'Le type du fichier n\'est pas jpg, png ou gif.';
+                    $error = true;
+                    $_SESSION['errors'][] = $this->errors;
                 }
 
+                if ($error === false) { //Si il n'y a pas d'erreurs, faire le move, + intégré dans la bdd.
+                    move_uploaded_file($uploadFile['tmp_name'], $uploadFile['upload_dir']);
+                    $decks = "Decks2";
+                    $carManager = new carManager();
+                    $carManager->insert($decks, $uploadFile['upload_dir'], $i);
+                }
 
             }
         }
-        // ;
+        // header("location:/car");
     }
 }
