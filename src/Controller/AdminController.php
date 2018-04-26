@@ -101,6 +101,9 @@ class AdminController extends AbstractController
         $n = rand(0,31);
         $res = $listeDecks[$n];
 
+        $delManager = new AdminManager();
+        //$delDecks = $delManager->delete();
+
 
         return $this->twig->render('Admin/supprimer.html.twig', ['res' => $res,'login' => $_SESSION['login']]);
     }
