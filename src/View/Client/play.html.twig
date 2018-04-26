@@ -4,7 +4,7 @@
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/play.css">
-{% endblock %}
+    {% endblock %}
 
             {% block header %}
                 <div class="container-fluid justify-content-center ">
@@ -66,9 +66,8 @@
                          {% if restant == char.id_car %}
                              <div class="nopad text-center">
                                  <label class="image-checkbox">
-                                     <img class="img-responsive" style="width: 120px; heigth: 120px;" src="{{ char.image }}" />
+                                     <img class="img-responsive" style="width: 120px; heigth: 120px;" src="{{ char.image }}" onmouseover="bigImg(this)" onmouseout="normalImg(this)" />
                                      <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
-
                                  </label>
                              </div>
                          {% endif %}
@@ -76,12 +75,10 @@
 
                      {% for eliminer in eliminer %}
                          {% if eliminer == char.id_car %}
-
                              <div  class="nopad text-center">
                                  <label  class="image-checkbox red">
-                                     <img class="img-responsive opacity " style="width: 120px; heigth: 120px;" src="{{ char.image }}" />
+                                     <img class="img-responsive opacity" style="width: 120px; heigth: 120px;" src="{{ char.image }}" onmouseover="bigImg(this)" onmouseout="normalImg(this)"/>
                                      <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
-
                                  </label>
                              </div>
                          {% endif %}
@@ -101,7 +98,16 @@
                  <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">
                      <button name="button" value="valider"  class="valider btn btn-primary " type="submit">Valider la bonne photo</button>
                  </div>
+             </div>
+         </div>
      </form>
-     </div>
-     </div>
+     <script>
+         function bigImg(x) {
+             x.style.webkitTransform = 'scale(1.3)';
+         }
+
+         function normalImg(x) {
+             x.style.webkitTransform = 'scale(1)';
+         }
+     </script>
  {% endblock %}
