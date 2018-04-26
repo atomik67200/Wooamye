@@ -64,7 +64,7 @@
                  {% for char in listechar %}
                      {% for restant in restant %}
                          {% if restant == char.id_car %}
-                             <div class="nopad text-center">
+                             <div class="nopad text-center pt-2 mx-auto">
                                  <label class="image-checkbox">
                                      <img class="img-responsive" style="width: 120px; heigth: 120px;" src="{{ char.image }}" onmouseover="bigImg(this)" onmouseout="normalImg(this)" />
                                      <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
@@ -75,9 +75,9 @@
 
                      {% for eliminer in eliminer %}
                          {% if eliminer == char.id_car %}
-                             <div  class="nopad text-center">
+                             <div  class="nopad text-center pt-2 mx-auto">
                                  <label  class="image-checkbox red">
-                                     <img class="img-responsive opacity" style="width: 120px; heigth: 120px;" src="{{ char.image }}" onmouseover="bigImg(this)" onmouseout="normalImg(this)"/>
+                                     <img class="img-responsive opacity" style="width: 120px; heigth: 120px;" src="{{ char.image }}"/>
                                      <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
                                  </label>
                              </div>
@@ -93,10 +93,10 @@
              <div class="bottomButton row">
                  <div class=" col-xl-4 col-md-4 col-sm-4 offset-1">
 
-                     <button name="button"  value="eliminer" class="btn btn-danger" type="submit">Eliminer votre sélection</button>
+                     <button name="button"  value="eliminer" class="btn btn-danger" type="submit">Eliminer les personnages</button>
                  </div>
                  <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">
-                     <button name="button" value="valider"  class="valider btn btn-primary " type="submit">Valider la bonne photo</button>
+                     <button name="button" value="valider"  class="valider btn btn-primary " type="submit">Valider le bon personnage</button>
                  </div>
              </div>
          </div>
