@@ -20,7 +20,7 @@ h4 {
     text-shadow: 2px 2px 2px black;
 }
 .container{
-    margin-top: 5vh;
+
 }
 .row{
     margin-left: 5vh;
@@ -38,7 +38,7 @@ img{
     font-family: 'Inconsolata', monospace;
     color: #ff0814;
     font-size: 30px;
-    padding-top: 5vh;
+    padding-top: 2vh;
     text-align: center;
     text-shadow: 2px 2px 4px black;
 
@@ -49,17 +49,14 @@ img{
     font-size: 30px;
     text-align: center;
     text-shadow: 2px 2px 4px black;
-
-}
-.btn-primary{
-    margin-left: 3vh;
+    margin-top: 2vh;
 }
 .btn-success{
     margin-left: 16vh;
-    margin-bottom: 5vh;
+
 }
 .photoModal{
-    margin-top: 10vh;
+    margin-top: 5vh;
 }
 /* Gere la fenetre Modal */
 #myImg {
