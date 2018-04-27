@@ -55,7 +55,14 @@
 
 
                         <form  class="" id="" action="/addBdd" method="post" enctype="multipart/form-data">
-                            <input type="text" name="nomDuDecks" placeholder="Nom du decks !">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="offset-4"></div>
+                                    <p class="nomDeck">Nom du deck :</p>
+                                    <input type="text" name="nomDuDecks" placeholder="Entrer 4 à 10 caractères">
+                                </div>
+                            </div>
+
                             <div class="row justify-content-center my">
 
                                 {% for param in car %}
