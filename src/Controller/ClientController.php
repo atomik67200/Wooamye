@@ -57,16 +57,11 @@ class ClientController extends AbstractController
         if (!empty($_SESSION['pseudo'])) {
 
             $clientManager = new ClientManager();
-            $listeDecks = $clientManager->findByDecks('SouthPark');
-            $n = rand(0, 31);
-            $res = $listeDecks[$n];
-
-            return $this->twig->render('Client/decks.html.twig', ['res' => $res, 'pseudo' => $_SESSION['pseudo']]);
+            $resultat =  $clientManager->findRandomForAllDecks();
+            return $this->twig->render('Client/decks.html.twig', ['resultat' => $resultat, 'pseudo' => $_SESSION['pseudo']]);
         }else{
             header("location:/");
         }
-
-
 
     }
 
@@ -96,8 +91,8 @@ class ClientController extends AbstractController
             $_SESSION['car'] = $carManager->findOneById($_SESSION['Random']);
 
             $charManager = new ClientManager();
-            $_SESSION['Decks'] = $charManager->findByDecks('SouthPark');
-            shuffle($_SESSION['Decks']);
+            $_SESSION['Decks'] = $charManager->findByDecks('SouthPark2');
+           // shuffle($_SESSION['Decks']);
 
             return header("location:/elimination");
         }else
@@ -110,14 +105,11 @@ class ClientController extends AbstractController
     {
         session_start();
 
-
+      //  var_dump($_SESSION['Random']);
         if(!empty($_SESSION['pseudo'])) {
 
             $listChar = $_SESSION['Decks'];
 
-
-            //  $_SESSION['Personnage']
-            // $_SESSION['Random']
 
             if (isset($_POST['button'])){
                 if ($_POST['button'] == "question"){
@@ -183,10 +175,7 @@ class ClientController extends AbstractController
                             default;
                                 break;
                         }
-
-                        //  $reponse = $_SESSION['car'][$_POST['option']];
-
-                        //  $allReponse[] = $reponse;
+                        
                         if (isset($reponse)){
                             if (empty($_SESSION['reponse'])){
                                 $_SESSION['reponse'][] = $reponse;
@@ -201,10 +190,13 @@ class ClientController extends AbstractController
                 }
 
                 if ($_POST['button'] == "eliminer") {
-
+            
                     if (isset($_POST['image'])) {
 
                         foreach ($_POST['image'] as $valeur) {
+
+                            unset($_SESSION['Personnage'][array_search($valeur, $_SESSION['Personnage'])]);
+
                             if (empty($_SESSION['eliminer'])){
                                 $_SESSION['eliminer'][] = $valeur;
                             }elseif (!empty($_SESSION['eliminer'])){
@@ -214,7 +206,7 @@ class ClientController extends AbstractController
                                 }
 
                             }
-                            unset($_SESSION['Personnage'][array_search($valeur, $_SESSION['Personnage'])]);
+
                         }
                     }
 
@@ -275,7 +267,7 @@ class ClientController extends AbstractController
 
 
 
-            return $this->twig->render('Client/finDeParti.html.twig', ['perso'=> $imagefin,'score' => $_SESSION['score'], 'pseudo' => $_SESSION['pseudo'], 'resultat' => $resultat]);
+            return $this->twig->render('Client/finDeParti.html.twig', [ 'reponse' => $_SESSION['reponse'], 'perso'=> $imagefin,'score' => $_SESSION['score'], 'pseudo' => $_SESSION['pseudo'], 'resultat' => $resultat]);
         }else
         {
             return header("location:/");

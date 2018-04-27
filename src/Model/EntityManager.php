@@ -55,7 +55,36 @@ abstract class EntityManager
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function findRandomByDecks($param)
+    {
+        // prepared request
+        $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE decks=:param");
+        $statement->bindValue('param', $param, \PDO::PARAM_STR);
+        $statement->execute();
+        $n = rand(0,31);
+        return $statement->fetchAll(\PDO::FETCH_ASSOC)[$n];
+    }
 
+    public function findAllDeckName()
+    {
+        $statement = $this->conn->query("SELECT DISTINCT decks FROM $this->table");
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+    }
+
+    public function findRandomForAllDecks()
+    {
+        $tousLesDecks = $this->findAllDeckName();
+        //var_dump($tousLesDecks);
+        $resultat=[];
+        foreach ($tousLesDecks as $unDeck)
+        {
+            $resultat[]=$this->findRandomByDecks($unDeck['decks']);
+        }
+
+        return $resultat;
+
+    }
 
     /**
      *

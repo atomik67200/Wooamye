@@ -4,11 +4,11 @@
     <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/play.css">
-    {% endblock %}
+{% endblock %}
 
             {% block header %}
                 <div class="container-fluid justify-content-center ">
-                    <div class="row">
+                    <div class="row ">
                         <div class="col-3"><p class="Pseudo">Pseudo :<span> {{ pseudo }}</span></p></div>
                         <div class="titre  col-6 ">
                             <h4>A vous de Jouer!</h4><br>
@@ -25,9 +25,9 @@
 
      <div class="container">
          <form action="/elimination" method="POST">
-             <div class="row justify-content-center  ">
-                 <div class="input-group col-6 ">
-                     <label for="">Le personnage :</label>
+             <div class="row justify-content-center   ">
+                 <div class="input-group col-7 ">
+                     <label for="" style="font-size: 25px">Le personnage :</label>
                      <select class="custom-select" name="option" >
                          <option selected>....</option>
                          <option value="cheveuxBrun">a t'il des cheveux brun?</option>
@@ -39,11 +39,14 @@
                          <option value="genreFemme"> est t'elle une femme?</option>
                          <option value="genreHomme">est t'il un homme?</option>
                      </select>
+                     <div class="col-1 align-top">
+                     <button style="" name="button" value="question" class="valider btn btn-primary " type="submit">Valider</button>
+                     </div>
                  </div>
              </div>
 
-             <div class="col-lg-1  offset-5">
-                 <button name="button" value="question" class="valider btn btn-primary " type="submit">Valider</button>
+             <div class="col-1 ">
+
              </div>
 
              <div>
@@ -76,7 +79,7 @@
                      {% for eliminer in eliminer %}
                          {% if eliminer == char.id_car %}
                              <div  class="nopad text-center pt-2 mx-auto">
-                                 <label  class="image-checkbox red">
+                                 <label  class="image-checkbox-del red">
                                      <img class="img-responsive opacity" style="width: 120px; heigth: 120px;" src="{{ char.image }}"/>
                                      <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
                                  </label>
@@ -111,3 +114,5 @@
          }
      </script>
  {% endblock %}
+
+<script src="./path/to/dropzone.js"></script>

@@ -29,9 +29,7 @@ span{
 .btn-danger{
 	margin-top: 3vh;
 }
-.valider{
-	margin-top: 3vh;
-}
+
 .bottomButton{
 	margin-top: 5vh;
 	margin-bottom: 10vh;
@@ -79,7 +77,6 @@ span{
     text-shadow: 2px 2px 4px black;
 
 }
-
 .custom-select{
     width: 100vw;
 }
@@ -102,6 +99,18 @@ span{
     outline: 0;
 }
 .image-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.image-checkbox-del {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 4px solid transparent;
+    margin-bottom: 0;
+    outline: 0;
+}
+.image-checkbox-del input[type="checkbox"] {
     display: none;
 }
 

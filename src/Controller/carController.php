@@ -54,16 +54,23 @@ class carController extends AbstractController
             //cars sur les fichiers
             $i = 0;
             $decks = $_POST['nomDuDecks'];
-            
-            if (empty($decks)){
-                $_SESSION['errors'][] = "Le nom du decks n'est pas définie !";
+            $error = false;
+
+            if (!empty($decks)){
+                if (($decks < 4) || ($decks >10)){
+                    $_SESSION['errors'][] = "Le nom du deck doit contenir 4 à 6 caractères";
+                    $error = true;
+                }
+            }elseif (empty($decks)){
+                $_SESSION['errors'][] = "Le nom du deck ne doit pas être vide";
+                $error = true;
             }
 
             foreach ($uploadFiles as $uploadFile) {
                 $i++;
 
 
-                $error = false;
+
                 if (($uploadFile['size'] > 10024000) || ($uploadFile['size'] < 100)) {
                     $this->errors[] = 'Le fichier ' . $file['name'] . ' est trop volumineux.';
                     $error = true;
