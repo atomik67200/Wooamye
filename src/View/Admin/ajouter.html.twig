@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <header class="row ">
                 <div class="col py-4 ">
-                    <h1 class="title">Créer un set</h1>
+                    <h1 class="title">Créer un Deck</h1>
                     <div class="row justify-content-center">
 
                         <div class="offset-1 col-3">
@@ -39,9 +39,9 @@
                                     <div class="dropdown">
                                         <select class="btn btn-btn btn-responsive dropdown-toggle" name="selectAA" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <option class="dropdown-item" name="ajouter" selected="selected" type="button">Ajouter un set</option>
-                                                <option class="dropdown-item" name="modifier" type="button">Modifier un set</option>
-                                                <option class="dropdown-item" name="supprimer" type="button">Supprimer un set</option>
+                                                <option class="dropdown-item" name="ajouter" selected="selected" type="button">Ajouter un Deck</option>
+                                                <option class="dropdown-item" name="modifier" type="button">Modifier un Deck</option>
+                                                <option class="dropdown-item" name="supprimer" type="button">Supprimer un Deck</option>
                                             </div>
                                         </select>
                                     </div>
@@ -55,7 +55,14 @@
 
 
                         <form  class="" id="" action="/addBdd" method="post" enctype="multipart/form-data">
-                            <input type="text" name="nomDuDecks" placeholder="Nom du decks !">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="offset-4"></div>
+                                    <p class="nomDeck">Nom du deck :</p>
+                                    <input type="text" name="nomDuDecks" placeholder="Entrer 4 à 10 caractères">
+                                </div>
+                            </div>
+
                             <div class="row justify-content-center my">
 
                                 {% for param in car %}

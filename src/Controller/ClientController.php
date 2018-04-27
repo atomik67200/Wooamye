@@ -91,8 +91,8 @@ class ClientController extends AbstractController
             $_SESSION['car'] = $carManager->findOneById($_SESSION['Random']);
 
             $charManager = new ClientManager();
-            $_SESSION['Decks'] = $charManager->findByDecks('Decks2');
-            shuffle($_SESSION['Decks']);
+            $_SESSION['Decks'] = $charManager->findByDecks('SouthPark2');
+           // shuffle($_SESSION['Decks']);
 
             return header("location:/elimination");
         }else
@@ -105,7 +105,7 @@ class ClientController extends AbstractController
     {
         session_start();
 
-
+      //  var_dump($_SESSION['Random']);
         if(!empty($_SESSION['pseudo'])) {
 
             $listChar = $_SESSION['Decks'];
@@ -190,10 +190,13 @@ class ClientController extends AbstractController
                 }
 
                 if ($_POST['button'] == "eliminer") {
-
+            
                     if (isset($_POST['image'])) {
 
                         foreach ($_POST['image'] as $valeur) {
+
+                            unset($_SESSION['Personnage'][array_search($valeur, $_SESSION['Personnage'])]);
+
                             if (empty($_SESSION['eliminer'])){
                                 $_SESSION['eliminer'][] = $valeur;
                             }elseif (!empty($_SESSION['eliminer'])){
@@ -203,7 +206,7 @@ class ClientController extends AbstractController
                                 }
 
                             }
-                            unset($_SESSION['Personnage'][array_search($valeur, $_SESSION['Personnage'])]);
+
                         }
                     }
 
@@ -248,9 +251,9 @@ class ClientController extends AbstractController
         session_start();
 
 
-        $charManager = new ClientManager();
-        $listChar = $charManager->findByDecks('Decks2');
+        $listChar = $_SESSION['Decks'];
         $imagefin = $listChar[$_SESSION['Random']-1]['image'];
+
 
         if (isset($_SESSION['pseudo'])) {
 
@@ -264,7 +267,7 @@ class ClientController extends AbstractController
 
 
 
-            return $this->twig->render('Client/finDeParti.html.twig', ['perso'=> $imagefin,'score' => $_SESSION['score'], 'pseudo' => $_SESSION['pseudo'], 'resultat' => $resultat]);
+            return $this->twig->render('Client/finDeParti.html.twig', [ 'reponse' => $_SESSION['reponse'], 'perso'=> $imagefin,'score' => $_SESSION['score'], 'pseudo' => $_SESSION['pseudo'], 'resultat' => $resultat]);
         }else
         {
             return header("location:/");
@@ -274,7 +277,7 @@ class ClientController extends AbstractController
     public function Score()
     {
         session_start();
-        $multiplicateur = -1000+(count($_SESSION['reponse'])*90);
+        $multiplicateur = -1000+(count($_SESSION['reponse'])*rand(110,150));
 
         if (isset($_SESSION['pseudo'])) {
             if ( (array_search($_SESSION['Random'] , $_SESSION['Personnage'])) !== FALSE ) {
@@ -288,7 +291,9 @@ class ClientController extends AbstractController
                 $pseudo = $_SESSION['pseudo'];
                 $_SESSION['score'] += $multiplicateur;
                 if ($_SESSION['score'] < 1){
-                    $_SESSION['score'] = "Moin que 0 mdr t'es trop nul";
+                    $_SESSION['score'] = "moins que 0 mdr t'es trop nul";
+                }elseif ($_SESSION['score'] > 500 ){
+                    $_SESSION['score'] = "ta perdu avec toutes ses questions ? faut allez voir un opticien la !";
                 }
                 $Score = new Score();
                 $Score->uploadScore($pseudo, $_SESSION['score']);

@@ -53,12 +53,24 @@ class carController extends AbstractController
             }
             //cars sur les fichiers
             $i = 0;
+            $decks = $_POST['nomDuDecks'];
+            $error = false;
+
+            if (!empty($decks)){
+                if (($decks < 4) || ($decks >10)){
+                    $_SESSION['errors'][] = "Le nom du deck doit contenir 4 à 6 caractères";
+                    $error = true;
+                }
+            }elseif (empty($decks)){
+                $_SESSION['errors'][] = "Le nom du deck ne doit pas être vide";
+                $error = true;
+            }
 
             foreach ($uploadFiles as $uploadFile) {
                 $i++;
 
 
-                $error = false;
+
                 if (($uploadFile['size'] > 10024000) || ($uploadFile['size'] < 100)) {
                     $this->errors[] = 'Le fichier ' . $file['name'] . ' est trop volumineux.';
                     $error = true;
@@ -72,7 +84,6 @@ class carController extends AbstractController
 
                 if ($error === false) { //Si il n'y a pas d'erreurs, faire le move, + intégré dans la bdd.
                     move_uploaded_file($uploadFile['tmp_name'], $uploadFile['upload_dir']);
-                    $decks = "SouthPark";
                     $carManager = new carManager();
                     $carManager->insert($decks, $uploadFile['upload_dir'], $i);
                 }

@@ -120,3 +120,8 @@ input
     top: 0;
     opacity: 0;
 }
+.nomDeck{
+    font-size: 18px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
