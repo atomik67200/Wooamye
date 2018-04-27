@@ -47,3 +47,8 @@ span{
 .container{
     min-width:600px;
 }
+.thumbnail{
+    margin:auto;
+    text-align:center;
+
+}
