@@ -8,7 +8,7 @@
 
             {% block header %}
                 <div class="container-fluid justify-content-center ">
-                    <div class="row">
+                    <div class="row ">
                         <div class="col-3"><p class="Pseudo">Pseudo :<span> {{ pseudo }}</span></p></div>
                         <div class="titre  col-6 ">
                             <h4>A vous de Jouer!</h4><br>
@@ -25,7 +25,7 @@
 
      <div class="container">
          <form action="/elimination" method="POST">
-             <div class="row justify-content-center  ">
+             <div class="row justify-content-center   ">
                  <div class="input-group col-7 ">
                      <label for="" style="font-size: 25px">Le personnage :</label>
                      <select class="custom-select" name="option" >
@@ -39,7 +39,9 @@
                          <option value="genreFemme"> est t'elle une femme?</option>
                          <option value="genreHomme">est t'il un homme?</option>
                      </select>
+                     <div class="col-1 align-top">
                      <button style="" name="button" value="question" class="valider btn btn-primary " type="submit">Valider</button>
+                     </div>
                  </div>
              </div>
 
