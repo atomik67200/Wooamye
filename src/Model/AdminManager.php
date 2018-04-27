@@ -20,7 +20,7 @@ class AdminManager extends EntityManager
     }
     public function delete($nomDeck)
     {
-        $statement = $this->conn->prepare("DELETE  FROM $this->table WHERE decks = $nomDeck");
+        $statement = $this->conn->prepare("DELETE  FROM $this->table WHERE decks = :nomDeck");
         $statement->bindValue('nomDeck', $nomDeck, \PDO::PARAM_INT);
 
 
