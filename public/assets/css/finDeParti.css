@@ -11,7 +11,6 @@ body{
     text-align: center;
     padding-top: 4vh;
     padding-bottom: 4vh;
-
 }
 h4 {
     font-family: 'Playfair Display', serif;
@@ -51,6 +50,12 @@ img{
     text-align: center;
     text-shadow: 2px 2px 4px black;
 
+}
+.btn-primary{
+    margin-left: 3vh;
+}
+.btn-success{
+    margin-left: 16vh;
 }
 .photoModal{
     margin-top: 10vh;
