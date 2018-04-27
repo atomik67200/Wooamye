@@ -41,7 +41,11 @@ img{
     padding-top: 2vh;
     text-align: center;
     text-shadow: 2px 2px 4px black;
-
+}
+.question{
+    border: 2px solid black;
+    font-size: 15px;
+    background-color: #bdc3c7;
 }
 .Score{
     font-family: 'Inconsolata', monospace;
