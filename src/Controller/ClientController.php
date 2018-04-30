@@ -57,16 +57,11 @@ class ClientController extends AbstractController
         if (!empty($_SESSION['pseudo'])) {
 
             $clientManager = new ClientManager();
-            $listeDecks = $clientManager->findByDecks('SouthPark2');
-            $n = rand(0, 31);
-            $res = $listeDecks[$n];
-
-            return $this->twig->render('Client/decks.html.twig', ['res' => $res, 'pseudo' => $_SESSION['pseudo']]);
+            $resultat =  $clientManager->findRandomForAllDecks();
+            return $this->twig->render('Client/decks.html.twig', ['resultat' => $resultat, 'pseudo' => $_SESSION['pseudo']]);
         }else{
             header("location:/");
         }
-
-
 
     }
 
@@ -115,9 +110,6 @@ class ClientController extends AbstractController
 
             $listChar = $_SESSION['Decks'];
 
-
-            //  $_SESSION['Personnage']
-            // $_SESSION['Random']
 
             if (isset($_POST['button'])){
                 if ($_POST['button'] == "question"){
@@ -183,10 +175,7 @@ class ClientController extends AbstractController
                             default;
                                 break;
                         }
-
-                        //  $reponse = $_SESSION['car'][$_POST['option']];
-
-                        //  $allReponse[] = $reponse;
+                        
                         if (isset($reponse)){
                             if (empty($_SESSION['reponse'])){
                                 $_SESSION['reponse'][] = $reponse;
