@@ -73,36 +73,53 @@ class AdminController extends AbstractController
         }
     }
 
-
         public function modifier()
     {
         session_start();
 
         $charManager = new AdminManager();
-        $listChar = $charManager->findByDecks('Decks2');
+
+
+
+        $listChar = $charManager->findByDecks('SouthPark2');
 
         $carManager = new CarManager();
         $car = $carManager->findAll();
-
         $personnages=[];
-        foreach ($listChar as $char){
-            $personnages[$char['id_car']]=['ID'=>$char['ID'],'decks'=>$char['decks'],'image'=>$char['image'],'cars'=>$car[$char['id_car']-1]];
+        if((isset($_POST['selectAA'])) && (!empty($_POST['selectAA']))){
+            $listChar = $charManager->findByDecks($_POST['selectAA']);
+            foreach ($listChar as $char){
+                $personnages[$char['id_car']]=['ID'=>$char['ID'],'decks'=>$char['decks'],'image'=>$char['image'],'cars'=>$car[$char['id_car']-1]];
+            }
         }
 
+        $allDeck = $charManager->findRandomForAllDecks();
 
-        return $this->twig->render('Admin/modifier.html.twig', ['listechar'=>$listChar,'car' => $car,'personnages'=>$personnages]);
+        return $this->twig->render('Admin/modifier.html.twig', ['allDeck'=> $allDeck ,'listechar'=>$listChar,'car' => $car,'personnages'=>$personnages]);
     }
 
     public function supprimer()
     {
         session_start();
+
+
+
+
+        if(isset($_POST['supprDeck']))
+        {
+            if ( $_POST['supprDeck'] != "SouthPark2" ) {
+                $delManager = new AdminManager();
+                $delManager->delete($_POST['supprDeck']);
+            }
+        }else{
+            $erreur = 'Vous ne pouvez pas supprimer le set de base.';
+
+        }
+
         $adminManager = new AdminManager;
-        $listeDecks = $adminManager->findAll();
-        $n = rand(0,31);
-        $res = $listeDecks[$n];
+        $resultat =  $adminManager->findRandomForAllDecks();
 
-
-        return $this->twig->render('Admin/supprimer.html.twig', ['res' => $res,'login' => $_SESSION['login']]);
+        return $this->twig->render('Admin/supprimer.html.twig', ['resultat' => $resultat, 'erreur'=>$erreur,'login' => $_SESSION['login']]);
     }
 
     public function changerAccueil()

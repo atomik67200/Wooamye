@@ -29,7 +29,6 @@ class carController extends AbstractController
 
         $files = $_FILES['files'];
         $nbfichier = (array_count_values($files['error']));     //Compte le nombre de fichier qui n'a pas d'erreur.
-        var_dump($nbfichier[0]);
 
         if ( $nbfichier[0] != 32 ) {
             var_dump($_FILES);
@@ -61,9 +60,8 @@ class carController extends AbstractController
 
             if (!empty($decks)){
                 if (($decks < 4) || ($decks >10)){
-                    $_SESSION['errors'][] = "Le nom du deck doit contenir 4 à 10 caractères";
-                    $error = true;
-                    var_dump($_FILES);
+                    $_SESSION['errors'][] = "Le nom du deck doit contenir 4 à 6 caractères";
+                    $error = false;
                 }
             }elseif (empty($decks)){
                 $_SESSION['errors'][] = "Le nom du deck ne doit pas être vide";
