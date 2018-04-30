@@ -92,7 +92,7 @@ class ClientController extends AbstractController
             $_SESSION['car'] = $carManager->findOneById($_SESSION['Random']);
 
             $charManager = new ClientManager();
-            $_SESSION['Decks'] = $charManager->findByDecks('SouthPark2');
+            $_SESSION['Decks'] = $charManager->findByDecks($_POST['nomdeck']);
 
             shuffle($_SESSION['Decks']);
 
