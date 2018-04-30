@@ -90,6 +90,10 @@ input
 
 
 }
+#supprSet
+{
+    text-align: center;
+}
 .btn
 {
     border: 2px solid gray;

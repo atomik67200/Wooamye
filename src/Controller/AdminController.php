@@ -96,23 +96,25 @@ class AdminController extends AbstractController
     public function supprimer()
     {
         session_start();
-        $adminManager = new AdminManager;
-        $listeDecks = $adminManager->findAll();
-        $n = rand(0,31);
-        $res = $listeDecks[$n];
 
 
-        if(isset($_POST['supprDeck']) != ('SouthPark'))
+
+        var_dump($_POST['supprDeck']);
+        if(isset($_POST['supprDeck']))
         {
-            $delManager = new AdminManager();
-            $delManager->delete($_POST['supprDeck']);
+            if ( $_POST['supprDeck'] != "SouthPark2" ) {
+                $delManager = new AdminManager();
+                $delManager->delete($_POST['supprDeck']);
+            }
         }else{
             $erreur = 'Vous ne pouvez pas supprimer le set de base.';
 
         }
 
+        $adminManager = new AdminManager;
+        $resultat =  $adminManager->findRandomForAllDecks();
 
-        return $this->twig->render('Admin/supprimer.html.twig', ['res' => $res, 'listeDeck'=> $listeDeck,'erreur'=>$erreur,'login' => $_SESSION['login']]);
+        return $this->twig->render('Admin/supprimer.html.twig', ['resultat' => $resultat, 'erreur'=>$erreur,'login' => $_SESSION['login']]);
     }
 
     public function changerAccueil()
