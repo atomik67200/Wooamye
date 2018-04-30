@@ -26,10 +26,9 @@ class carController extends AbstractController
 
     public function addBdd()
     {
-        var_dump($_FILES);
+
         $files = $_FILES['files'];
         $nbfichier = (array_count_values($files['error']));     //Compte le nombre de fichier qui n'a pas d'erreur.
-        var_dump($nbfichier[0]);
 
         if ( $nbfichier[0] != 32 ) { //si les 32 fichier ont une erreur
             //erreur 4 => UPLOAD_ERR_NO_FILE, aucun fichier n'a été téléchargé
@@ -59,7 +58,7 @@ class carController extends AbstractController
             if (!empty($decks)){
                 if (($decks < 4) || ($decks >10)){
                     $_SESSION['errors'][] = "Le nom du deck doit contenir 4 à 6 caractères";
-                    $error = true;
+                    $error = false;
                 }
             }elseif (empty($decks)){
                 $_SESSION['errors'][] = "Le nom du deck ne doit pas être vide";
