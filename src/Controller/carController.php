@@ -26,17 +26,20 @@ class carController extends AbstractController
 
     public function addBdd()
     {
-        var_dump($_FILES);
+
         $files = $_FILES['files'];
         $nbfichier = (array_count_values($files['error']));     //Compte le nombre de fichier qui n'a pas d'erreur.
         var_dump($nbfichier[0]);
 
-        if ( $nbfichier[0] != 32 ) { //si les 32 fichier ont une erreur
+        if ( $nbfichier[0] != 32 ) {
+            var_dump($_FILES);
+            //si les 32 fichier ont une erreur
             //erreur 4 => UPLOAD_ERR_NO_FILE, aucun fichier n'a été téléchargé
             $this->errors[] = 'Il faut sélectionner 32 photos.';
             $_SESSION['errors'][] = $this->errors;
 
         } else {
+
             //traitement des fichiers
             $uploadFiles = [];
             for ($i = 0; $i < count($files['name']); $i++) {
@@ -58,12 +61,14 @@ class carController extends AbstractController
 
             if (!empty($decks)){
                 if (($decks < 4) || ($decks >10)){
-                    $_SESSION['errors'][] = "Le nom du deck doit contenir 4 à 6 caractères";
+                    $_SESSION['errors'][] = "Le nom du deck doit contenir 4 à 10 caractères";
                     $error = true;
+                    var_dump($_FILES);
                 }
             }elseif (empty($decks)){
                 $_SESSION['errors'][] = "Le nom du deck ne doit pas être vide";
                 $error = true;
+
             }
 
             foreach ($uploadFiles as $uploadFile) {
@@ -74,15 +79,18 @@ class carController extends AbstractController
                 if (($uploadFile['size'] > 10024000) || ($uploadFile['size'] < 100)) {
                     $this->errors[] = 'Le fichier ' . $file['name'] . ' est trop volumineux.';
                     $error = true;
+
                     $_SESSION['errors'][] = $this->errors;
                 }
                 if (!in_array($uploadFile['type'], ['image/gif', 'image/jpeg', 'image/png'])) {
                     $this->errors[] = 'Le type du fichier n\'est pas jpg, png ou gif.';
                     $error = true;
+
                     $_SESSION['errors'][] = $this->errors;
                 }
 
                 if ($error === false) { //Si il n'y a pas d'erreurs, faire le move, + intégré dans la bdd.
+                    var_dump($_FILES);
                     move_uploaded_file($uploadFile['tmp_name'], $uploadFile['upload_dir']);
                     $carManager = new carManager();
                     $carManager->insert($decks, $uploadFile['upload_dir'], $i);
