@@ -79,7 +79,10 @@ class AdminController extends AbstractController
         session_start();
 
         $charManager = new AdminManager();
-        $listChar = $charManager->findByDecks('Decks2');
+
+
+
+        $listChar = $charManager->findByDecks('SouthPark2');
 
         $carManager = new CarManager();
         $car = $carManager->findAll();
@@ -99,7 +102,7 @@ class AdminController extends AbstractController
 
 
 
-        var_dump($_POST['supprDeck']);
+
         if(isset($_POST['supprDeck']))
         {
             if ( $_POST['supprDeck'] != "SouthPark2" ) {
