@@ -26,10 +26,11 @@ class carController extends AbstractController
 
     public function addBdd()
     {
-        var_dump($_FILES);
+            //traitement upload
+
         $files = $_FILES['files'];
         $nbfichier = (array_count_values($files['error']));     //Compte le nombre de fichier qui n'a pas d'erreur.
-        var_dump($nbfichier[0]);
+        //var_dump($nbfichier[0]);
 
         if ( $nbfichier[0] != 32 ) { //si les 32 fichier ont une erreur
             //erreur 4 => UPLOAD_ERR_NO_FILE, aucun fichier n'a été téléchargé

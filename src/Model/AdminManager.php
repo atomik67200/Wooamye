@@ -19,4 +19,17 @@ class AdminManager extends EntityManager
         parent::__construct(self::TABLE);
     }
 
+
+    public function findRandomForAllDecks()
+    {
+        $tousLesDecks = $this->findAllDeckName();
+        //var_dump($tousLesDecks);
+        $resultat = [];
+        foreach ($tousLesDecks as $unDeck) {
+            $resultat[] = $this->findRandomByDecks($unDeck['decks']);
+        }
+
+        return $resultat;
+
+    }
 }

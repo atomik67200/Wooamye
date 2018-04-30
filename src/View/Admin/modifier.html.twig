@@ -50,76 +50,87 @@
                                 <div class="offset-1 col-3">
                                     <button type="submit" class="btn btn- btn-responsive">Valider</button>
                                 </div>
-
                             </div>
                         </form>
+                        <div class="row">
+                            <div class="col-12">
+                                <form action="/modifier" method="POST">
+                                    <select class="btn btn-btn btn-responsive dropdown-toggle" name="selectAA" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            {% for decks in allDeck %}
+                                                <option class="dropdown-item" value="{{ decks.decks }}" selected="selected" type="button">{{ decks.decks }}</option>
+                                            {% endfor %}
+                                        </div>
+                                    </select>
+                                        <button type="submit" class="btn btn-lg btn-responsive" name="nomDuDecks" value="nomDuDecks">Charger le Deck</button>
+                                </form>
 
+                            </div>
+                        </div>
 
                         <form  class="" id="" action="/addBdd" method="post" enctype="multipart/form-data">
-                            <input type="text" name="nomDuDecks" placeholder="Nom du decks !">
                             <div class="row justify-content-center my">
 
 
-                                {% for personnage in personnages %}
-                                        <div class="col-md-3  mx-">
+                            {% for personnage in personnages %}
+                                <div class="col-md-3  mx-">
 
-                                                <div class="thumbnail mb-2">
-                                                    <p><span class="titre">Image{{personnage.ID}}</span></p>
+                                    <div class="thumbnail mb-2">
+                                        <p><span class="titre">Image{{personnage.ID}}</span></p>
 
-                                                    <img src="{{personnage.image}}" alt="Image" class="img-thumbnail mb-2"><br>
-                                                    <div class="upload-btn-wrapper">
-                                                        <button class="btn1 btn-responsive">Parcourir</button>
-                                                        <input  name="files[]" type="file" id="fichier_a_uploader" multiple="multiple" />
-                                                        <input type="hidden" name="fichier1" value="1" />
-                                                    </div>
-
-                                                </div>
-
-
-
-                                                <div class="mx-5 mb-3" >
-                                                    <ul class="list-group">
-
-                                                        {% if personnage.cars.genre == "homme" %}
-                                                            <li class="list-group-item list-group-item-success">Homme</li>
-                                                        {% else %}
-                                                            <li class="list-group-item list-group-item-success">Femme</li>
-                                                        {% endif %}
-
-                                                        {% if personnage.cars.lunette == "oui" %}
-                                                            <li class="list-group-item list-group-item-success">Lunettes</li>
-                                                        {% else %}
-                                                            <li class="list-group-item list-group-item-danger">Pas de lunettes</li>
-                                                        {% endif %}
-
-                                                        {% if personnage.cars.barbe == "oui" %}
-                                                            <li class="list-group-item list-group-item-success">Barbe</li>
-                                                        {% else %}
-                                                            <li class="list-group-item list-group-item-danger">Pas de barbe</li>
-                                                        {% endif %}
-
-                                                        {% if personnage.cars.cheveux == "oui" %}
-                                                            <li class="list-group-item " style="background-color: rgba(179, 81, 59, 0.88)">Cheveux brun</li>
-                                                        {% else %}
-                                                            <li class="list-group-item list-group-item-warning">Cheveux blond</li>
-                                                        {% endif %}
-
-                                                        {% if personnage.cars.chapeau == "oui" %}
-                                                            <li class="list-group-item list-group-item-success">Chapeau</li>
-                                                        {% else %}
-                                                            <li class="list-group-item list-group-item-danger">Pas de chapeau</li>
-                                                        {% endif %}
-
-                                                        {% if personnage.cars.ral == "oui" %}
-                                                            <li class="list-group-item list-group-item-success">Rouge à lèvres</li>
-                                                        {% else %}
-                                                            <li class="list-group-item list-group-item-danger">Pas de rouge à lèvres</li>
-                                                        {% endif %}
-
-                                                    </ul>
-                                                </div>
+                                        <img src="{{personnage.image}}" alt="Image" class="img-thumbnail mb-2"><br>
+                                        <div class="upload-btn-wrapper">
+                                            <button class="btn1 btn-responsive">Parcourir</button>
+                                            <input  name="files[]" type="file" id="fichier_a_uploader" multiple="multiple" />
+                                            <input type="hidden" name="fichier1" value="1" />
                                         </div>
-                                {% endfor %}
+                                    </div>
+
+
+
+                                    <div class="mx-5 mb-3" >
+                                        <ul class="list-group">
+
+                                            {% if personnage.cars.genre == "homme" %}
+                                                <li class="list-group-item list-group-item-success">Homme</li>
+                                            {% else %}
+                                                <li class="list-group-item list-group-item-success">Femme</li>
+                                            {% endif %}
+
+                                            {% if personnage.cars.lunette == "oui" %}
+                                                <li class="list-group-item list-group-item-success">Lunettes</li>
+                                            {% else %}
+                                                <li class="list-group-item list-group-item-danger">Pas de lunettes</li>
+                                            {% endif %}
+
+                                            {% if personnage.cars.barbe == "oui" %}
+                                                <li class="list-group-item list-group-item-success">Barbe</li>
+                                            {% else %}
+                                                <li class="list-group-item list-group-item-danger">Pas de barbe</li>
+                                            {% endif %}
+
+                                            {% if personnage.cars.cheveux == "oui" %}
+                                                <li class="list-group-item " style="background-color: rgba(179, 81, 59, 0.88)">Cheveux brun</li>
+                                            {% else %}
+                                                <li class="list-group-item list-group-item-warning">Cheveux blond</li>
+                                            {% endif %}
+
+                                            {% if personnage.cars.chapeau == "oui" %}
+                                                <li class="list-group-item list-group-item-success">Chapeau</li>
+                                            {% else %}
+                                                <li class="list-group-item list-group-item-danger">Pas de chapeau</li>
+                                            {% endif %}
+
+                                            {% if personnage.cars.ral == "oui" %}
+                                                <li class="list-group-item list-group-item-success">Rouge à lèvres</li>
+                                            {% else %}
+                                                <li class="list-group-item list-group-item-danger">Pas de rouge à lèvres</li>
+                                            {% endif %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endfor %}
                             </div>
                             <div class="row justify-content-center" id="Upl">
                                 <div class="col py-4 ">
@@ -139,3 +150,4 @@
         <script src="assets/js/input.js"></script>
 
     {% endblock %}
+
