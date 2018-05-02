@@ -93,6 +93,7 @@ class ClientController extends AbstractController
 
             $charManager = new ClientManager();
             $_SESSION['Decks'] = $charManager->findByDecks($_POST['nomdeck']);
+            $_SESSION['nomDuDeck'] = $_POST['nomdeck'];
 
             shuffle($_SESSION['Decks']);
 
@@ -252,7 +253,7 @@ class ClientController extends AbstractController
         session_start();
 
         $image = new ClientManager();
-        $imagefin = $image->findOneByIdcar($_SESSION['Random']);
+        $imagefin = $image->findOneByIdcar($_SESSION['Random'], $_SESSION['nomDuDeck']);
 
 
 

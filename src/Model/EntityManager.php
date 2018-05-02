@@ -45,11 +45,12 @@ abstract class EntityManager
         return $statement->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function findOneByIdcar( $id)
+    public function findOneByIdcar( $id, $deck)
     {
         // prepared request
-        $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE id_car=:id");
+        $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE id_car=:id AND decks=:deck");
         $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->bindValue('deck', $deck, \PDO::PARAM_INT);
         $statement->execute();
 
         return $statement->fetch(\PDO::FETCH_ASSOC);
