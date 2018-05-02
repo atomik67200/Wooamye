@@ -5,9 +5,14 @@
 {% endblock %}
 
 {% block header %}
+
+
+
 {% endblock %}
 
     {% block content %}
+
+
         <div class="container-fluid " ">
         <header class="row ">
             <div class="col py-4 ">
@@ -35,10 +40,9 @@
                                 <div class="dropdown">
                                     <select class="btn btn-btn btn-responsive dropdown-toggle" name="selectAA" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                            <option class="dropdown-item" style="background-color: green;" >{{ dekk }}</option>
-                                            {% for decks in allDeck %}
-                                                <option class="dropdown-item" value="{{ decks.decks }}" type="button">{{ decks.decks }}</option>
-                                            {% endfor %}
+                                            <option class="dropdown-item" value="ajouter" selected="selected" type="button">Ajouter un Deck</option>
+                                            <option class="dropdown-item" value="modifier" type="button">Modifier un Deck</option>
+                                            <option class="dropdown-item" value="supprimer" type="button">Supprimer un Deck</option>
                                         </div>
                                     </select>
                                 </div>
@@ -53,6 +57,7 @@
                             <form action="/modifier" method="GET">
                                 <select class="btn btn-btn btn-responsive dropdown-toggle" name="selectAA" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <option class="dropdown-item" style="background-color: green;" >{{ dekk }}</option>
                                         {% for decks in allDeck %}
                                             <option class="dropdown-item" value="{{ decks.decks }}" type="button">{{ decks.decks }}</option>
                                         {% endfor %}
@@ -60,6 +65,7 @@
                                 </select>
                                 <button type="submit" class="btn btn-lg btn-responsive" name="nomDuDecks" >Charger le Deck</button>
                             </form>
+
                         </div>
                     </div>
 
@@ -70,8 +76,10 @@
 
                             {% for personnage in personnages %}
                                 <div class="col-md-3  mx-">
+
                                     <div class="thumbnail mb-2">
                                         <p><span class="titre">Image{{personnage.ID}}</span></p>
+
                                         <img src="{{personnage.image}}" alt="Image" class="img-thumbnail mb-2"><br>
                                         <div class="upload-btn-wrapper">
                                             <button class="btn1 btn-responsive">Parcourir</button>
@@ -137,9 +145,13 @@
                 </section>
             </div>
         </div>
+        </div>
+
     {% endblock %}
 
     {%  block javascript %}
-    <script src="assets/js/input.js"></script>
+
+        <script src="assets/js/input.js"></script>
+
     {% endblock %}
 
