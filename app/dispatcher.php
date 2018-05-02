@@ -22,6 +22,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
 
     $r->addRoute('POST', '/ajouter', 'car/car');
     $r->addRoute('POST', '/addBdd', 'car/AddBdd');
+    $r->addRoute('POST', '/updateBdd', 'car/updateBdd');
     $r->addRoute('GET', '/ajouter', 'car/car');
     //$r->addRoute('POST', '/ajouter', 'Admin/ajouter');
 
