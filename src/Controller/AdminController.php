@@ -90,7 +90,7 @@ class AdminController extends AbstractController
         $car = $carManager->findAll();
         $personnages=[];
         if((isset($_GET['selectAA'])) && (!empty($_GET['selectAA']))){
-            var_dump($_GET['selectAA']);
+
             $_SESSION['deckmodif'] = $_GET['selectAA'];
             $listChar = $charManager->findByDecks($_GET['selectAA']);
             foreach ($listChar as $char){

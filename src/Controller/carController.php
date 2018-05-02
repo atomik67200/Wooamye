@@ -30,7 +30,7 @@ class carController extends AbstractController
         $files = $_FILES['files'];
         //traitement des fichiers
         $uploadFiles = [];
-        echo count($files['name']);
+
         for ($i = 0; $i < count($files['name']); $i++) {
             $file = [];
             $file['name'] = $files['name'][$i];
@@ -66,11 +66,10 @@ class carController extends AbstractController
             }
 
             if ($error === false) { //Si il n'y a pas d'erreurs, faire le move, + intégré dans la bdd.
-                echo "reussi";
+
                 move_uploaded_file($uploadFile['tmp_name'], $uploadFile['upload_dir']);
                 $carManager = new carManager();
-                var_dump($_SESSION['deckmodif']);
-                var_dump($uploadFile['upload_dir']);
+
                 $carManager->updateImg($uploadFile['upload_dir'], $i, $_SESSION['deckmodif']);
             }
 
