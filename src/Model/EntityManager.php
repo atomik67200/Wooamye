@@ -45,6 +45,17 @@ abstract class EntityManager
         return $statement->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public function findOneByIdcar( $id, $deck)
+    {
+        // prepared request
+        $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE id_car=:id AND decks=:deck");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->bindValue('deck', $deck, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch(\PDO::FETCH_ASSOC);
+    }
+
     public function findByDecks($param)
     {
         // prepared request
@@ -55,7 +66,36 @@ abstract class EntityManager
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function findRandomByDecks($param)
+    {
+        // prepared request
+        $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE decks=:param");
+        $statement->bindValue('param', $param, \PDO::PARAM_STR);
+        $statement->execute();
+        $n = rand(0,31);
+        return $statement->fetchAll(\PDO::FETCH_ASSOC)[$n];
+    }
 
+    public function findAllDeckName()
+    {
+        $statement = $this->conn->query("SELECT DISTINCT decks FROM $this->table");
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+    }
+
+    public function findRandomForAllDecks()
+    {
+        $tousLesDecks = $this->findAllDeckName();
+        //var_dump($tousLesDecks);
+        $resultat=[];
+        foreach ($tousLesDecks as $unDeck)
+        {
+            $resultat[]=$this->findRandomByDecks($unDeck['decks']);
+        }
+
+        return $resultat;
+
+    }
 
     /**
      *
@@ -82,9 +122,15 @@ abstract class EntityManager
     /**
      *
      */
-    public function update($id, $data)
+    public function updateImg($data , $idcar, $nom)
     {
-        //TODO : Implements SQL UPDATE request
+        $statement = $this->conn->prepare("UPDATE Decks SET image =:dta WHERE id_car=:car AND decks =:nom ;");
+
+        $statement->bindValue(':dta', $data, \PDO::PARAM_STR);
+        $statement->bindValue(':car', $idcar, \PDO::PARAM_STR);
+        $statement->bindValue(':nom', $nom, \PDO::PARAM_STR);
+
+        $statement->execute();
     }
 
 

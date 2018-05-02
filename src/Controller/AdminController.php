@@ -31,7 +31,7 @@ class AdminController extends AbstractController
     {
 
 
-            return $this->twig->render('Admin/index.html.twig');
+        return $this->twig->render('Admin/index.html.twig');
     }
 
     /**
@@ -43,28 +43,31 @@ class AdminController extends AbstractController
     public function ajouter()
     {
         if ((($_POST['login'] === 'olivier') && ($_POST['password'] === 'franck'))  || (!isset($_SESSION['login'])))
-            {
-                session_start();
-                $_SESSION['login'] = $_POST['login'];
-                return $this->twig->render('Admin/ajouter.html.twig', ['login' => $_SESSION['login']]);
-            }elseif(isset($_SESSION['login'])){
+        {
+            session_start();
+            $_SESSION['login'] = $_POST['login'];
+            return $this->twig->render('Admin/ajouter.html.twig', ['login' => $_SESSION['login']]);
+        }elseif(isset($_SESSION['login'])){
             return $this->twig->render('Admin/ajouter.html.twig');
         }
         else{
-                header('location : /admin');
-            }
+            header('location : /admin');
         }
+    }
     public function redirection()
     {
         if (isset($_POST['selectAA'])){
-            if($_POST['selectAA']==='Modifier un set'){
+            if($_POST['selectAA']==='modifier'){
 
                 return header("location:/modifier");
-            }elseif($_POST['selectAA']==='Supprimer un set'){
 
-                return $this->twig->render('Admin/supprimer.html.twig');
-            }elseif ($_POST['selectAA']==='Ajouter un set'){
-                return $this->twig->render('Admin/ajouter.html.twig');
+            }elseif($_POST['selectAA']==='supprimer'){
+
+                return header("location:/supprimer");
+
+            }elseif ($_POST['selectAA']==='ajouter'){
+                return header("location:/ajouter");
+
             }
 
 
@@ -73,36 +76,56 @@ class AdminController extends AbstractController
         }
     }
 
-
-        public function modifier()
+    public function modifier()
     {
         session_start();
-
         $charManager = new AdminManager();
-        $listChar = $charManager->findByDecks('Decks2');
-
+        //$listChar = $charManager->findByDecks('SouthPark2');
         $carManager = new CarManager();
         $car = $carManager->findAll();
-
-        $personnages=[];
-        foreach ($listChar as $char){
-            $personnages[$char['id_car']]=['ID'=>$char['ID'],'decks'=>$char['decks'],'image'=>$char['image'],'cars'=>$car[$char['id_car']-1]];
+        $personnages = [];
+        if ((isset($_GET['selectAA'])) && (!empty($_GET['selectAA']))) {
+            //var_dump($_GET['selectAA']);
+            $_SESSION['deckmodif'] = $_GET['selectAA'];
+            $listChar = $charManager->findByDecks($_GET['selectAA']);
+            foreach ($listChar as $char) {
+                $personnages[$char['id_car']] = ['ID' => $char['ID'], 'decks' => $char['decks'], 'image' => $char['image'], 'cars' => $car[$char['id_car'] - 1]];
+            }
+        }else {
+            $listChar = $charManager->findByDecks('NewDeck');
+            foreach ($listChar as $char) {
+                $personnages[$char['id_car']] = ['ID' => $char['ID'], 'decks' => $char['decks'], 'image' => $char['image'], 'cars' => $car[$char['id_car'] - 1]];
+            }
         }
 
+        $allDeck = $charManager->findRandomForAllDecks();
 
-        return $this->twig->render('Admin/modifier.html.twig', ['listechar'=>$listChar,'car' => $car,'personnages'=>$personnages]);
+        return $this->twig->render('Admin/modifier.html.twig', ['dekk' => $_GET['selectAA'],'allDeck' => $allDeck, 'car' => $car, 'personnages' => $personnages]);
     }
-
+// 'listechar' => $listChar
     public function supprimer()
     {
         session_start();
+
+
+
+
+        if(isset($_POST['supprDeck']))
+        {
+            if ( $_POST['supprDeck'] != "NewDeck" ) {
+                $delManager = new AdminManager();
+                $delManager->delete($_POST['supprDeck']);
+            }
+            else{
+                $erreur = 'Vous ne pouvez pas supprimer le set de base.';
+
+            }
+        }
+
         $adminManager = new AdminManager;
-        $listeDecks = $adminManager->findAll();
-        $n = rand(0,31);
-        $res = $listeDecks[$n];
+        $resultat =  $adminManager->findRandomForAllDecks();
 
-
-        return $this->twig->render('Admin/supprimer.html.twig', ['res' => $res,'login' => $_SESSION['login']]);
+        return $this->twig->render('Admin/supprimer.html.twig', ['resultat' => $resultat, 'erreur'=>$erreur,'login' => $_SESSION['login']]);
     }
 
     public function changerAccueil()

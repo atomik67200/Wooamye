@@ -18,5 +18,25 @@ class AdminManager extends EntityManager
     {
         parent::__construct(self::TABLE);
     }
+    public function delete($nomDeck)
+    {
+        $statement = $this->conn->prepare("DELETE  FROM $this->table WHERE decks = :nomDeck");
+        $statement->bindValue('nomDeck', $nomDeck, \PDO::PARAM_INT);
 
+
+        return $statement->execute();
+    }
+
+    public function findRandomForAllDecks()
+    {
+        $tousLesDecks = $this->findAllDeckName();
+        //var_dump($tousLesDecks);
+        $resultat = [];
+        foreach ($tousLesDecks as $unDeck) {
+            $resultat[] = $this->findRandomByDecks($unDeck['decks']);
+        }
+
+        return $resultat;
+
+    }
 }

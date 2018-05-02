@@ -26,15 +26,10 @@ h4{
 span{
     color:black;
 }
-.btn-danger{
-	margin-top: 3vh;
-}
-.valider{
-	margin-top: 3vh;
-}
-.bottomButton{
-	margin-top: 5vh;
-	margin-bottom: 10vh;
+.buttonGroup{
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-left: 65vh;
 }
 .question{
 	font-size: 20px;
@@ -75,8 +70,12 @@ span{
     color: #ff0814;
     font-size: 30px;
     text-align: center;
+    margin-top: 5vh;
     text-shadow: 2px 2px 4px black;
 
+}
+.custom-select{
+    width: 100vw;
 }
 
 .nopad {
@@ -85,6 +84,7 @@ span{
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
+
 /*image gallery*/
 .image-checkbox {
     cursor: pointer;
@@ -99,6 +99,25 @@ span{
     display: none;
 }
 
+.image-checkbox-del {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 4px solid transparent;
+    margin-bottom: 0;
+    outline: 0;
+}
+.image-checkbox-del input[type="checkbox"] {
+    display: none;
+}
+
+.opacity {
+    opacity: 0.3;
+}
+
+.red {
+    background-color: red;
+}
 .image-checkbox-checked {
     background-color: red;
     opacity: 0.5;
@@ -117,3 +136,4 @@ span{
 .container{
     min-width:600px;
 }
+

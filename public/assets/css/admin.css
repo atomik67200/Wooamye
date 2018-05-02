@@ -90,6 +90,10 @@ input
 
 
 }
+#supprSet
+{
+    text-align: center;
+}
 .btn
 {
     border: 2px solid gray;
@@ -119,4 +123,9 @@ input
     left: 0;
     top: 0;
     opacity: 0;
+}
+.nomDeck{
+    font-size: 18px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
