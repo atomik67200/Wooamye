@@ -123,9 +123,9 @@ abstract class EntityManager
      */
     public function updateImg($data , $idcar, $nom)
     {
-        $statement = $this->conn->prepare("UPDATE Decks SET image = :data WHERE id_car= :car AND decks = :nom ;");
+        $statement = $this->conn->prepare("UPDATE Decks SET image =:dta WHERE id_car=:car AND decks =:nom ;");
 
-        $statement->bindValue(':data', $data, \PDO::PARAM_STR);
+        $statement->bindValue(':dta', $data, \PDO::PARAM_STR);
         $statement->bindValue(':car', $idcar, \PDO::PARAM_STR);
         $statement->bindValue(':nom', $nom, \PDO::PARAM_STR);
 
