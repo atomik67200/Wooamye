@@ -57,6 +57,7 @@
                                 <form action="/modifier" method="GET">
                                     <select class="btn btn-btn btn-responsive dropdown-toggle" name="selectAA" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <option class="dropdown-item" style="background-color: green;" >{{ dekk }}</option>
                                             {% for decks in allDeck %}
                                                 <option class="dropdown-item" value="{{ decks.decks }}" type="button">{{ decks.decks }}</option>
                                             {% endfor %}
