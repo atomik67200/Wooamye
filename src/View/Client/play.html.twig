@@ -1,66 +1,110 @@
 {% extends 'layout.html.twig' %}
 
 {% block stylesheet %}
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/play.css">
 {% endblock %}
 
             {% block header %}
-                <h4>A vous de jouer!</h4>
+                <div class="container-fluid justify-content-center ">
+                    <div class="row ">
+                        <div class="col-3"><p class="Pseudo">Pseudo :<span> {{ pseudo }}</span></p></div>
+                        <div class="titre  col-6 ">
+                            <h4>A vous de Jouer!</h4><br>
+                        </div>
+                        <div class="col-3"><p class="Score">Score :<span>{{ score }} </span></p></div>
+                    </div>
+                </div>
             {% endblock %}
 
  {% block content %}
-     <p class="Pseudo">Pseudo : {{ pseudo }}</p>
-     <p class="Score">Score :</p>
 
-     <p class="question">Le personnage à :</p>
-     <div class="container">
-         <div class="row ">
-             <div class="input-group col-lg-5 col-lg-6 offset-2 ">
-                 <select class="custom-select" id=".." >
-                     <option selected>....</option>
-                     <option value="1">t'il des cheveux brun?</option>
-                     <option value="2">t'il des cheveux blond?</option>
-                     <option value="3">t'il des lunettes?</option>
-                     <option value="4">t'il une barbe?</option>
-                     <option value="5">t'il du rouge à lèvre?</option>
-                     <option value="5">t'il un chapeau?</option>
-                     <option value="6">est t'elle une femme?</option>
-                     <option value="7">est t'il un homme?</option>
-                 </select>
-             </div>
-         </div>
-     </div>
-     <div class="col-lg-1  offset-5">
-         <button class="valider btn btn-primary " type="button">Valider</button>
-     </div>
+
+
 
      <div class="container">
-         <div class=" plateau row ">
-             {% for items in 1..4 %}
-                 {% for items in 1..8 %}
-                     <div class="nopad text-center">
-                         <label class="image-checkbox">
-                             <img class="img-responsive" src="http://via.placeholder.com/120x120" />
-                             <input type="checkbox" name="image[]" value="" />
-
-                         </label>
+         <form action="/elimination" method="POST">
+             <div class="row justify-content-center">
+                 <div class="input-group col-7 ">
+                     <label for="" style="font-size: 25px">Le personnage :</label>
+                     <select class="custom-select" name="option" >
+                         <option selected>....</option>
+                         <option value="cheveuxBrun">a t'il des cheveux brun?</option>
+                         <option value="cheveuxBlond">a t'il des cheveux blond?</option>
+                         <option value="lunette">a t'il des lunettes?</option>
+                         <option value="barbe">a t'il une barbe?</option>
+                         <option value="ral">a t'il du rouge à lèvre?</option>
+                         <option value="chapeau">a t'il un chapeau?</option>
+                         <option value="genreFemme"> est t'elle une femme?</option>
+                         <option value="genreHomme">est t'il un homme?</option>
+                     </select>
+                     <div class="col-1 align-top">
+                         <button style="" name="button" value="question" class="valider btn btn-primary " type="submit">Valider</button>
                      </div>
-                 {% endfor %}
-             {% endfor %}
-         </div>
+                 </div>
+             </div>
+
+             <div class="col-1 ">
+
+             </div>
+
+             <div>
+                 <p class="reponse">
+                     {% for reponse in reponse %}
+                         {{ reponse }} <br>
+                     {% endfor %}
+                 </p>
+             </div>
+         </form>
      </div>
 
-     <div class="container">
-         <div class="bottomButton row">
-             <div class=" col-xl-4 col-md-4 col-sm-4 offset-1">
-                 <button class="btn btn-danger" type="button">Eliminer votre sélection</button>
+     <form action="/elimination" method="POST">
+         <div class="container">
+             <div class=" plateau row ">
+
+
+                 {% for char in listechar %}
+
+                     {% for restant in restant %}
+                         {% if restant == char.id_car %}
+                             <div class="nopad text-center pt-2 mx-auto">
+                                 <label class="image-checkbox">
+                                     <img class="img-responsive" style="width: 120px; heigth: 120px;" src="{{ char.image }}" onmouseover="bigImg(this)" onmouseout="normalImg(this)" />
+                                     <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
+                                 </label>
+                             </div>
+                         {% endif %}
+                     {% endfor %}
+
+                     {% for eliminer in eliminer %}
+                         {% if eliminer == char.id_car %}
+                             <div  class="nopad text-center pt-2 mx-auto">
+                                 <label  class="image-checkbox-del red">
+                                     <img class="img-responsive opacity" style="width: 120px; heigth: 120px;" src="{{ char.image }}"/>
+                                     <input type="checkbox" name="image[]" value="{{ char.id_car }}" />
+                                 </label>
+                             </div>
+                         {% endif %}
+                     {% endfor %}
+                 {% endfor %}
+
+
              </div>
-             <form class="form-inline " action="/fin" type="GET">
-                 <div class=" col-xl-4 col-md-4 col-sm-4 offset-2">
-                     <button class="valider btn btn-primary " type="submit">Valider la bonne photo</button>
-                 </div>
-             </form>
          </div>
-     </div>
+
+                <div class="buttonGroup">
+                     <button name="button"  value="eliminer" class="btn btn-danger" type="submit">Eliminer les personnages</button>
+                     <button name="button" value="valider"  class="valider btn btn-primary " type="submit">Valider le bon personnage</button>
+                </div>
+     </form>
+     <script>
+         function bigImg(x) {
+             x.style.webkitTransform = 'scale(1.3)';
+         }
+
+         function normalImg(x) {
+             x.style.webkitTransform = 'scale(1)';
+         }
+     </script>
  {% endblock %}

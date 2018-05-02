@@ -35,7 +35,7 @@ abstract class EntityManager
      * @param $id
      * @return array
      */
-    public function findOneById(int $id)
+    public function findOneById( $id)
     {
         // prepared request
         $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE id=:id");
@@ -43,6 +43,58 @@ abstract class EntityManager
         $statement->execute();
 
         return $statement->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function findOneByIdcar( $id, $deck)
+    {
+        // prepared request
+        $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE id_car=:id AND decks=:deck");
+        $statement->bindValue('id', $id, \PDO::PARAM_INT);
+        $statement->bindValue('deck', $deck, \PDO::PARAM_INT);
+        $statement->execute();
+
+        return $statement->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    public function findByDecks($param)
+    {
+        // prepared request
+        $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE decks=:param");
+        $statement->bindValue('param', $param, \PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function findRandomByDecks($param)
+    {
+        // prepared request
+        $statement = $this->conn->prepare("SELECT * FROM $this->table WHERE decks=:param");
+        $statement->bindValue('param', $param, \PDO::PARAM_STR);
+        $statement->execute();
+        $n = rand(0,31);
+        return $statement->fetchAll(\PDO::FETCH_ASSOC)[$n];
+    }
+
+    public function findAllDeckName()
+    {
+        $statement = $this->conn->query("SELECT DISTINCT decks FROM $this->table");
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+    }
+
+    public function findRandomForAllDecks()
+    {
+        $tousLesDecks = $this->findAllDeckName();
+        //var_dump($tousLesDecks);
+        $resultat=[];
+        foreach ($tousLesDecks as $unDeck)
+        {
+            $resultat[]=$this->findRandomByDecks($unDeck['decks']);
+        }
+
+        return $resultat;
+
     }
 
     /**
@@ -56,18 +108,29 @@ abstract class EntityManager
     /**
      *
      */
-    public function insert($data)
-    {
-        //TODO : Implements SQL INSERT request
-    }
+     public function insert($decks, $image, $idcar)
+     {
+
+         $statement = $this->conn->prepare("INSERT INTO Decks(decks, image, id_car) VALUES (:decks,:image,:id_car);");
+         $statement->bindValue(':decks', $decks, \PDO::PARAM_STR);
+         $statement->bindValue(':image', $image, \PDO::PARAM_STR);
+         $statement->bindValue(':id_car', $idcar, \PDO::PARAM_INT);
+         $statement->execute();
+     }
 
 
     /**
      *
      */
-    public function update($id, $data)
+    public function updateImg($data , $idcar, $nom)
     {
-        //TODO : Implements SQL UPDATE request
+        $statement = $this->conn->prepare("UPDATE Decks SET image =:dta WHERE id_car=:car AND decks =:nom ;");
+
+        $statement->bindValue(':dta', $data, \PDO::PARAM_STR);
+        $statement->bindValue(':car', $idcar, \PDO::PARAM_STR);
+        $statement->bindValue(':nom', $nom, \PDO::PARAM_STR);
+
+        $statement->execute();
     }
 
 

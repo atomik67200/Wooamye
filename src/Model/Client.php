@@ -12,14 +12,23 @@ namespace Model;
  * Class Client
  * @package Model
  */
-class Client
+class Client extends ClientManager
 {
     private $id;
 
     private $title;
 
-    private $picture;
 
+
+
+
+
+    public function findByCar()
+    {
+        // prepared request
+       return $statement = $this->conn->query("SELECT id_car FROM $this->table WHERE decks='NewDeck'", \PDO::FETCH_ASSOC)->fetchAll();
+       // foreach ($car as $key => $value)
+    }
 
     
 

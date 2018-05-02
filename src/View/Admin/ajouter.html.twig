@@ -1,688 +1,133 @@
 {% extends 'layout.html.twig' %}
-
-{% block title %}
-    Modifier un set
-{% endblock %}
 {% block stylesheet %}
     <link rel="stylesheet" href="/assets/css/admin.css">
 {% endblock %}
 
+{% block header %}
+{% endblock %}
 
+    {% block content %}
+        <div class="container-fluid">
+            <header class="row ">
+                <div class="col py-4 ">
+                    <h1 class="title">Créer un Deck</h1>
+                    <div class="row justify-content-center">
 
-{% block content %}
+                        <div class="offset-1 col-3">
+                            <form class="" action="/changerAccueil" method="POST">
+                                <button type="submit" class="btn btn-lg btn-responsive">Changer l'accueil</button>
+                            </form>
+                            <p> {{ errors }} </p>
 
-    <div class="container-fluid">
-        <header class="row ">
-            <div class="col py-4 ">
-                <h1 class="title">Ajouter un set</h1>
-                <div class="row justify-content-center">
-                    <div class="offset-1 col-3">
-                        <button type="button" class="btn btn-lg btn-responsive">Changer set</button>
-                    </div>
-                    <div class="offset-4"></div>
-                    <div class="offset-1 col-3">
-
-                        <button type="button" class="btn btn-lg btn-responsive">Changer l'accueil</button>
-
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
 
-        <div class="row">
-            <div class="px-2 py-4 ">
-                <section class="col-lg-12">
-
-                    <div class="row justify-content-center my-4">
-                        <div class="offset-1 col-3">
-                            <div class="dropdown">
-                                <select class="btn btn-btn btn-responsive dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <option class="dropdown-item" selected="selected" type="button">Ajouter un set</option>
-                                        <option class="dropdown-item" type="button">Modifier un set</option>
-                                        <option class="dropdown-item" type="button">Supprimer un set</option>
+            <p> {{ errors }} </p>
+            <div class="row">
+                <div class="px-2 py-4 ">
+                    <section class="col-lg-12">
+                        <form action="/redirection" method="POST">
+                            <div class="row justify-content-center my-4">
+                                <div class="offset-1 col-3">
+                                    <div class="dropdown">
+                                        <select class="btn btn-btn btn-responsive dropdown-toggle" name="selectAA" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                                <option class="dropdown-item" value="ajouter" selected="selected" type="button">Ajouter un Deck</option>
+                                                <option class="dropdown-item" value="modifier" type="button">Modifier un Deck</option>
+                                                <option class="dropdown-item" value="supprimer" type="button">Supprimer un Deck</option>
+                                            </div>
+                                        </select>
                                     </div>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="offset-1 col-3">
-                            <button type="button" class="btn btn- btn-responsive">Valider</button>
-                        </div>
-
-                    </div>
-
-
-                    <div class="row justify-content-center my-4">
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image1</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
+                                </div>
+                                <div class="offset-1 col-3">
+                                    <button type="submit" class="btn btn- btn-responsive">Valider</button>
+                                </div>
 
                             </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-success">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image2</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image3</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-success">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image4</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-success">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image5</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image6</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image7</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-success">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image8</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                        </form>
 
 
-                    <div class="row justify-content-center my-4">
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image9</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
+                        <form  class="" id="" action="/addBdd" method="post" enctype="multipart/form-data">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="offset-4"></div>
+                                    <p class="nomDeck">Nom du deck :</p>
+                                    <input type="text" name="nomDuDecks" placeholder="Entrer 4 à 10 caractères">
+                                </div>
                             </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-success">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
 
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image10</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-success">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
+                            <div class="row justify-content-center my">
 
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image11</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
+                                {% for param in car %}
 
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image12</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-success">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
+                                    <div class="col-md-3  mx-">
+                                        <div class="thumbnail mb-2">
+                                            <p><span class="titre">Image{{param.ID}}</span></p>
+                                            <img src="http://via.placeholder.com/200x200" alt="Image" class="img-thumbnail mb-2"><br>
+                                            <div class="upload-btn-wrapper">
+                                                <button class="btn1">Parcourir</button>
+                                                <input  name="files[]" type="file" id="fichier_a_uploader" multiple="multiple" />
+                                                <input type="hidden" name="fichier1" value="1" />
+                                            </div>
 
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image13</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
+                                        </div>
+                                        <div class="mx-5 mb-3" >
+                                            <ul class="list-group">
 
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image14</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
+                                                {% if param.genre == "homme" %}
+                                                    <li class="list-group-item list-group-item-success">Homme</li>
+                                                {% else %}
+                                                    <li class="list-group-item list-group-item-success">Femme</li>
+                                                {% endif %}
 
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image15</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-success">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
+                                                {% if param.lunette == "oui" %}
+                                                    <li class="list-group-item list-group-item-success">Lunettes</li>
+                                                {% else %}
+                                                    <li class="list-group-item list-group-item-danger">Pas de lunettes</li>
+                                                {% endif %}
 
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image16</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-success">Homme</li>
-                                    <li class="list-group-item list-group-item-danger">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                                                {% if param.barbe == "oui" %}
+                                                    <li class="list-group-item list-group-item-success">Barbe</li>
+                                                {% else %}
+                                                    <li class="list-group-item list-group-item-danger">Pas de barbe</li>
+                                                {% endif %}
 
+                                                {% if param.cheveux == "oui" %}
+                                                    <li class="list-group-item " style="background-color: rgba(179, 81, 59, 0.88)">Cheveux brun</li>
+                                                {% else %}
+                                                    <li class="list-group-item list-group-item-warning">Cheveux blond</li>
+                                                {% endif %}
 
+                                                {% if param.chapeau == "oui" %}
+                                                    <li class="list-group-item list-group-item-success">Chapeau</li>
+                                                {% else %}
+                                                    <li class="list-group-item list-group-item-danger">Pas de chapeau</li>
+                                                {% endif %}
 
-                    <div class="row justify-content-center my-4">
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image17</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-success">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
+                                                {% if param.ral == "oui" %}
+                                                    <li class="list-group-item list-group-item-success">Rouge à lèvres</li>
+                                                {% else %}
+                                                    <li class="list-group-item list-group-item-danger">Pas de rouge à lèvres</li>
+                                                {% endif %}
 
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image18</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                {% endfor %}
                             </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-success">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
+                            <div class="row justify-content-center" id="Upl">
+                                <div class="col py-4 ">
+                                    <button type="submit" class="btn btn-lg btn-responsive" name="Uploader" value="Uploader">Upload</button>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image19</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image20</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-success">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image21</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image22</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image23</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-success">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image24</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row justify-content-center my-4">
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image25</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-success">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image26</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-success">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image27</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image28</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-success">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image29</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image30</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image31</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-success">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-success">Chapeau</li>
-                                    <li class="list-group-item list-group-item-success">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="col-1 mx-2">
-                            <div class="thumbnail mb-2">
-                                <p><span class="titre">Image32</span></p>
-                                <img src="http://via.placeholder.com/400x540" alt="Image" class="img-thumbnail">
-                            </div>
-                            <div class="">
-                                <ul class="list-group">
-                                    <li class="list-group-item list-group-item-danger">Lunettes</li>
-                                    <li class="list-group-item list-group-item-danger">Barbe</li>
-                                    <li class="list-group-item list-group-item-danger">Cheveux brun</li>
-                                    <li class="list-group-item list-group-item-success">Cheveux blond</li>
-                                    <li class="list-group-item list-group-item-danger">Chapeau</li>
-                                    <li class="list-group-item list-group-item-danger">R à lèvres</li>
-                                    <li class="list-group-item list-group-item-danger">Homme</li>
-                                    <li class="list-group-item list-group-item-success">Femme</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center my-4">
-                        <div class="col-1">
-                            <button type="button" class="btn btn-lg btn-responsive">Valider</button>
-                        </div>
-
-                    </div>
-                </section>
+                        </form>
+                    </section>
+                </div>
             </div>
         </div>
-    </div>
+    {% endblock %}
 
-
-{% endblock %}
+    {%  block javascript %}
+    {% endblock %}

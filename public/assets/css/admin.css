@@ -5,11 +5,14 @@
 
 img{
 	height: 100px;
+
 }
 h1
 {
 	text-align: center;
 	font-size: 1,2em;
+    font-weight: bold;
+
 
 }
 .form-check{
@@ -25,7 +28,7 @@ h1
 {
     background: #FFA07A;
 }
-header, section  /* Mettre une bordure sur les td ET les th */
+header, section
 {
 	border: 1px solid black;
     background: #FFFAFA;
@@ -44,6 +47,8 @@ section
 .thumbnail
 {
     mb-2;
+    text-align: center;
+
 }
 p
 {
@@ -68,4 +73,59 @@ p
         font-size:90%;
         line-height: 1.2;
     }
+}
+input
+{
+    padding: 0;
+
+
+}
+#inp
+{
+    text-align: center;
+}
+#Upl
+{
+    text-align: center;
+
+
+}
+#supprSet
+{
+    text-align: center;
+}
+.btn
+{
+    border: 2px solid gray;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btn1 {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 70px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+.nomDeck{
+    font-size: 18px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }

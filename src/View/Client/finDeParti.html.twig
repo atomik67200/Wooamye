@@ -2,39 +2,59 @@
 
 {% block stylesheet %}
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/finDeParti.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 {% endblock %}
+ {% block header %}
+     <div class="container-fluid justify-content-center ">
+         <div class="row">
+             <div class="col-3"></div>
+             <div class="titre  col-6 ">
+                 <h4>{{ resultat }}</h4>
+             </div>
+         </div>
+     </div>
+ {% endblock %}
 
-{% block header %}
-    <h4>Vous Avez Gagner!</h4>
-    <h4>Vous Avez Perdu!</h4>
-{% endblock %}
 {% block content %}
-
-    <p class="Pseudo">Pseudo : {{ pseudo }}</p>
-    <p class="Score">Score :</p>
+    <p class="Pseudo">Pseudo :<span> {{ pseudo }}</span></p>
+    <p class="Score">Score :<span>{{ score }} </span></p>
 
     <div class="container">
-        <div class="row">
-            <div class="col-xl-1 offset-3">
-                <img id="myImg" src="http://via.placeholder.com/400x400" alt="">
-                    <div id="myModal" class="modal">
-                    <span class="close">&times;</span>
-                    <img class="modal-content" id="img01">
-                    <div id="caption"></div>
+        <div class="row photoModal">
+            <div class="col-5 question">
+                <p>{%  for reponse in reponse  %}
+                        {{ reponse }}  </br>
+                    {% endfor  %}
+                </p>
             </div>
+                    <div class="col-2 ">
+                        <img id="myImg" src="{{ perso.image }}" alt="">
+                            <div id="myModal" class="modal">
+                            <span class="close">&times;</span>
+                            <img class="modal-content" id="img01">
+                            <div id="caption"></div>
+                    </div>
+
         </div>
-    </div>
-    <div class="container">
-        <div class=" button row">
-            <div class="col-xl-1 offset-5">
-                <form class="form-inline" action="/" type="GET">
-                    <button type="submit" class="btn btn-primary center "> Rejouer ! </button>
-                </form>
+
+
+        <div class="container">
+
+            <div class=" button row">
+                <div class=" offset-5">
+                    <form class="form-inline" action="/decks" type="GET">
+                        <button type="submit" class="btn btn-primary center "> Rejouer ! </button>
+                    </form>
+                </div>
+                <div class="">
+                    <form class="form-inline" action="/" type="GET">
+                        <button type="submit" class="btn btn-success  "> Nouvelle parti ! </button>
+                    </form>
+                </div>
             </div>
-        </div>
     </div>
 
 
