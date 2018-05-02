@@ -31,7 +31,7 @@ class AdminController extends AbstractController
     {
 
 
-            return $this->twig->render('Admin/index.html.twig');
+        return $this->twig->render('Admin/index.html.twig');
     }
 
     /**
@@ -43,17 +43,17 @@ class AdminController extends AbstractController
     public function ajouter()
     {
         if ((($_POST['login'] === 'olivier') && ($_POST['password'] === 'franck'))  || (!isset($_SESSION['login'])))
-            {
-                session_start();
-                $_SESSION['login'] = $_POST['login'];
-                return $this->twig->render('Admin/ajouter.html.twig', ['login' => $_SESSION['login']]);
-            }elseif(isset($_SESSION['login'])){
+        {
+            session_start();
+            $_SESSION['login'] = $_POST['login'];
+            return $this->twig->render('Admin/ajouter.html.twig', ['login' => $_SESSION['login']]);
+        }elseif(isset($_SESSION['login'])){
             return $this->twig->render('Admin/ajouter.html.twig');
         }
         else{
-                header('location : /admin');
-            }
+            header('location : /admin');
         }
+    }
     public function redirection()
     {
         if (isset($_POST['selectAA'])){
@@ -76,32 +76,32 @@ class AdminController extends AbstractController
         }
     }
 
-        public function modifier()
-        {
-            session_start();
-            $charManager = new AdminManager();
-            //$listChar = $charManager->findByDecks('SouthPark2');
-            $carManager = new CarManager();
-            $car = $carManager->findAll();
-            $personnages = [];
-            if ((isset($_GET['selectAA'])) && (!empty($_GET['selectAA']))) {
-                //var_dump($_GET['selectAA']);
-                $_SESSION['deckmodif'] = $_GET['selectAA'];
-                $listChar = $charManager->findByDecks($_GET['selectAA']);
-                foreach ($listChar as $char) {
-                    $personnages[$char['id_car']] = ['ID' => $char['ID'], 'decks' => $char['decks'], 'image' => $char['image'], 'cars' => $car[$char['id_car'] - 1]];
-                }
-            }else {
-                $listChar = $charManager->findByDecks('NewDeck');
-                foreach ($listChar as $char) {
-                    $personnages[$char['id_car']] = ['ID' => $char['ID'], 'decks' => $char['decks'], 'image' => $char['image'], 'cars' => $car[$char['id_car'] - 1]];
-                }
+    public function modifier()
+    {
+        session_start();
+        $charManager = new AdminManager();
+        //$listChar = $charManager->findByDecks('SouthPark2');
+        $carManager = new CarManager();
+        $car = $carManager->findAll();
+        $personnages = [];
+        if ((isset($_GET['selectAA'])) && (!empty($_GET['selectAA']))) {
+            //var_dump($_GET['selectAA']);
+            $_SESSION['deckmodif'] = $_GET['selectAA'];
+            $listChar = $charManager->findByDecks($_GET['selectAA']);
+            foreach ($listChar as $char) {
+                $personnages[$char['id_car']] = ['ID' => $char['ID'], 'decks' => $char['decks'], 'image' => $char['image'], 'cars' => $car[$char['id_car'] - 1]];
             }
-
-                $allDeck = $charManager->findRandomForAllDecks();
-
-                return $this->twig->render('Admin/modifier.html.twig', ['dekk' => $_GET['selectAA'],'allDeck' => $allDeck, 'car' => $car, 'personnages' => $personnages]);
+        }else {
+            $listChar = $charManager->findByDecks('NewDeck');
+            foreach ($listChar as $char) {
+                $personnages[$char['id_car']] = ['ID' => $char['ID'], 'decks' => $char['decks'], 'image' => $char['image'], 'cars' => $car[$char['id_car'] - 1]];
             }
+        }
+
+        $allDeck = $charManager->findRandomForAllDecks();
+
+        return $this->twig->render('Admin/modifier.html.twig', ['dekk' => $_GET['selectAA'],'allDeck' => $allDeck, 'car' => $car, 'personnages' => $personnages]);
+    }
 // 'listechar' => $listChar
     public function supprimer()
     {
@@ -116,9 +116,10 @@ class AdminController extends AbstractController
                 $delManager = new AdminManager();
                 $delManager->delete($_POST['supprDeck']);
             }
-        }else{
-            $erreur = 'Vous ne pouvez pas supprimer le set de base.';
+            else{
+                $erreur = 'Vous ne pouvez pas supprimer le set de base.';
 
+            }
         }
 
         $adminManager = new AdminManager;
