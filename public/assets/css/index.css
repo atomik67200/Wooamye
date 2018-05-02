@@ -36,6 +36,9 @@ input,button{
     font-family: 'Karla', sans-serif;
     font-size: 20px;
     box-shadow: 6px 6px 6px  black;
+    min-width:718px;
+    min-height:658px;
+    float:left;
 }
 
 /*Gere le titre du scoring*/
@@ -51,6 +54,9 @@ h5{
     border-radius: 5px;
     margin-bottom: 100px;
     background-color: black;
+    min-width: 478px;
+    min-heigth:658px;
+
 }
 /*Gere l'ecriture dans scoring*/
 .player{
