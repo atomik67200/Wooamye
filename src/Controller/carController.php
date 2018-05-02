@@ -46,23 +46,25 @@ class carController extends AbstractController
         //cars sur les fichiers
         $i = 0;
 
-        $error = false;
+
 
 
         foreach ($uploadFiles as $uploadFile) {
             $i++;
-
-
+            $error = false;
 
             if (($uploadFile['size'] > 10024000) || ($uploadFile['size'] < 100)) {
                 $this->errors[] = 'Le fichier ' . $file['name'] . ' est trop volumineux.';
                 $error = true;
                 $_SESSION['errors'][] = $this->errors;
+
+
             }
             if (!in_array($uploadFile['type'], ['image/gif', 'image/jpeg', 'image/png'])) {
                 $this->errors[] = 'Le type du fichier n\'est pas jpg, png ou gif.';
                 $error = true;
                 $_SESSION['errors'][] = $this->errors;
+
             }
 
             if ($error === false) { //Si il n'y a pas d'erreurs, faire le move, + intégré dans la bdd.
@@ -77,6 +79,7 @@ class carController extends AbstractController
 
 
     }
+
 
     public function addBdd()
     {
