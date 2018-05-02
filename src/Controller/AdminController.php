@@ -57,14 +57,17 @@ class AdminController extends AbstractController
     public function redirection()
     {
         if (isset($_POST['selectAA'])){
-            if($_POST['selectAA']==='Modifier un set'){
+            if($_POST['selectAA']==='modifier'){
 
                 return header("location:/modifier");
-            }elseif($_POST['selectAA']==='Supprimer un set'){
 
-                return $this->twig->render('Admin/supprimer.html.twig');
-            }elseif ($_POST['selectAA']==='Ajouter un set'){
-                return $this->twig->render('Admin/ajouter.html.twig');
+            }elseif($_POST['selectAA']==='supprimer'){
+
+                return header("location:/supprimer");
+
+            }elseif ($_POST['selectAA']==='ajouter'){
+                return header("location:/ajouter");
+
             }
 
 
