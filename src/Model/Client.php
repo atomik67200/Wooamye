@@ -26,7 +26,7 @@ class Client extends ClientManager
     public function findByCar()
     {
         // prepared request
-       return $statement = $this->conn->query("SELECT id_car FROM $this->table WHERE decks='SouthPark2'", \PDO::FETCH_ASSOC)->fetchAll();
+       return $statement = $this->conn->query("SELECT id_car FROM $this->table WHERE decks='NewDeck'", \PDO::FETCH_ASSOC)->fetchAll();
        // foreach ($car as $key => $value)
     }
 
