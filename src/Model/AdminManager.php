@@ -26,4 +26,17 @@ class AdminManager extends EntityManager
 
         return $statement->execute();
     }
+
+    public function findRandomForAllDecks()
+    {
+        $tousLesDecks = $this->findAllDeckName();
+        //var_dump($tousLesDecks);
+        $resultat = [];
+        foreach ($tousLesDecks as $unDeck) {
+            $resultat[] = $this->findRandomByDecks($unDeck['decks']);
+        }
+
+        return $resultat;
+
+    }
 }

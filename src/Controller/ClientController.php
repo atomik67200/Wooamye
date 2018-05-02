@@ -26,7 +26,8 @@ class ClientController extends AbstractController
      * @return string
      */
     public function index()
-    {   session_start();
+    {
+        session_start();
         $score = new Score();
         $topScore = $score->downloadScore();
 
@@ -91,8 +92,9 @@ class ClientController extends AbstractController
             $_SESSION['car'] = $carManager->findOneById($_SESSION['Random']);
 
             $charManager = new ClientManager();
-            $_SESSION['Decks'] = $charManager->findByDecks('SouthPark2');
-           // shuffle($_SESSION['Decks']);
+            $_SESSION['Decks'] = $charManager->findByDecks($_POST['nomdeck']);
+
+            shuffle($_SESSION['Decks']);
 
             return header("location:/elimination");
         }else
@@ -105,7 +107,6 @@ class ClientController extends AbstractController
     {
         session_start();
 
-      //  var_dump($_SESSION['Random']);
         if(!empty($_SESSION['pseudo'])) {
 
             $listChar = $_SESSION['Decks'];
@@ -250,9 +251,9 @@ class ClientController extends AbstractController
     {
         session_start();
 
+        $image = new ClientManager();
+        $imagefin = $image->findOneByIdcar($_SESSION['Random']);
 
-        $listChar = $_SESSION['Decks'];
-        $imagefin = $listChar[$_SESSION['Random']-1]['image'];
 
 
         if (isset($_SESSION['pseudo'])) {
