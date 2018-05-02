@@ -10,6 +10,7 @@
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'Client/index');
     $r->addRoute('GET', '/decks', 'Client/decks');
+    $r->addRoute('POST', '/play', 'Client/play');
     $r->addRoute('GET', '/play', 'Client/play');
     $r->addRoute('GET', '/elimination', 'Client/elimination');
     $r->addRoute('POST', '/elimination', 'Client/elimination');
