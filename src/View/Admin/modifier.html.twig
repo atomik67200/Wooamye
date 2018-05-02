@@ -13,7 +13,7 @@
     {% block content %}
 
 
-        <div class="container-fluid">
+        <div class="container-fluid " ">
             <header class="row ">
                 <div class="col py-4 ">
                     <h1 class="title">Modifier un set</h1>
@@ -54,21 +54,22 @@
                         </form>
                         <div class="row">
                             <div class="col-12">
-                                <form action="/modifier" method="POST">
+                                <form action="/modifier" method="GET">
                                     <select class="btn btn-btn btn-responsive dropdown-toggle" name="selectAA" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                             {% for decks in allDeck %}
-                                                <option class="dropdown-item" value="{{ decks.decks }}" selected="selected" type="button">{{ decks.decks }}</option>
+                                                <option class="dropdown-item" value="{{ decks.decks }}" type="button">{{ decks.decks }}</option>
                                             {% endfor %}
                                         </div>
                                     </select>
-                                        <button type="submit" class="btn btn-lg btn-responsive" name="nomDuDecks" value="nomDuDecks">Charger le Deck</button>
+                                        <button type="submit" class="btn btn-lg btn-responsive" name="nomDuDecks" >Charger le Deck</button>
                                 </form>
 
                             </div>
                         </div>
 
-                        <form  class="" id="" action="/addBdd" method="post" enctype="multipart/form-data">
+                        <form  class="" id="" action="/updateBdd" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="nomDeck" value="dekk">
                             <div class="row justify-content-center my">
 
 
@@ -132,11 +133,13 @@
                                 </div>
                             {% endfor %}
                             </div>
+                            {% if personnages %}
                             <div class="row justify-content-center" id="Upl">
                                 <div class="col py-4 ">
                                     <button type="submit" class="btn btn-lg btn-responsive" name="Uploader" value="Uploader">Modifier</button>
                                 </div>
                             </div>
+                            {% endif %}
                         </form>
                     </section>
                 </div>

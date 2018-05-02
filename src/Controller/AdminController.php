@@ -86,8 +86,10 @@ class AdminController extends AbstractController
         $carManager = new CarManager();
         $car = $carManager->findAll();
         $personnages=[];
-        if((isset($_POST['selectAA'])) && (!empty($_POST['selectAA']))){
-            $listChar = $charManager->findByDecks($_POST['selectAA']);
+        if((isset($_GET['selectAA'])) && (!empty($_GET['selectAA']))){
+            var_dump($_GET['selectAA']);
+            $_SESSION['deckmodif'] = $_GET['selectAA'];
+            $listChar = $charManager->findByDecks($_GET['selectAA']);
             foreach ($listChar as $char){
                 $personnages[$char['id_car']]=['ID'=>$char['ID'],'decks'=>$char['decks'],'image'=>$char['image'],'cars'=>$car[$char['id_car']-1]];
             }
@@ -95,7 +97,7 @@ class AdminController extends AbstractController
 
         $allDeck = $charManager->findRandomForAllDecks();
 
-        return $this->twig->render('Admin/modifier.html.twig', ['allDeck'=> $allDeck ,'listechar'=>$listChar,'car' => $car,'personnages'=>$personnages]);
+        return $this->twig->render('Admin/modifier.html.twig', ['dekk' => $_GET['selectAA'], 'allDeck'=> $allDeck ,'listechar'=>$listChar,'car' => $car,'personnages'=>$personnages]);
     }
 
     public function supprimer()

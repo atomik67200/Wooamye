@@ -24,6 +24,61 @@ class carController extends AbstractController
         return $this->twig->render('Admin/ajouter.html.twig', ['car' => $car]);
     }
 
+    public function updateBdd()
+    {
+        session_start();
+        $files = $_FILES['files'];
+        //traitement des fichiers
+        $uploadFiles = [];
+        echo count($files['name']);
+        for ($i = 0; $i < count($files['name']); $i++) {
+            $file = [];
+            $file['name'] = $files['name'][$i];
+            $file['type'] = $files['type'][$i];
+            $file['tmp_name'] = $files['tmp_name'][$i];
+            $file['error'] = $files['error'][$i];
+            $file['size'] = $files['size'][$i];
+            $infoName = pathinfo($file['name']);
+            $extension = '.' . $infoName['extension'];
+            $file['upload_dir'] = "assets/images/" . 'image' . uniqid() . $extension;
+            $uploadFiles[] = $file;
+        }
+        //cars sur les fichiers
+        $i = 0;
+
+        $error = false;
+
+
+        foreach ($uploadFiles as $uploadFile) {
+            $i++;
+
+
+
+            if (($uploadFile['size'] > 10024000) || ($uploadFile['size'] < 100)) {
+                $this->errors[] = 'Le fichier ' . $file['name'] . ' est trop volumineux.';
+                $error = true;
+                $_SESSION['errors'][] = $this->errors;
+            }
+            if (!in_array($uploadFile['type'], ['image/gif', 'image/jpeg', 'image/png'])) {
+                $this->errors[] = 'Le type du fichier n\'est pas jpg, png ou gif.';
+                $error = true;
+                $_SESSION['errors'][] = $this->errors;
+            }
+
+            if ($error === false) { //Si il n'y a pas d'erreurs, faire le move, + intégré dans la bdd.
+                echo "reussi";
+                move_uploaded_file($uploadFile['tmp_name'], $uploadFile['upload_dir']);
+                $carManager = new carManager();
+                var_dump($_SESSION['deckmodif']);
+                var_dump($uploadFile['upload_dir']);
+                $carManager->updateImg($uploadFile['upload_dir'], $i, $_SESSION['deckmodif']);
+            }
+
+        }
+
+
+    }
+
     public function addBdd()
     {
 
