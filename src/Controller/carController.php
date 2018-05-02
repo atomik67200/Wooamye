@@ -38,9 +38,8 @@ class carController extends AbstractController
             $file['tmp_name'] = $files['tmp_name'][$i];
             $file['error'] = $files['error'][$i];
             $file['size'] = $files['size'][$i];
-            $infoName = pathinfo($file['name']);
-            $extension = '.' . $infoName['extension'];
-            $file['upload_dir'] = "assets/images/" . 'image' . uniqid() . $extension;
+            $extension = "." . substr($file['type'], 6);
+            $file['upload_dir'] = "assets/images/".'image'.uniqid().$extension;
             $uploadFiles[] = $file;
         }
         //cars sur les fichiers
@@ -71,12 +70,11 @@ class carController extends AbstractController
 
                 move_uploaded_file($uploadFile['tmp_name'], $uploadFile['upload_dir']);
                 $carManager = new carManager();
-
                 $carManager->updateImg($uploadFile['upload_dir'], $i, $_SESSION['deckmodif']);
             }
 
         }
-
+        return header("location:/modifier");
 
     }
 
@@ -88,7 +86,6 @@ class carController extends AbstractController
         $nbfichier = (array_count_values($files['error']));     //Compte le nombre de fichier qui n'a pas d'erreur.
 
         if ( $nbfichier[0] != 32 ) {
-            var_dump($_FILES);
             //si les 32 fichier ont une erreur
             //erreur 4 => UPLOAD_ERR_NO_FILE, aucun fichier n'a été téléchargé
             $this->errors[] = 'Il faut sélectionner 32 photos.';
@@ -105,8 +102,7 @@ class carController extends AbstractController
                 $file['tmp_name'] = $files['tmp_name'][$i];
                 $file['error'] = $files['error'][$i];
                 $file['size'] = $files['size'][$i];
-                $infoName = pathinfo($file['name']);
-                $extension = '.' . $infoName['extension'];
+                $extension = "." . substr($file['type'], 6);
                 $file['upload_dir'] = "assets/images/" . 'image' . uniqid() . $extension;
                 $uploadFiles[] = $file;
             }
@@ -145,7 +141,6 @@ class carController extends AbstractController
                 }
 
                 if ($error === false) { //Si il n'y a pas d'erreurs, faire le move, + intégré dans la bdd.
-                    var_dump($_FILES);
                     move_uploaded_file($uploadFile['tmp_name'], $uploadFile['upload_dir']);
                     $carManager = new carManager();
                     $carManager->insert($decks, $uploadFile['upload_dir'], $i);
@@ -153,6 +148,6 @@ class carController extends AbstractController
 
             }
         }
-         header("location:/modifier");
+        header("location:/modifier");
     }
 }
