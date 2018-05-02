@@ -92,7 +92,7 @@ class AdminController extends AbstractController
                     $personnages[$char['id_car']] = ['ID' => $char['ID'], 'decks' => $char['decks'], 'image' => $char['image'], 'cars' => $car[$char['id_car'] - 1]];
                 }
             }else {
-                $listChar = $charManager->findByDecks('SouthPark2');
+                $listChar = $charManager->findByDecks('NewDeck');
                 foreach ($listChar as $char) {
                     $personnages[$char['id_car']] = ['ID' => $char['ID'], 'decks' => $char['decks'], 'image' => $char['image'], 'cars' => $car[$char['id_car'] - 1]];
                 }
@@ -112,7 +112,7 @@ class AdminController extends AbstractController
 
         if(isset($_POST['supprDeck']))
         {
-            if ( $_POST['supprDeck'] != "SouthPark2" ) {
+            if ( $_POST['supprDeck'] != "NewDeck" ) {
                 $delManager = new AdminManager();
                 $delManager->delete($_POST['supprDeck']);
             }
