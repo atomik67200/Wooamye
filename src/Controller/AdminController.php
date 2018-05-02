@@ -77,31 +77,32 @@ class AdminController extends AbstractController
     }
 
         public function modifier()
-    {
-        session_start();
-
-        $charManager = new AdminManager();
-
-
-
-        $listChar = $charManager->findByDecks('SouthPark2');
-
-        $carManager = new CarManager();
-        $car = $carManager->findAll();
-        $personnages=[];
-        if((isset($_GET['selectAA'])) && (!empty($_GET['selectAA']))){
-            $_SESSION['deckmodif'] = $_GET['selectAA'];
-            $listChar = $charManager->findByDecks($_GET['selectAA']);
-            foreach ($listChar as $char){
-                $personnages[$char['id_car']]=['ID'=>$char['ID'],'decks'=>$char['decks'],'image'=>$char['image'],'cars'=>$car[$char['id_car']-1]];
+        {
+            session_start();
+            $charManager = new AdminManager();
+            //$listChar = $charManager->findByDecks('SouthPark2');
+            $carManager = new CarManager();
+            $car = $carManager->findAll();
+            $personnages = [];
+            if ((isset($_GET['selectAA'])) && (!empty($_GET['selectAA']))) {
+                //var_dump($_GET['selectAA']);
+                $_SESSION['deckmodif'] = $_GET['selectAA'];
+                $listChar = $charManager->findByDecks($_GET['selectAA']);
+                foreach ($listChar as $char) {
+                    $personnages[$char['id_car']] = ['ID' => $char['ID'], 'decks' => $char['decks'], 'image' => $char['image'], 'cars' => $car[$char['id_car'] - 1]];
+                }
+            }else {
+                $listChar = $charManager->findByDecks('SouthPark2');
+                foreach ($listChar as $char) {
+                    $personnages[$char['id_car']] = ['ID' => $char['ID'], 'decks' => $char['decks'], 'image' => $char['image'], 'cars' => $car[$char['id_car'] - 1]];
+                }
             }
-        }
 
-        $allDeck = $charManager->findRandomForAllDecks();
+                $allDeck = $charManager->findRandomForAllDecks();
 
-        return $this->twig->render('Admin/modifier.html.twig', ['dekk' => $_GET['selectAA'], 'allDeck'=> $allDeck ,'listechar'=>$listChar,'car' => $car,'personnages'=>$personnages]);
-    }
-
+                return $this->twig->render('Admin/modifier.html.twig', ['dekk' => $_GET['selectAA'],'allDeck' => $allDeck, 'car' => $car, 'personnages' => $personnages]);
+            }
+// 'listechar' => $listChar
     public function supprimer()
     {
         session_start();

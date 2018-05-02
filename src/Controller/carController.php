@@ -30,6 +30,7 @@ class carController extends AbstractController
         $files = $_FILES['files'];
         //traitement des fichiers
         $uploadFiles = [];
+
         for ($i = 0; $i < count($files['name']); $i++) {
             $file = [];
             $file['name'] = $files['name'][$i];
