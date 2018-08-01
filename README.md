@@ -1,16 +1,13 @@
-Projet WhooaMyee
------------------
------------------
+# WhooaMyee #
+-------------
 
-Recréer le jeu Qui Est Ce via un site Web
------------------------------------------
-
-
+Re-Create the game : Who am I via a web site
+--------------------------------------------
 
 *structure Model / View / Controller
 
-*Gestion de Paquets via Composer
+*Gestion of package via Composer
 
-*Vue générée via Twig
+*View generate via Twig
 
-*Système d'élimination géré en Javascript
+*System of elimination written in Javascript
